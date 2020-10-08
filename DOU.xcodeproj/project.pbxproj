@@ -14,11 +14,14 @@
 		320A3D902522554C00AE4D00 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 320A3D8F2522554C00AE4D00 /* Preview Assets.xcassets */; };
 		32526B9D25265D2B0099E5A4 /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32526B9C25265D2B0099E5A4 /* Date.swift */; };
 		32526BA225265F6C0099E5A4 /* Localization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32526BA125265F6C0099E5A4 /* Localization.swift */; };
+		325396BD252F85E000F8ED37 /* UiViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 325396BC252F85E000F8ED37 /* UiViews.swift */; };
 		326523D525271D9E0026C9EE /* PostComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 326523D425271D9E0026C9EE /* PostComponent.swift */; };
 		326523D925272A190026C9EE /* PublicationsObjects.swift in Sources */ = {isa = PBXBuildFile; fileRef = 326523D825272A190026C9EE /* PublicationsObjects.swift */; };
 		326523E025286A520026C9EE /* Styles.swift in Sources */ = {isa = PBXBuildFile; fileRef = 326523DF25286A520026C9EE /* Styles.swift */; };
 		326523F0252871820026C9EE /* PublicationsViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 326523EF252871820026C9EE /* PublicationsViews.swift */; };
 		326611002522634400D2CB02 /* PublicationsAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 326610FF2522634400D2CB02 /* PublicationsAPI.swift */; };
+		326AA949252CC02800072A76 /* HTML.swift in Sources */ = {isa = PBXBuildFile; fileRef = 326AA948252CC02800072A76 /* HTML.swift */; };
+		326AA94D252CC4D900072A76 /* UIViewRepresentables.swift in Sources */ = {isa = PBXBuildFile; fileRef = 326AA94C252CC4D900072A76 /* UIViewRepresentables.swift */; };
 		328CC33D25238E7700413AFC /* LentaViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 328CC33C25238E7700413AFC /* LentaViews.swift */; };
 		328CC3462523913E00413AFC /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 328CC3452523913E00413AFC /* HomeView.swift */; };
 		328CC34B2523917E00413AFC /* JobsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 328CC34A2523917E00413AFC /* JobsView.swift */; };
@@ -35,11 +38,14 @@
 		320A3D912522554C00AE4D00 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		32526B9C25265D2B0099E5A4 /* Date.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Date.swift; sourceTree = "<group>"; };
 		32526BA125265F6C0099E5A4 /* Localization.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Localization.swift; sourceTree = "<group>"; };
+		325396BC252F85E000F8ED37 /* UiViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UiViews.swift; sourceTree = "<group>"; };
 		326523D425271D9E0026C9EE /* PostComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostComponent.swift; sourceTree = "<group>"; };
 		326523D825272A190026C9EE /* PublicationsObjects.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PublicationsObjects.swift; sourceTree = "<group>"; };
 		326523DF25286A520026C9EE /* Styles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Styles.swift; sourceTree = "<group>"; };
 		326523EF252871820026C9EE /* PublicationsViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PublicationsViews.swift; sourceTree = "<group>"; };
 		326610FF2522634400D2CB02 /* PublicationsAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PublicationsAPI.swift; sourceTree = "<group>"; };
+		326AA948252CC02800072A76 /* HTML.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTML.swift; sourceTree = "<group>"; };
+		326AA94C252CC4D900072A76 /* UIViewRepresentables.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewRepresentables.swift; sourceTree = "<group>"; };
 		328CC33C25238E7700413AFC /* LentaViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LentaViews.swift; sourceTree = "<group>"; };
 		328CC3452523913E00413AFC /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		328CC34A2523917E00413AFC /* JobsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JobsView.swift; sourceTree = "<group>"; };
@@ -109,6 +115,9 @@
 			children = (
 				32526B9C25265D2B0099E5A4 /* Date.swift */,
 				32526BA125265F6C0099E5A4 /* Localization.swift */,
+				326AA948252CC02800072A76 /* HTML.swift */,
+				326AA94C252CC4D900072A76 /* UIViewRepresentables.swift */,
+				325396BC252F85E000F8ED37 /* UiViews.swift */,
 			);
 			path = Generic;
 			sourceTree = "<group>";
@@ -307,11 +316,14 @@
 				32526B9D25265D2B0099E5A4 /* Date.swift in Sources */,
 				326523E025286A520026C9EE /* Styles.swift in Sources */,
 				320A3D892522554A00AE4D00 /* DOUApp.swift in Sources */,
+				326AA94D252CC4D900072A76 /* UIViewRepresentables.swift in Sources */,
 				328CC34B2523917E00413AFC /* JobsView.swift in Sources */,
 				326523D925272A190026C9EE /* PublicationsObjects.swift in Sources */,
 				326523F0252871820026C9EE /* PublicationsViews.swift in Sources */,
 				326611002522634400D2CB02 /* PublicationsAPI.swift in Sources */,
+				326AA949252CC02800072A76 /* HTML.swift in Sources */,
 				32526BA225265F6C0099E5A4 /* Localization.swift in Sources */,
+				325396BD252F85E000F8ED37 /* UiViews.swift in Sources */,
 				328CC3462523913E00413AFC /* HomeView.swift in Sources */,
 				328CC33D25238E7700413AFC /* LentaViews.swift in Sources */,
 				328CC3572523936600413AFC /* Settings.swift in Sources */,

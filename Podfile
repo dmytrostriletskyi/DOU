@@ -6,4 +6,7 @@ target 'DOU' do
 
   pod 'Alamofire', '~> 5.2'
   pod 'URLImage', '0.9.11'
+  pod 'SwiftSoup', '2.3.2'
+  pod 'Atributika', '4.9.9'
+  pod 'Bagel', '~>  1.3.2'
 end

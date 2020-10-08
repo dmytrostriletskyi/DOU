@@ -15,6 +15,7 @@ struct PublicationsView: View {
                 NavigationLink(
                     destination: PublicationView(
                         publication: publication
+//                        url: "https://dou.ua/lenta/articles/it-infrastructure-in-fast-growing-company/"
                     )
                 ) {
                     PublicationsItemView(
@@ -63,8 +64,38 @@ struct PublicationsItemView: View {
 struct PublicationView: View {
     
     let publication: Publication
-
+    
+//    let url: String
+    
+    @State private var htmlStrings: [HtmlString] = [HtmlString]()
+    
     var body: some View {
-        Text("Publication page.")
+        ScrollView {
+            Group {
+                ForEach(htmlStrings, id: \.id) { htmlString in
+                    if htmlString.type == HtmlStringType.text {
+                        PostTextView(uiView: htmlString.uiView).frame(height: htmlString.uiViewHeigth)
+                    }
+                    
+                    if htmlString.type == HtmlStringType.image {
+                        PostImageView(uiView: htmlString.uiView).frame(height: htmlString.uiViewHeigth)
+                    }
+                }
+            }.onAppear {
+                Html(url: publication.url).get() { html in
+                    guard let html = html else {
+                        return
+                    }
+                    
+                    let htmlParser: HtmlParser = HtmlParser(html: html, rootTag: "article")
+                    
+                    guard let htmlString: [HtmlString] = htmlParser.parse() else {
+                        return
+                    }
+                    
+                    self.htmlStrings = htmlString
+                }
+            }
+        }
     }
 }
