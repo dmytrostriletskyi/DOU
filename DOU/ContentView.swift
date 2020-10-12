@@ -11,7 +11,6 @@ struct ContentView: View {
     }
 
     var body: some View {
-//        PublicationView(url: "https://dou.ua/lenta/articles/it-infrastructure-in-fast-growing-company/")
         TabView() {
 //            HomeView()
             LentaView()

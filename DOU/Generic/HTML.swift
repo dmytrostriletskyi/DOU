@@ -12,7 +12,6 @@ enum HtmlStringType {
 struct HtmlString: Identifiable {
 
     var id: UUID = UUID()
-    var content: String
     var type: HtmlStringType
     var uiView: AttributedLabel
     var uiViewHeigth: CGFloat
@@ -58,7 +57,9 @@ class HtmlParser {
     public let html: String
     public let rootTag: String
     
-    private let htmlTagsToEscape: [String] = ["#text", "div"]
+    private let htmlTagsToEscape: [String] = ["#text"]
+    private let textHtmlTags: [String] = ["p", "h1", "h2", "h3", "h4", "h5", "h6"]
+    private let unsupportedClasses: [String] = ["class=\"b-post-tags\""]
     
     init(html: String, rootTag: String) {
         self.html = html
@@ -84,6 +85,33 @@ class HtmlParser {
         return article
     }
     
+    private func clearhtmlString(htmlString: String) -> String {
+        var htmlString = htmlString
+
+        if htmlString.contains("nobr") {
+            htmlString = htmlString.replacingOccurrences(of: "<nobr>", with: "")
+            htmlString = htmlString.replacingOccurrences(of: "</nobr>", with: "")
+            htmlString = htmlString.replacingOccurrences(of: "\n", with: "")
+            htmlString = htmlString.replacingOccurrences(of: "   ", with: "")
+        }
+        
+        if htmlString.contains("li") {
+            htmlString = htmlString.replacingOccurrences(of: "\n", with: "")
+        }
+
+        if htmlString.contains("img") {
+            htmlString = htmlString.replacingOccurrences(of: "</p>", with: "</img></p>")
+        }
+        
+        if htmlString.contains("<div class=\"announce-pic\">") {
+            htmlString = htmlString.replacingOccurrences(of: "<div class=\"announce-pic\">\n ", with: "<p>")
+            htmlString = htmlString.replacingOccurrences(of: "\n</div>", with: "</p>")
+            htmlString = htmlString.replacingOccurrences(of: "\n <em>", with: "</img><em>")
+        }
+        
+        return htmlString
+    }
+
     public func parse() -> [HtmlString]? {
         guard let article: Element = getArticle() else {
             return nil
@@ -93,35 +121,43 @@ class HtmlParser {
         
         for childNode in article.getChildNodes() {
             let htmlStringTagName: String = childNode.nodeName()
-            var htmlString: String = childNode.description
             
             if htmlTagsToEscape.contains(htmlStringTagName) {
                 continue
             }
+            
+            var htmlString: String = childNode.description
+            
+            if unsupportedClasses.contains(where: htmlString.contains) {
+                continue
+            }
 
+            htmlString = clearhtmlString(htmlString: childNode.description)
             if htmlString.contains("img") {
-                htmlString = htmlString.replacingOccurrences(of: "</p>", with: "</img></p>")
-
                 let imageAttributedLabel: ImageAttributedLabel = ImageAttributedLabel(htmlString: htmlString)
 
                 htmlStrings.append(HtmlString(
-                    content: htmlString,
-                    type: HtmlStringType.image,
+                    type: .image,
                     uiView: imageAttributedLabel.get(),
                     uiViewHeigth: imageAttributedLabel.getHeight()
                 ))
-            } else {
+                
+                continue
+            }
+            
+            if textHtmlTags.contains(where: htmlString.contains) {
                 let textAttributedLabel: TextAttributedLabel = TextAttributedLabel(htmlString: htmlString)
 
                 htmlStrings.append(HtmlString(
-                    content: htmlString,
-                    type: HtmlStringType.text,
+                    type: .text,
                     uiView: textAttributedLabel.get(),
                     uiViewHeigth: textAttributedLabel.getHeight()
                 ))
+                
+                continue
             }
         }
-        
+
         return htmlStrings
     }
 }

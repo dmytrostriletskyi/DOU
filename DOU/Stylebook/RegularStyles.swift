@@ -30,7 +30,7 @@ struct TabBarStyle {
     public let settingsTabHeaderNameRussian: String = "настройки"
 }
 
-struct PostStyle {
+struct RegularPostItemStyle {
     
     public let titleFont: String = "Arial"
     public let titleSize: Int64 = 18

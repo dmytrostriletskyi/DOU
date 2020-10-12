@@ -15,7 +15,6 @@ struct PublicationsView: View {
                 NavigationLink(
                     destination: PublicationView(
                         publication: publication
-//                        url: "https://dou.ua/lenta/articles/it-infrastructure-in-fast-growing-company/"
                     )
                 ) {
                     PublicationsItemView(
@@ -40,17 +39,17 @@ struct PublicationsItemView: View {
 
     var body: some View {
         VStack(alignment: .leading) {
-            PostTitle(title: publication.title)
+            RegularPostTitle(title: publication.title)
             HStack(spacing: 15) {
-                PostAuthorName(authorName: publication.authorName)
-                PostPublicationDate(
+                RegularPostAuthorName(authorName: publication.authorName)
+                RegularPostPublicationDate(
                     publicationDate: DateRepresentation(
                         date: publication.publicationDate
                     ).get(
                         localization: .ukrainian
                     )
                 )
-                PostViews(views: publication.views)
+                RegularPostViews(views: publication.views)
             }
             .padding(
                 .vertical, 1
@@ -64,22 +63,36 @@ struct PublicationsItemView: View {
 struct PublicationView: View {
     
     let publication: Publication
-    
-//    let url: String
-    
+
     @State private var htmlStrings: [HtmlString] = [HtmlString]()
     
     var body: some View {
         ScrollView {
             Group {
-                ForEach(htmlStrings, id: \.id) { htmlString in
-                    if htmlString.type == HtmlStringType.text {
-                        PostTextView(uiView: htmlString.uiView).frame(height: htmlString.uiViewHeigth)
-                    }
-                    
-                    if htmlString.type == HtmlStringType.image {
-                        PostImageView(uiView: htmlString.uiView).frame(height: htmlString.uiViewHeigth)
-                    }
+                VStack {
+                    Text("").frame(height: 10)
+                    GeometryReader { _ in
+                        HStack(spacing: 15) {
+                            AttributedPostAuthorName(authorName: publication.authorName)
+                            AttributedPostPublicationDate(
+                                publicationDate: DateRepresentation(
+                                    date: publication.publicationDate
+                                ).get(
+                                    localization: .ukrainian
+                                )
+                            )
+                            AttributedPostViews(views: publication.views)
+                        }.padding(.bottom, 10)
+                    }.padding(.leading, 21)
+                    ForEach(htmlStrings, id: \.id) { htmlString in
+                        if htmlString.type == HtmlStringType.text {
+                            PostTextView(uiView: htmlString.uiView).frame(height: htmlString.uiViewHeigth)
+                        }
+                        
+                        if htmlString.type == HtmlStringType.image {
+                            PostImageView(uiView: htmlString.uiView).frame(height: htmlString.uiViewHeigth)
+                        }
+                    }.padding(.horizontal, 20)
                 }
             }.onAppear {
                 Html(url: publication.url).get() { html in
@@ -96,6 +109,6 @@ struct PublicationView: View {
                     self.htmlStrings = htmlString
                 }
             }
-        }
+        }.padding(.bottom, 15)
     }
 }
