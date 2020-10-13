@@ -28,6 +28,7 @@
 		328CC3572523936600413AFC /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 328CC3562523936600413AFC /* Settings.swift */; };
 		32A95AA92534B69E0012D78C /* AttributedStyles.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32A95AA82534B69E0012D78C /* AttributedStyles.swift */; };
 		32A95AAF2534C5F10012D78C /* AttributedPostComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32A95AAE2534C5F10012D78C /* AttributedPostComponent.swift */; };
+		32C5A6B125361586008C48BD /* ActivityIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32C5A6B025361586008C48BD /* ActivityIndicator.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -54,6 +55,7 @@
 		328CC3562523936600413AFC /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
 		32A95AA82534B69E0012D78C /* AttributedStyles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttributedStyles.swift; sourceTree = "<group>"; };
 		32A95AAE2534C5F10012D78C /* AttributedPostComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttributedPostComponent.swift; sourceTree = "<group>"; };
+		32C5A6B025361586008C48BD /* ActivityIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityIndicator.swift; sourceTree = "<group>"; };
 		3B741F18EBF3AABD0911ACAF /* Pods-DOU.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DOU.release.xcconfig"; path = "Target Support Files/Pods-DOU/Pods-DOU.release.xcconfig"; sourceTree = "<group>"; };
 		BA021E065B714D5009D2EC4A /* Pods_DOU.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DOU.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -122,6 +124,7 @@
 				326AA948252CC02800072A76 /* HTML.swift */,
 				326AA94C252CC4D900072A76 /* UIViewRepresentables.swift */,
 				325396BC252F85E000F8ED37 /* UiViews.swift */,
+				32C5A6B025361586008C48BD /* ActivityIndicator.swift */,
 			);
 			path = Generic;
 			sourceTree = "<group>";
@@ -320,6 +323,7 @@
 			files = (
 				320A3D8B2522554A00AE4D00 /* ContentView.swift in Sources */,
 				32526B9D25265D2B0099E5A4 /* Date.swift in Sources */,
+				32C5A6B125361586008C48BD /* ActivityIndicator.swift in Sources */,
 				326523E025286A520026C9EE /* RegularStyles.swift in Sources */,
 				320A3D892522554A00AE4D00 /* DOUApp.swift in Sources */,
 				32A95AA92534B69E0012D78C /* AttributedStyles.swift in Sources */,
