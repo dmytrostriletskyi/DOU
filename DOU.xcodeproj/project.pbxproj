@@ -20,12 +20,10 @@
 		326523E025286A520026C9EE /* RegularStyles.swift in Sources */ = {isa = PBXBuildFile; fileRef = 326523DF25286A520026C9EE /* RegularStyles.swift */; };
 		326523F0252871820026C9EE /* PublicationsViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 326523EF252871820026C9EE /* PublicationsViews.swift */; };
 		326611002522634400D2CB02 /* PublicationsAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 326610FF2522634400D2CB02 /* PublicationsAPI.swift */; };
+		32662E6F253743220051069E /* ForumViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32662E6E253743220051069E /* ForumViews.swift */; };
 		326AA949252CC02800072A76 /* HTML.swift in Sources */ = {isa = PBXBuildFile; fileRef = 326AA948252CC02800072A76 /* HTML.swift */; };
 		326AA94D252CC4D900072A76 /* UIViewRepresentables.swift in Sources */ = {isa = PBXBuildFile; fileRef = 326AA94C252CC4D900072A76 /* UIViewRepresentables.swift */; };
 		328CC33D25238E7700413AFC /* LentaViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 328CC33C25238E7700413AFC /* LentaViews.swift */; };
-		328CC3462523913E00413AFC /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 328CC3452523913E00413AFC /* HomeView.swift */; };
-		328CC34B2523917E00413AFC /* JobsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 328CC34A2523917E00413AFC /* JobsView.swift */; };
-		328CC3572523936600413AFC /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 328CC3562523936600413AFC /* Settings.swift */; };
 		32A95AA92534B69E0012D78C /* AttributedStyles.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32A95AA82534B69E0012D78C /* AttributedStyles.swift */; };
 		32A95AAF2534C5F10012D78C /* AttributedPostComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32A95AAE2534C5F10012D78C /* AttributedPostComponent.swift */; };
 		32C5A6B125361586008C48BD /* ActivityIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32C5A6B025361586008C48BD /* ActivityIndicator.swift */; };
@@ -47,12 +45,10 @@
 		326523DF25286A520026C9EE /* RegularStyles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegularStyles.swift; sourceTree = "<group>"; };
 		326523EF252871820026C9EE /* PublicationsViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PublicationsViews.swift; sourceTree = "<group>"; };
 		326610FF2522634400D2CB02 /* PublicationsAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PublicationsAPI.swift; sourceTree = "<group>"; };
+		32662E6E253743220051069E /* ForumViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForumViews.swift; sourceTree = "<group>"; };
 		326AA948252CC02800072A76 /* HTML.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTML.swift; sourceTree = "<group>"; };
 		326AA94C252CC4D900072A76 /* UIViewRepresentables.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewRepresentables.swift; sourceTree = "<group>"; };
 		328CC33C25238E7700413AFC /* LentaViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LentaViews.swift; sourceTree = "<group>"; };
-		328CC3452523913E00413AFC /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
-		328CC34A2523917E00413AFC /* JobsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JobsView.swift; sourceTree = "<group>"; };
-		328CC3562523936600413AFC /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
 		32A95AA82534B69E0012D78C /* AttributedStyles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttributedStyles.swift; sourceTree = "<group>"; };
 		32A95AAE2534C5F10012D78C /* AttributedPostComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttributedPostComponent.swift; sourceTree = "<group>"; };
 		32C5A6B025361586008C48BD /* ActivityIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityIndicator.swift; sourceTree = "<group>"; };
@@ -93,11 +89,9 @@
 		320A3D872522554A00AE4D00 /* DOU */ = {
 			isa = PBXGroup;
 			children = (
+				32662E6D253743070051069E /* Forum */,
 				326523D325271D700026C9EE /* Stylebook */,
 				32526B9B25265D130099E5A4 /* Generic */,
-				328CC3542523935A00413AFC /* Settings */,
-				328CC3492523916600413AFC /* Jobs */,
-				328CC3442523912100413AFC /* Home */,
 				326610FE2522631B00D2CB02 /* Lenta */,
 				320A3D882522554A00AE4D00 /* DOUApp.swift */,
 				320A3D8A2522554A00AE4D00 /* ContentView.swift */,
@@ -158,28 +152,12 @@
 			path = Lenta;
 			sourceTree = "<group>";
 		};
-		328CC3442523912100413AFC /* Home */ = {
+		32662E6D253743070051069E /* Forum */ = {
 			isa = PBXGroup;
 			children = (
-				328CC3452523913E00413AFC /* HomeView.swift */,
+				32662E6E253743220051069E /* ForumViews.swift */,
 			);
-			path = Home;
-			sourceTree = "<group>";
-		};
-		328CC3492523916600413AFC /* Jobs */ = {
-			isa = PBXGroup;
-			children = (
-				328CC34A2523917E00413AFC /* JobsView.swift */,
-			);
-			path = Jobs;
-			sourceTree = "<group>";
-		};
-		328CC3542523935A00413AFC /* Settings */ = {
-			isa = PBXGroup;
-			children = (
-				328CC3562523936600413AFC /* Settings.swift */,
-			);
-			path = Settings;
+			path = Forum;
 			sourceTree = "<group>";
 		};
 		32A95AAC2534C5C80012D78C /* Components */ = {
@@ -329,16 +307,14 @@
 				32A95AA92534B69E0012D78C /* AttributedStyles.swift in Sources */,
 				32A95AAF2534C5F10012D78C /* AttributedPostComponent.swift in Sources */,
 				326AA94D252CC4D900072A76 /* UIViewRepresentables.swift in Sources */,
-				328CC34B2523917E00413AFC /* JobsView.swift in Sources */,
 				326523D925272A190026C9EE /* PublicationsObjects.swift in Sources */,
 				326523F0252871820026C9EE /* PublicationsViews.swift in Sources */,
 				326611002522634400D2CB02 /* PublicationsAPI.swift in Sources */,
 				326AA949252CC02800072A76 /* HTML.swift in Sources */,
 				32526BA225265F6C0099E5A4 /* Localization.swift in Sources */,
 				325396BD252F85E000F8ED37 /* UiViews.swift in Sources */,
-				328CC3462523913E00413AFC /* HomeView.swift in Sources */,
 				328CC33D25238E7700413AFC /* LentaViews.swift in Sources */,
-				328CC3572523936600413AFC /* Settings.swift in Sources */,
+				32662E6F253743220051069E /* ForumViews.swift in Sources */,
 				326523D525271D9E0026C9EE /* RegularPostComponent.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

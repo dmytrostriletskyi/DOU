@@ -12,37 +12,18 @@ struct ContentView: View {
 
     var body: some View {
         TabView() {
-//            HomeView()
-            LentaView()
-                .tabItem {
-                    Image(systemName: tabBarStyle.homeTabImageSystemName)
-                    Text("Главная")
-                }
-                .tag(0)
             LentaView()
                 .tabItem {
                     Image(systemName: tabBarStyle.lentaTabImageSystemName)
                     Text("Лента")
                 }
                 .tag(1)
-            JobsView()
+            ForumView()
                 .tabItem {
                     Image(systemName: tabBarStyle.forumTabImageSystemName)
                     Text("Форум")
                 }
                 .tag(2)
-            JobsView()
-                .tabItem {
-                    Image(systemName: tabBarStyle.jobsTabImageSystemName)
-                    Text("Работа")
-                }
-                .tag(2)
-            UserView()
-                .tabItem {
-                    Image(systemName: tabBarStyle.settingsTabImageSystemName)
-                    Text("Настройки")
-                }
-                .tag(3)
         }.accentColor(.white)
     }
 }
