@@ -9,4 +9,6 @@ target 'DOU' do
   pod 'SwiftSoup', '2.3.2'
   pod 'Atributika', '4.9.9'
   pod 'Bagel', '~>  1.3.2'
+  pod 'SwiftCSV', '0.5.6'
+  pod 'SigmaSwiftStatistics', '9.0.2'
 end

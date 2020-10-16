@@ -1,4 +1,5 @@
 import Foundation
+import SwiftUI
 
 import Atributika
 
@@ -230,5 +231,20 @@ class ImageAttributedLabel {
         )
         
         return attributedLabelSize.height
+    }
+}
+
+struct CheckMarkButtonIcon: View {
+    var body: some View {
+        Image(
+            systemName: "checkmark"
+        ).foregroundColor(
+            Color.blue
+        ).font(
+            Font.system(
+                size: 15,
+                weight: .semibold
+            )
+        )
     }
 }

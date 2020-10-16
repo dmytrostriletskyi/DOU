@@ -15,16 +15,19 @@ struct ContentView: View {
             LentaView()
                 .tabItem {
                     Image(systemName: tabBarStyle.lentaTabImageSystemName)
-                    Text("Лента")
-                }
-                .tag(1)
+                    Text("Стрічка")
+                }.tag(1)
             ForumView()
                 .tabItem {
                     Image(systemName: tabBarStyle.forumTabImageSystemName)
                     Text("Форум")
-                }
-                .tag(2)
-        }.accentColor(.white)
+                }.tag(2)
+            SalariesView()
+                .tabItem {
+                    Image(systemName: tabBarStyle.forumTabImageSystemName)
+                    Text("Зарплати")
+                }.tag(3)
+        }.accentColor(.white).accentColor(/*@START_MENU_TOKEN@*/.blue/*@END_MENU_TOKEN@*/)
     }
 }
 
