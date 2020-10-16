@@ -1,55 +1,67 @@
 import Foundation
 import SwiftUI
 
-struct PublicationsView: View {
+struct ArticlesView: View {
     
-    @ObservedObject var publicationsService: PublicationsService = PublicationsService()
+    @ObservedObject var articlesService: ArticlesService = ArticlesService()
     
+    private let navigationBarStyle: NavigationBarStyle = NavigationBarStyle()
     private let tabBarStyle: TabBarStyle = TabBarStyle()
-    
+
+    init() {
+        UINavigationBar.appearance().titleTextAttributes = [
+            .font: UIFont(
+                name: navigationBarStyle.headerFont,
+                size: CGFloat(navigationBarStyle.headerSize)
+            )!,
+        ]
+    }
+
     var body: some View {
-        NavigationView() {
-            List(
-                publicationsService.publications
-            ) { (publication: Publication) in
-                NavigationLink(
-                    destination: PublicationView(
-                        publication: publication
-                    )
-                ) {
-                    PublicationsItemView(
-                        publication: publication
-                    ).onAppear {
-                        publicationsService.fetchNext(
-                            currentPublication: publication
+        VStack(alignment: .leading) {
+            NavigationView() {
+                List(
+                    articlesService.article
+                ) { (article: Article) in
+                    NavigationLink(
+                        destination: ArticleView(
+                            article: article
                         )
-                    }
-                 }
-            }.navigationBarTitle(
-                tabBarStyle.forumTabNameUkrainian,
-                displayMode: .inline
-            )
+                    ) {
+                        ArticlesItemView(
+                            article: article
+                        ).onAppear {
+                            articlesService.fetchNext(
+                                currentArticle: article
+                            )
+                        }
+                     }
+                }.navigationBarTitle(
+                    tabBarStyle.forumTabNameUkrainian,
+                    displayMode: .inline
+                )
+            }
         }
     }
 }
 
-struct PublicationsItemView: View {
+struct ArticlesItemView: View {
     
-    let publication: Publication
+    let article: Article
 
     var body: some View {
         VStack(alignment: .leading) {
-            RegularPostTitle(title: publication.title)
+            RegularPostTitle(title: article.title)
             HStack(spacing: 15) {
-                RegularPostAuthorName(authorName: publication.authorName)
+                RegularPostAuthorName(authorName: article.authorName)
                 RegularPostPublicationDate(
                     publicationDate: DateRepresentation(
-                        date: publication.publicationDate
+                        date: article.publicationDate
                     ).get(
                         localization: .ukrainian
                     )
                 )
-                RegularPostViews(views: publication.views)
+                RegularPostViews(views: article.views)
             }
             .padding(
                 .vertical, 1
@@ -60,9 +72,9 @@ struct PublicationsItemView: View {
     }
 }
 
-struct PublicationView: View {
+struct ArticleView: View {
     
-    let publication: Publication
+    let article: Article
 
     @State var isActivityIndicatorLoaing: Bool = true
     @State private var htmlStrings: [HtmlString] = [HtmlString]()
@@ -78,15 +90,15 @@ struct PublicationView: View {
                             Text("").frame(height: 10)
                             GeometryReader { _ in
                                 HStack(spacing: 15) {
-                                    AttributedPostAuthorName(authorName: publication.authorName)
+                                    AttributedPostAuthorName(authorName: article.authorName)
                                     AttributedPostPublicationDate(
                                         publicationDate: DateRepresentation(
-                                            date: publication.publicationDate
+                                            date: article.publicationDate
                                         ).get(
                                             localization: .ukrainian
                                         )
                                     )
-                                    AttributedPostViews(views: publication.views)
+                                    AttributedPostViews(views: article.views)
                                 }.padding(.bottom, 10)
                             }.padding(.leading, 21)
                             ForEach(htmlStrings, id: \.id) { htmlString in
@@ -104,12 +116,12 @@ struct PublicationView: View {
             }
         }
         .onAppear {
-            Html(url: publication.url).get() { html in
+            Html(url: article.url).get() { html in
                 guard let html = html else {
                     return
                 }
 
-                let htmlParser: HtmlParser = HtmlParser(html: html, rootTag: "article")
+                let htmlParser: ArticlesHtmlParser = ArticlesHtmlParser(html: html, rootTag: "article")
 
                 guard let htmlString: [HtmlString] = htmlParser.parse() else {
                     return

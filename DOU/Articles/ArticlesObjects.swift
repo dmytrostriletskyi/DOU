@@ -1,6 +1,6 @@
 import Foundation
 
-struct Publication: Identifiable, Decodable {
+struct Article: Identifiable, Decodable {
     
     var id: Int64
     var url: String
@@ -27,11 +27,11 @@ struct Publication: Identifiable, Decodable {
     }
 }
 
-struct Publications: Decodable {
+struct Articles: Decodable {
   let count: Int
   let next: String
   let previous: Optional<String>
-  let results: [Publication]
+  let results: [Article]
   
   enum CodingKeys: String, CodingKey {
     case count = "count"

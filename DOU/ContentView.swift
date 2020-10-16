@@ -12,7 +12,7 @@ struct ContentView: View {
 
     var body: some View {
         TabView() {
-            LentaView()
+            ArticlesView()
                 .tabItem {
                     Image(systemName: tabBarStyle.lentaTabImageSystemName)
                     Text("Стрічка")
