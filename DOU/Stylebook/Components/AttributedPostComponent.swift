@@ -67,3 +67,30 @@ struct AttributedPostViews: View {
         }
     }
 }
+
+struct AttributedPostCommentsCount: View {
+    
+    public let commentsCount: Int64
+
+    private let attributedPostItemStyle: AttributedPostItemStyle = AttributedPostItemStyle()
+    
+    var body: some View {
+        HStack {
+            (
+                Text(
+                    Image(
+                        systemName: "bubble.right.fill"
+                    )
+                ) + Text(
+                    " \(commentsCount)")
+            ).font(
+                .custom(
+                    attributedPostItemStyle.informationFont,
+                    size: CGFloat(attributedPostItemStyle.informationSize)
+                )
+            ).foregroundColor(
+                attributedPostItemStyle.informationColor
+            )
+        }
+    }
+}

@@ -17,7 +17,7 @@ struct ContentView: View {
                     Image(systemName: tabBarStyle.lentaTabImageSystemName)
                     Text("Стрічка")
                 }.tag(1)
-            ForumView()
+            ArticlesView()
                 .tabItem {
                     Image(systemName: tabBarStyle.forumTabImageSystemName)
                     Text("Форум")

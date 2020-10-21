@@ -91,3 +91,30 @@ struct RegularPostViews: View {
         }
     }
 }
+
+struct RegularPostCommentsCount: View {
+    
+    public let commentsCount: Int64
+
+    private let regularPostItemStyle: RegularPostItemStyle = RegularPostItemStyle()
+    
+    var body: some View {
+        HStack {
+            (
+                Text(
+                    Image(
+                        systemName: "bubble.right.fill"
+                    )
+                ) + Text(
+                    " \(commentsCount)")
+            ).font(
+                .custom(
+                    regularPostItemStyle.informationFont,
+                    size: CGFloat(regularPostItemStyle.informationSize)
+                )
+            ).foregroundColor(
+                regularPostItemStyle.informationColor
+            )
+        }
+    }
+}

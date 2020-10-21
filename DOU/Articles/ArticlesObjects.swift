@@ -1,4 +1,5 @@
 import Foundation
+import Atributika
 
 struct Article: Identifiable, Decodable {
     
@@ -28,6 +29,7 @@ struct Article: Identifiable, Decodable {
 }
 
 struct Articles: Decodable {
+
   let count: Int
   let next: String
   let previous: Optional<String>
@@ -39,4 +41,17 @@ struct Articles: Decodable {
     case previous = "previous"
     case results = "results"
   }
+}
+
+struct ArticleComment: Identifiable {
+
+    var id: UUID = UUID()
+    var level: CGFloat = 0
+    var authorName: String?
+    var authorTitle: String?
+    var authorCompany: String?
+    var authorCompanyUrl: String?
+    var publicationDate: Date?
+    var uiView: AttributedLabel?
+    var uiViewHeigth: CGFloat?
 }
