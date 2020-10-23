@@ -24,6 +24,7 @@ class ArticlesHtmlParser {
     private let htmlTagsToEscape: [String] = ["#text"]
     private let textHtmlTags: [String] = ["p", "h1", "h2", "h3", "h4", "h5", "h6"]
     private let unsupportedClasses: [String] = ["class=\"b-post-tags\""]
+    private let russianLetters: [Character] = Array("аАбБвВгГдДеЕёЁжЖзЗиИйЙкКлЛмМнНоОпПрРсСтТуУфФхХцЦчЧшШщЩъЪыЫьЬэЭюЮяЯ")
     
     init(html: String, rootTag: String) {
         self.html = html
@@ -73,9 +74,31 @@ class ArticlesHtmlParser {
             htmlString = htmlString.replacingOccurrences(of: "\n <em>", with: "</img><em>")
         }
         
+        if htmlString.contains("strike") {
+            htmlString = htmlString.replacingOccurrences(of: "\n <strike>", with: " <strike>")
+            htmlString = htmlString.replacingOccurrences(of: " <strike>\n  ", with: "<strike>")
+            htmlString = htmlString.replacingOccurrences(of: "\n </strike>", with: "</strike>")
+            
+        }
+        
         return htmlString
     }
 
+    private func getExceptionalHtmlStrings(htmlString: String) -> [String]? {
+        let htmlString: String = htmlString
+
+        if htmlString.contains("img") {
+            
+            if !htmlString.contains("<p><img") {
+                // https://dou.ua/lenta/articles/behavioral-system-design-interview-fb/
+                if russianLetters.contains(where: htmlString.contains) {
+                    return nil
+                }
+            }
+        }
+        
+        return nil
+    }
     public func parse() -> [HtmlString]? {
         guard let article: Element = getArticle() else {
             return nil
@@ -95,8 +118,17 @@ class ArticlesHtmlParser {
             if unsupportedClasses.contains(where: htmlString.contains) {
                 continue
             }
+            
+            let htmlStringsToPRocessSeparately: [String]? = getExceptionalHtmlStrings(htmlString: childNode.description)
+            
+            if htmlStringsToPRocessSeparately != nil {
+                // append separatenly
+                // and go to the next iteration
+                continue
+            }
 
             htmlString = clearhtmlString(htmlString: childNode.description)
+
             if htmlString.contains("img") {
                 let imageAttributedLabel: ImageAttributedLabel = ImageAttributedLabel(htmlString: htmlString)
 
@@ -174,7 +206,5 @@ class ArticleCommentsHtmlParser {
             print("Unknown error during getting article comments from HTML.")
             return nil
         }
-
-        return articleComments
     }
 }

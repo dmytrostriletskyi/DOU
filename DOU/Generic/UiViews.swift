@@ -33,6 +33,8 @@ class TextAttributedLabel {
             attributedPostStyle.linkUnderlineStyle
         )
         
+        let strike = Style("strike").strikethroughStyle(.single)
+        
         let headerOneSize = Style("h1").font(
             UIFont.systemFont(
                 ofSize: attributedPostStyle.headerOneSize,
@@ -83,6 +85,7 @@ class TextAttributedLabel {
             all,
             paragraph,
             link,
+            strike,
             headerOneSize,
             headerTwoSize,
             headerThreeSize,
@@ -181,32 +184,46 @@ class ImageAttributedLabel {
         )
         
         let attributedText = htmlString.style(tags: [emphasizedText])
-        
         let mutableAttributedString = NSMutableAttributedString(attributedString: attributedText.attributedString)
-
-        var locationShift = 0
 
         for detection in attributedText.detections {
             switch detection.type {
             case .tag(let tag):
                 if let imageLink = tag.attributes["src"] {
                     let url = URL(string: imageLink)!
-                    let data = try? Data(contentsOf: url)
-                    let image = UIImage(data: data!)!
+                    
+                    var urlData: Data = Data()
+                    
+                    do {
+                        urlData = try Data(contentsOf: url)
+                    } catch {
+                        attributedLabel.attributedText = mutableAttributedString.styleAll(all)
+                        self.attributedLabel = attributedLabel
+                        print("The following HTML string is out of regularity: \(htmlString).")
+                        return
+                    }
+                    
+                    let image: UIImage? = UIImage(data: urlData)
 
-                    let ratio = UIScreen.main.bounds.size.width / image.size.width
-                    let hhhh = image.size.height * ratio
+                    if image == nil {
+                        attributedLabel.attributedText = mutableAttributedString.styleAll(all)
+                        self.attributedLabel = attributedLabel
+                        print("The following HTML string is out of regularity: \(htmlString).")
+                        return
+                    }
+                    
+                    let screenWidthToImageWidthRatio = UIScreen.main.bounds.size.width / image!.size.width
+                    let imageHeight = image!.size.height * screenWidthToImageWidthRatio
                     
                     let textAttachment = NSTextAttachment()
 
                     textAttachment.image = image
-                    textAttachment.bounds = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.size.width * 0.9, height: hhhh)
+                    textAttachment.bounds = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.size.width * 0.9, height: imageHeight)
 
-                    let imageAttrStr = NSAttributedString(attachment: textAttachment)
-                    let nsrange = NSRange(detection.range, in: mutableAttributedString.string)
-                    mutableAttributedString.insert(imageAttrStr, at: nsrange.location + locationShift)
+                    let imageAttrubtedString = NSAttributedString(attachment: textAttachment)
+                    let mutableAttributedStringRange = NSRange(detection.range, in: mutableAttributedString.string)
 
-                    locationShift += 1
+                    mutableAttributedString.insert(imageAttrubtedString, at: mutableAttributedStringRange.location)
                 }
 
             default:
@@ -215,7 +232,6 @@ class ImageAttributedLabel {
         }
 
         attributedLabel.attributedText = mutableAttributedString.styleAll(all)
-
         self.attributedLabel = attributedLabel
     }
     
