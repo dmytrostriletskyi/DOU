@@ -1,5 +1,6 @@
 import Foundation
 import SwiftUI
+import URLImage
 
 struct ArticlesView: View {
     
@@ -10,10 +11,10 @@ struct ArticlesView: View {
 
     init() {
         UINavigationBar.appearance().titleTextAttributes = [
-            .font: UIFont(
-                name: navigationBarStyle.headerFont,
-                size: CGFloat(navigationBarStyle.headerSize)
-            )!,
+            .font: UIFont.systemFont(
+                ofSize: CGFloat(navigationBarStyle.headerSize),
+                weight: UIFont.Weight.semibold
+            )
         ]
     }
 
@@ -23,21 +24,25 @@ struct ArticlesView: View {
                 List(
                     articlesService.article
                 ) { (article: Article) in
-                    NavigationLink(
-                        destination: ArticleView(
-                            article: article
-                        )
-                    ) {
+                    ZStack {
                         ArticlesItemView(
                             article: article
                         ).onAppear {
                             articlesService.fetchNext(
                                 currentArticle: article
                             )
-                        }
-                     }
+                        }.padding(
+                            .horizontal, 5
+                        )
+                        NavigationLink(
+                            destination: ArticleView(article: article),
+                            label: {}
+                        ).frame(
+                            width: 0
+                        )
+                    }
                 }.navigationBarTitle(
-                    tabBarStyle.forumTabNameUkrainian,
+                    tabBarStyle.articlesTabNameUkrainian,
                     displayMode: .inline
                 )
             }
@@ -51,8 +56,28 @@ struct ArticlesItemView: View {
 
     var body: some View {
         VStack(alignment: .leading) {
+            URLImage(
+                URL(
+                    string: article.imageUrl
+                )!,
+                processors: [
+                    Resize(
+                        size: CGSize(width: UIScreen.main.bounds.size.width - 41.5, height: 179),
+                        scale: UIScreen.main.scale)
+                ],
+                content:  {
+                    $0.image
+                    .resizable()
+                    .aspectRatio(contentMode: .fill)
+                    .clipped()
+                }
+            ).frame(
+                width: UIScreen.main.bounds.size.width - 41.5,
+                height: 179
+            )
+            Spacer()
             RegularPostTitle(title: article.title)
-            HStack(spacing: 15) {
+            HStack() {
                 RegularPostAuthorName(authorName: article.authorName)
                 RegularPostPublicationDate(
                     publicationDate: DateRepresentation(
@@ -61,10 +86,10 @@ struct ArticlesItemView: View {
                         localization: .ukrainian
                     )
                 )
+                Spacer()
                 RegularPostViews(views: article.views)
                 RegularPostCommentsCount(commentsCount: article.commentsCount)
-            }
-            .padding(
+            }.padding(
                 .vertical, 1
             )
         }.padding(
@@ -118,12 +143,12 @@ struct ArticleView: View {
                                     NavigationLink(
                                         destination: ArticleCommentsView(article: article)
                                     ) {
-                                        Text("\(article.commentsCount) комментар(ів)").foregroundColor(Color.black)
+                                        Text("\(article.commentsCount) комментар(ів)").foregroundColor(Color.black).underline()
                                     }
                                 } else {
-                                    Text("Немає комментарів").foregroundColor(Color.black)
+                                    Text("Немає комментарів").foregroundColor(Color.black).underline()
                                 }
-                            }
+                            }.frame(height: 30)
                         }
                     }
                 }.padding(.bottom, 15)

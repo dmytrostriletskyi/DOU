@@ -2,6 +2,7 @@ import SwiftUI
 
 struct SalariesView: View {
 
+    private let navigationBarStyle: NavigationBarStyle = NavigationBarStyle()
     private let workingExperienceDescriptions = [
         1: "рік",
         2: "роки",
@@ -26,6 +27,15 @@ struct SalariesView: View {
     @State private var selectedSoftwareEngineeringProgrammingLanguage: String = "1С"
     @State private var selectedQualityAssuranceSpecializationIndex: Int = 0
     @State private var selectedQualityAssuranceSpecialization: String = "Manual QA"
+
+    init() {
+        UINavigationBar.appearance().titleTextAttributes = [
+            .font: UIFont.systemFont(
+                ofSize: CGFloat(navigationBarStyle.headerSize),
+                weight: UIFont.Weight.semibold
+            )
+        ]
+    }
 
     var body: some View {
         NavigationView {

@@ -14,7 +14,7 @@ struct ContentView: View {
         TabView() {
             ArticlesView()
                 .tabItem {
-                    Image(systemName: tabBarStyle.lentaTabImageSystemName)
+                    Image(systemName: tabBarStyle.articlesTabImageSystemName)
                     Text("Стрічка")
                 }.tag(1)
             ArticlesView()
@@ -24,7 +24,7 @@ struct ContentView: View {
                 }.tag(2)
             SalariesView()
                 .tabItem {
-                    Image(systemName: tabBarStyle.forumTabImageSystemName)
+                    Image(systemName: tabBarStyle.salariesTabImageSystemName)
                     Text("Зарплати")
                 }.tag(3)
         }.accentColor(.white).accentColor(/*@START_MENU_TOKEN@*/.blue/*@END_MENU_TOKEN@*/)
