@@ -12,12 +12,12 @@ struct ContentView: View {
 
     var body: some View {
         TabView() {
-            ArticlesView()
+            ArticlesScreenView()
                 .tabItem {
                     Image(systemName: tabBarStyle.articlesTabImageSystemName)
                     Text("Стрічка")
                 }.tag(1)
-            ArticlesView()
+            ArticlesScreenView()
                 .tabItem {
                     Image(systemName: tabBarStyle.forumTabImageSystemName)
                     Text("Форум")

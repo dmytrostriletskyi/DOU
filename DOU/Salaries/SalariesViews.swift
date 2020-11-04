@@ -15,7 +15,11 @@ struct SalariesView: View {
         9: "років"
     ]
 
-    @ObservedObject private var salary: Salary = Salary()
+    @ObservedObject private var salaryService: SalaryService = SalaryService(
+        source: SalariesCsvSource(
+            url: "https://raw.githubusercontent.com/imax/dou-salaries/master/data/2020_june_mini.csv"
+        )
+    )
 
     @State private var workingExperience: Float64 = 2
     @State private var selectedCityIndex: Int = 0
@@ -43,7 +47,7 @@ struct SalariesView: View {
                 Section(header: Text("Вхідні данні")) {
                     NavigationLink(
                         destination: SalariesCitiesView(
-                            cities: salary.cities,
+                            cities: salaryService.cities,
                             selectedCityIndex: $selectedCityIndex,
                             selectedCity: $selectedCity
                         )
@@ -57,10 +61,10 @@ struct SalariesView: View {
                     NavigationLink(
                         destination: SalariesJobsPositionsView(
                             jobsPositions: [
-                                salary.softwareEngineeringJobsPositions,
-                                salary.qualityAssuranceJobsPositions,
-                                salary.managementJobsPositions,
-                                salary.otherJobsPositions
+                                salaryService.softwareEngineeringJobsPositions,
+                                salaryService.qualityAssuranceJobsPositions,
+                                salaryService.managementJobsPositions,
+                                salaryService.otherJobsPositions
                             ],
                             jobsPositionsHeaders: ["Розробка", "Тестування", "Менеджмент", "Iнше"],
                             selectedJobsPositionsIndex: $selectedJobsPositionsIndex,
@@ -75,10 +79,10 @@ struct SalariesView: View {
                         }
                     }
 
-                    if salary.softwareEngineeringJobsPositions.contains(selectedJobPosition) {
+                    if salaryService.softwareEngineeringJobsPositions.contains(selectedJobPosition) {
                         NavigationLink(
                             destination: SalariesSoftwareEngineeringProgrammingLanguagesView(
-                                programmingLanguages: salary.softwareEngineeringProgrammingLanguages,
+                                programmingLanguages: salaryService.softwareEngineeringProgrammingLanguages,
                                 selectedProgrammingLanguageIndex: $selectedSoftwareEngineeringProgrammingLanguageIndex,
                                 selectedProgrammingLanguage: $selectedSoftwareEngineeringProgrammingLanguage
                             )
@@ -91,10 +95,10 @@ struct SalariesView: View {
                         }
                     }
 
-                    if salary.qualityAssuranceJobsPositions.contains(selectedJobPosition) {
+                    if salaryService.qualityAssuranceJobsPositions.contains(selectedJobPosition) {
                         NavigationLink(
                             destination: SalariesQualityAssuranceSpesializationsView(
-                                spesializations: salary.qualityAssuranceSpesializations,
+                                spesializations: salaryService.qualityAssuranceSpesializations,
                                 selectedSesializationIndex: $selectedQualityAssuranceSpecializationIndex,
                                 selectedSesialization: $selectedQualityAssuranceSpecialization
                             )
@@ -128,9 +132,9 @@ struct SalariesView: View {
                     }
                 }.textCase(nil)
 
-                if salary.softwareEngineeringJobsPositions.contains(selectedJobPosition) {
+                if salaryService.softwareEngineeringJobsPositions.contains(selectedJobPosition) {
                     let salaryQuartileCalculation = SoftwareEngineeringSalaryQuartile(
-                        salary: salary,
+                        salaryService: salaryService,
                         city: selectedCity,
                         workingExperience: workingExperience,
                         jobPosition: selectedJobPosition,
@@ -145,9 +149,9 @@ struct SalariesView: View {
                     )
                 }
                 
-                if salary.qualityAssuranceJobsPositions.contains(selectedJobPosition) {
+                if salaryService.qualityAssuranceJobsPositions.contains(selectedJobPosition) {
                     let salaryQuartileCalculation = QualityAssuranceSalaryQuartile(
-                        salary: salary,
+                        salaryService: salaryService,
                         city: selectedCity,
                         workingExperience: workingExperience,
                         jobPosition: selectedJobPosition,
@@ -162,9 +166,9 @@ struct SalariesView: View {
                     )
                 }
                 
-                if salary.managementJobsPositions.contains(selectedJobPosition) {
+                if salaryService.managementJobsPositions.contains(selectedJobPosition) {
                     let salaryQuartileCalculation = ManagementSalaryQuartile(
-                        salary: salary,
+                        salaryService: salaryService,
                         city: selectedCity,
                         workingExperience: workingExperience,
                         jobPosition: selectedJobPosition
@@ -178,9 +182,9 @@ struct SalariesView: View {
                     )
                 }
                 
-                if salary.otherJobsPositions.contains(selectedJobPosition) {
+                if salaryService.otherJobsPositions.contains(selectedJobPosition) {
                     let salaryQuartileCalculation = OtherSalaryQuartile(
-                        salary: salary,
+                        salaryService: salaryService,
                         city: selectedCity,
                         workingExperience: workingExperience,
                         jobPosition: selectedJobPosition
@@ -346,7 +350,6 @@ struct SalariesSoftwareEngineeringProgrammingLanguagesView: View {
         )
     }
 }
-
 
 struct SalariesQualityAssuranceSpesializationsView: View {
 

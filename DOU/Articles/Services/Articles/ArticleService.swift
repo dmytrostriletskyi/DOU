@@ -16,38 +16,17 @@ struct HtmlString: Identifiable {
     var uiViewHeigth: CGFloat
 }
 
-class ArticlesHtmlParser {
+class ArticleService {
     
-    public let html: String
-    public let rootTag: String
+    public let source: ArticleHtmlSource
     
     private let htmlTagsToEscape: [String] = ["#text"]
     private let textHtmlTags: [String] = ["p", "h1", "h2", "h3", "h4", "h5", "h6"]
     private let unsupportedClasses: [String] = ["class=\"b-post-tags\""]
     private let russianLetters: [Character] = Array("аАбБвВгГдДеЕёЁжЖзЗиИйЙкКлЛмМнНоОпПрРсСтТуУфФхХцЦчЧшШщЩъЪыЫьЬэЭюЮяЯ")
     
-    init(html: String, rootTag: String) {
-        self.html = html
-        self.rootTag = rootTag
-    }
-    
-    private func getArticle() -> Element? {
-        let article: Element
-        
-        do {
-            let document: Document = try SwiftSoup.parse(html)
-            article = try document.select(rootTag).first()!
-
-        } catch Exception.Error(_, let message) {
-            print("Error during getting article from HTML: \(message).")
-            return nil
-
-        } catch {
-            print("Unknown error during getting article from HTML.")
-            return nil
-        }
-
-        return article
+    init(source: ArticleHtmlSource) {
+        self.source = source
     }
     
     private func clearhtmlString(htmlString: String) -> String {
@@ -99,13 +78,14 @@ class ArticlesHtmlParser {
         
         return nil
     }
-    public func parse() -> [HtmlString]? {
-        guard let article: Element = getArticle() else {
-            return nil
-        }
-        
+
+    public func get() -> [HtmlString] {
         var htmlStrings: [HtmlString] = [HtmlString]()
         
+        guard let article: Element = source.parse() else {
+            return htmlStrings
+        }
+
         for childNode in article.getChildNodes() {
             let htmlStringTagName: String = childNode.nodeName()
             
@@ -155,56 +135,5 @@ class ArticlesHtmlParser {
         }
 
         return htmlStrings
-    }
-}
-
-enum HtmlParserIdentifier {
-    case id
-    case class_
-}
-
-class ArticleCommentsHtmlParser {
-    public let html: String
-    public let rootTag: String
-    public let identifier: HtmlParserIdentifier
-    
-    init(html: String, rootTag: String, identifier: HtmlParserIdentifier) {
-        self.html = html
-        self.rootTag = rootTag
-        self.identifier = identifier
-    }
-    
-    public func parse() -> Elements? {
-        let articleComments: Elements
-        
-        do {
-            let document: Document = try SwiftSoup.parse(html)
-            
-            if identifier == .id {
-                let articleComments: Element? = try document.getElementById(rootTag)
-                
-                if articleComments != nil {
-                    return articleComments!.children()
-                }
-            }
-            
-            if identifier == .class_ {
-                let articleComments: Element? = try document.getElementsByClass(rootTag).first()
-                
-                if articleComments != nil {
-                    return articleComments!.children()
-                }
-            }
-            
-            return nil
-            
-        } catch Exception.Error(_, let message) {
-            print("Error during getting article comments from HTML: \(message).")
-            return nil
-
-        } catch {
-            print("Unknown error during getting article comments from HTML.")
-            return nil
-        }
     }
 }

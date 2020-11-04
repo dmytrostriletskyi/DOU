@@ -2,18 +2,18 @@ import Foundation
 
 import SwiftSoup
 
-class ArticleComments {
+class ArticleCommentsService {
 
-    public let htmlParser: ArticleCommentsHtmlParser
+    public let source: ArticleCommentsHtmlSource
 
-    init(htmlParser: ArticleCommentsHtmlParser) {
-        self.htmlParser = htmlParser
+    init(source: ArticleCommentsHtmlSource) {
+        self.source = source
     }
     
     public func get() -> [ArticleComment] {
         var articleComments: [ArticleComment] = [ArticleComment]()
         
-        guard let articleCommentsHtml: Elements = htmlParser.parse() else {
+        guard let articleCommentsHtml: Elements = source.parse() else {
             return articleComments
         }
 

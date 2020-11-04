@@ -1,21 +1,11 @@
 
 import Foundation
 
-import SwiftCSV
-
 import SigmaSwiftStatistics
 
-enum SalariesCsvFileKeys: String {
+class SalaryService: ObservableObject {
     
-    case city = "Город"
-    case jobPosition = "Должность"
-    case workingExperience = "exp"
-    case salary =  "Зарплата.в.месяц"
-    case programmingLanguage = "Язык.программирования"
-    case specialization = "Специализация"
-}
-
-class Salary: ObservableObject {
+    public let source: SalariesCsvSource
     
     @Published var cities: [String] = [String]()
     @Published var softwareEngineeringSalaries: [SoftwareEngineeringSalary] = [SoftwareEngineeringSalary]()
@@ -28,120 +18,14 @@ class Salary: ObservableObject {
     @Published var otherJobsPositions: [String] = [String]()
     @Published var softwareEngineeringProgrammingLanguages: [String] = [String]()
     @Published var qualityAssuranceSpesializations: [String] = [String]()
-    
-    private let citiesToExclude: [String] = ["Другой"]
-    private let managementJobPositions: [String] = [
-        "Project manager",
-        "Product Manager",
-        "Senior Project manager / Program Manager",
-        "Director of Engineering / Program Director"
-    ]
 
-    init() {
+    init(source: SalariesCsvSource) {
+        self.source = source
         getAll()
     }
 
-    private func getCsv(url: String) -> CSV? {
-        do {
-            let url = URL(string: url)!
-            let csv: CSV = try CSV(url: url)
-            
-            return csv
-
-        } catch {
-            return nil
-        }
-    }
-    
-    private func parseCsv(csv: CSV) -> (
-        parsedSoftwareEngineeringSalaries: [SoftwareEngineeringSalary],
-        parsedQualityAssuranceSalaries: [QualityAssuranceSalary],
-        parsedManagementSalaries: [ManagementSalary],
-        parsedOtherSalaries: [OtherSalary],
-        cities: [String]
-    )? {
-        do {
-            var cities: [String] = [String]()
-            var parsedSoftwareEngineeringSalaries: [SoftwareEngineeringSalary] = [SoftwareEngineeringSalary]()
-            var parsedQualityAssuranceSalaries: [QualityAssuranceSalary] = [QualityAssuranceSalary]()
-            var parsedManagementSalaries: [ManagementSalary] = [ManagementSalary]()
-            var parsedOtherSalaries: [OtherSalary] = [OtherSalary]()
-            
-            try csv.enumerateAsDict { salaryRaw in
-                let city: String = salaryRaw[SalariesCsvFileKeys.city.rawValue]!
-                let jobPosition: String = salaryRaw[SalariesCsvFileKeys.jobPosition.rawValue]!
-                let workingExperience: Float64 = Float64(salaryRaw[SalariesCsvFileKeys.workingExperience.rawValue]!)!
-                let salary: Int64 =  Int64(salaryRaw[SalariesCsvFileKeys.salary.rawValue]!)!
-                let programmingLanguage: String = salaryRaw[SalariesCsvFileKeys.programmingLanguage.rawValue]!
-                let specialization: String = salaryRaw[SalariesCsvFileKeys.specialization.rawValue]!
-
-                if self.citiesToExclude.contains(city) {
-                    return
-                }
-                
-                if !cities.contains(city) && !self.citiesToExclude.contains(city) {
-                    cities.append(city)
-                }
-                
-                if !programmingLanguage.isEmpty {
-                    parsedSoftwareEngineeringSalaries.append(SoftwareEngineeringSalary(
-                        city: city,
-                        jobPosition: jobPosition,
-                        workingExperience: workingExperience,
-                        salary: salary,
-                        programmingLanguage: programmingLanguage
-                    ))
-                }
-                
-                if !specialization.isEmpty {
-                    parsedQualityAssuranceSalaries.append(QualityAssuranceSalary(
-                        city: city,
-                        jobPosition: jobPosition,
-                        workingExperience: workingExperience,
-                        salary: salary,
-                        specialization: specialization
-                    ))
-                }
-                
-                if programmingLanguage.isEmpty && specialization.isEmpty && self.managementJobPositions.contains(jobPosition) {
-                    parsedManagementSalaries.append(ManagementSalary(
-                        city: city,
-                        jobPosition: jobPosition,
-                        workingExperience: workingExperience,
-                        salary: salary
-                    ))
-                }
-                
-                if programmingLanguage.isEmpty && specialization.isEmpty && !self.managementJobPositions.contains(jobPosition) {
-                    parsedOtherSalaries.append(OtherSalary(
-                        city: city,
-                        jobPosition: jobPosition,
-                        workingExperience: workingExperience,
-                        salary: salary
-                    ))
-                }
-            }
-
-            return (
-                parsedSoftwareEngineeringSalaries,
-                parsedQualityAssuranceSalaries,
-                parsedManagementSalaries,
-                parsedOtherSalaries,
-                cities
-            )
-
-        } catch {
-            return nil
-        }
-    }
-
-    public func getAll() {
-        
-        guard let csv: CSV = getCsv(url: "https://raw.githubusercontent.com/imax/dou-salaries/master/data/2020_june_mini.csv") else {
-            return
-        }
-        
-        guard let parsedSalaries = parseCsv(csv: csv) else {
+    public func getAll() -> Void {
+        guard let parsedSalaries = self.source.parse() else {
             return
         }
     
@@ -237,7 +121,7 @@ extension Array where Element == OtherSalary {
 
 class SoftwareEngineeringSalaryQuartile {
     
-    public let salary: Salary
+    public let salaryService: SalaryService
     public let city: String
     public let workingExperience: Float64
     public let jobPosition: String
@@ -245,8 +129,8 @@ class SoftwareEngineeringSalaryQuartile {
     
     private let lessThanYearWorkingExperiences: [Float64] = [0.25, 0.5]
     
-    init(salary: Salary, city: String, workingExperience: Float64, jobPosition: String, programmingLanguage: String) {
-        self.salary = salary
+    init(salaryService: SalaryService, city: String, workingExperience: Float64, jobPosition: String, programmingLanguage: String) {
+        self.salaryService = salaryService
         self.city = city
         self.jobPosition = jobPosition
         self.workingExperience = workingExperience
@@ -272,7 +156,7 @@ class SoftwareEngineeringSalaryQuartile {
     
     public func calculate() -> (first: Int, median: Int, third: Int, submissionsNumber: Int) {
         
-        let softwareEngineeringSalaries: [SoftwareEngineeringSalary] = salary.softwareEngineeringSalaries
+        let softwareEngineeringSalaries: [SoftwareEngineeringSalary] = salaryService.softwareEngineeringSalaries
             .filter { city == $0.city }
             .filter { jobPosition == $0.jobPosition }
             .filter { programmingLanguage == $0.programmingLanguage }
@@ -331,7 +215,7 @@ class SoftwareEngineeringSalaryQuartile {
 
 class QualityAssuranceSalaryQuartile {
     
-    public let salary: Salary
+    public let salaryService: SalaryService
     public let city: String
     public let workingExperience: Float64
     public let jobPosition: String
@@ -339,8 +223,8 @@ class QualityAssuranceSalaryQuartile {
     
     private let lessThanYearWorkingExperiences: [Float64] = [0.25, 0.5]
     
-    init(salary: Salary, city: String, workingExperience: Float64, jobPosition: String, specialization: String) {
-        self.salary = salary
+    init(salaryService: SalaryService, city: String, workingExperience: Float64, jobPosition: String, specialization: String) {
+        self.salaryService = salaryService
         self.city = city
         self.jobPosition = jobPosition
         self.workingExperience = workingExperience
@@ -365,7 +249,7 @@ class QualityAssuranceSalaryQuartile {
     }
     
     public func calculate() -> (first: Int, median: Int, third: Int, submissionsNumber: Int) {
-        let qualityAssuranceSalaries: [QualityAssuranceSalary] = salary.qualityAssuranceSalaries
+        let qualityAssuranceSalaries: [QualityAssuranceSalary] = salaryService.qualityAssuranceSalaries
             .filter { city == $0.city }
             .filter { jobPosition == $0.jobPosition }
             .filter { specialization == $0.specialization }
@@ -424,13 +308,13 @@ class QualityAssuranceSalaryQuartile {
 
 class ManagementSalaryQuartile {
     
-    public let salary: Salary
+    public let salaryService: SalaryService
     public let city: String
     public let workingExperience: Float64
     public let jobPosition: String
 
-    init(salary: Salary, city: String, workingExperience: Float64, jobPosition: String) {
-        self.salary = salary
+    init(salaryService: SalaryService, city: String, workingExperience: Float64, jobPosition: String) {
+        self.salaryService = salaryService
         self.city = city
         self.jobPosition = jobPosition
         self.workingExperience = workingExperience
@@ -454,7 +338,7 @@ class ManagementSalaryQuartile {
     }
     
     public func calculate() -> (first: Int, median: Int, third: Int, submissionsNumber: Int) {
-        let managementSalaries: [ManagementSalary] = salary.managementSalaries
+        let managementSalaries: [ManagementSalary] = salaryService.managementSalaries
             .filter { city == $0.city }
             .filter { jobPosition == $0.jobPosition }
             .filter { filterWorkingExperience(first: workingExperience, second: $0.workingExperience) }
@@ -512,13 +396,13 @@ class ManagementSalaryQuartile {
 
 class OtherSalaryQuartile {
     
-    public let salary: Salary
+    public let salaryService: SalaryService
     public let city: String
     public let workingExperience: Float64
     public let jobPosition: String
 
-    init(salary: Salary, city: String, workingExperience: Float64, jobPosition: String) {
-        self.salary = salary
+    init(salaryService: SalaryService, city: String, workingExperience: Float64, jobPosition: String) {
+        self.salaryService = salaryService
         self.city = city
         self.jobPosition = jobPosition
         self.workingExperience = workingExperience
@@ -542,7 +426,7 @@ class OtherSalaryQuartile {
     }
     
     public func calculate() -> (first: Int, median: Int, third: Int, submissionsNumber: Int) {
-        let otherSalaries: [OtherSalary] = salary.otherSalaries
+        let otherSalaries: [OtherSalary] = salaryService.otherSalaries
             .filter { city == $0.city }
             .filter { jobPosition == $0.jobPosition }
             .filter { filterWorkingExperience(first: workingExperience, second: $0.workingExperience) }

@@ -35,6 +35,10 @@ class TextAttributedLabel {
         
         let strike = Style("strike").strikethroughStyle(.single)
         
+        let indicating = Style("i").obliqueness(
+            attributedPostStyle.emphasizedTextObliqueness
+        )
+
         let headerOneSize = Style("h1").font(
             UIFont.systemFont(
                 ofSize: attributedPostStyle.headerOneSize,
@@ -86,6 +90,7 @@ class TextAttributedLabel {
             paragraph,
             link,
             strike,
+            indicating,
             headerOneSize,
             headerTwoSize,
             headerThreeSize,
@@ -213,7 +218,7 @@ class ImageAttributedLabel {
                     }
                     
                     let screenWidthToImageWidthRatio = UIScreen.main.bounds.size.width / image!.size.width
-                    let imageHeight = image!.size.height * screenWidthToImageWidthRatio
+                    let imageHeight = image!.size.height * screenWidthToImageWidthRatio - 15
                     
                     let textAttachment = NSTextAttachment()
 

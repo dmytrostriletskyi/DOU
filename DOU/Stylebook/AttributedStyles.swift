@@ -10,12 +10,12 @@ struct AttributedPostItemStyle {
     public let emphasizedTextSize: CGFloat = 12
     public let emphasizedTextObliqueness: Float = 0.24
 
-    public let headerOneSize: CGFloat = 28
-    public let headerTwoSize: CGFloat = 26
-    public let headerThreeSize: CGFloat = 24
-    public let headerFourSize: CGFloat = 20
-    public let headerFiveSize: CGFloat = 18
-    public let headerSixSize: CGFloat = 16
+    public let headerOneSize: CGFloat = 22
+    public let headerTwoSize: CGFloat = 20
+    public let headerThreeSize: CGFloat = 18
+    public let headerFourSize: CGFloat = 16
+    public let headerFiveSize: CGFloat = 14
+    public let headerSixSize: CGFloat = 12
     public let headerWeight: UIFont.Weight = UIFont.Weight.bold
     
     public let paragraphLineSPacing: Float = 2

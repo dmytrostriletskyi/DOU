@@ -19,11 +19,11 @@ struct ArticleCommentsStyle {
     
     public let articleAuthorCommentBackgroundColor: Color = Color(red: 1.00, green: 0.90, blue: 0.30, opacity: 1.00)
     
-    public let articleBestCommentsTitleFontSize: CGFloat = 18
-    public let articleBestCommentsTitleFontWeight: Font.Weight = .bold
+    public let articleBestCommentsTitleFontSize: CGFloat = 16
+    public let articleBestCommentsTitleFontWeight: Font.Weight = .semibold
     public let articleBestCommentsTitleFontDesign: Font.Design = .default
     
     public let articleCommentsNumberFontSize: CGFloat = 18
-    public let articleCommentsNumberFontWeight: Font.Weight = .bold
+    public let articleCommentsNumberFontWeight: Font.Weight = .semibold
     public let articleCommentsNumberFontDesign: Font.Design = .default
 }
