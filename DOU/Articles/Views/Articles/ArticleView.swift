@@ -2,11 +2,11 @@ import Foundation
 import SwiftUI
 
 struct ArticleView: View {
-    public let article: Article
-    
+    let article: Article
+
     private let style = Style()
-    
-    @State public var isActivityIndicatorLoaing: Bool = true
+
+    @State var isActivityIndicatorLoaing: Bool = true
 
     @State private var htmlStrings: [HtmlString] = [HtmlString]()
 
@@ -79,38 +79,38 @@ struct ArticleView: View {
                 }.padding(.bottom, style.textPaddingBottom)
             }
         }.onAppear {
-            Html(url: article.url).get() { html in
+            Html(url: article.url).get { html in
                 guard let html = html else {
                     return
                 }
 
-                let articleHtmlSource: ArticleHtmlSource = ArticleHtmlSource(
+                let articleHtmlSource = ArticleHtmlSource(
                     html: html,
                     rootTag: "article",
                     identifier: .class_
                 )
-                
-                let articleService: ArticleService = ArticleService(source: articleHtmlSource)
+
+                let articleService = ArticleService(source: articleHtmlSource)
 
                 self.htmlStrings = articleService.get()
                 self.isActivityIndicatorLoaing = false
             }
         }
     }
-    
+
     struct Style {
-        public let informationSpacingHorizontal: CGFloat = 15
-        public let informationPaddingLeading: CGFloat = 20
-        public let informationPaddingTop: CGFloat = 10
-        public let informationPaddingBottom: CGFloat = 10
-        public let textPaddingBottom: CGFloat = 15
-        public let textPaddingLeading: CGFloat = 20
-        public let commentsHeight: CGFloat = 30
-        public let commentsImageSystemName: String = "bubble.right.fill"
-        public let commentsNameColor: Color = Color.black
-        public let commentsNameUkrainian: String = "Коментарі"
-        public let commentsNameRussian: String = "Комментарии"
-        public let noCommentsNameUkrainian: String = "Немає комментарів"
-        public let noCommentsNameRussian: String = "Нет комментариев"
+        let informationSpacingHorizontal: CGFloat = 15
+        let informationPaddingLeading: CGFloat = 20
+        let informationPaddingTop: CGFloat = 10
+        let informationPaddingBottom: CGFloat = 10
+        let textPaddingBottom: CGFloat = 15
+        let textPaddingLeading: CGFloat = 20
+        let commentsHeight: CGFloat = 30
+        let commentsImageSystemName: String = "bubble.right.fill"
+        let commentsNameColor = Color.black
+        let commentsNameUkrainian: String = "Коментарі"
+        let commentsNameRussian: String = "Комментарии"
+        let noCommentsNameUkrainian: String = "Немає комментарів"
+        let noCommentsNameRussian: String = "Нет комментариев"
     }
 }

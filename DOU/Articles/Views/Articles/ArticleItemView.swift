@@ -4,7 +4,6 @@ import SwiftUI
 import URLImage
 
 struct ArticlesItemView: View {
-    
     let article: Article
 
     var body: some View {
@@ -19,11 +18,11 @@ struct ArticlesItemView: View {
                         scale: UIScreen.main.scale)
                 ],
                 placeholder: {
-                    ProgressView($0) { progress in
+                    ProgressView($0) { _ in
                         ZStack { }
                     }
                 },
-                content:  {
+                content: {
                     $0.image
                     .resizable()
                     .aspectRatio(contentMode: .fill)

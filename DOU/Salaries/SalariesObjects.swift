@@ -1,7 +1,6 @@
 import Foundation
 
 struct SoftwareEngineeringSalary {
-
     var city: String
     var jobPosition: String
     var workingExperience: Float64
@@ -10,7 +9,6 @@ struct SoftwareEngineeringSalary {
 }
 
 struct QualityAssuranceSalary {
-
     var city: String
     var jobPosition: String
     var workingExperience: Float64
@@ -19,7 +17,6 @@ struct QualityAssuranceSalary {
 }
 
 struct ManagementSalary {
-
     var city: String
     var jobPosition: String
     var workingExperience: Float64
@@ -27,7 +24,6 @@ struct ManagementSalary {
 }
 
 struct OtherSalary {
-
     var city: String
     var jobPosition: String
     var workingExperience: Float64
@@ -35,7 +31,6 @@ struct OtherSalary {
 }
 
 struct Salaries {
-    
     var cities: [String]
 
     var softwareEngineeringSalaries: [SoftwareEngineeringSalary]
@@ -47,7 +42,7 @@ struct Salaries {
     var qualityAssuranceJobsPositions: [String]
     var managementJobsPositions: [String]
     var otherJobsPositions: [String]
-    
+
     var softwareEngineeringProgrammingLanguages: [String]
     var qualityAssuranceSpesializations: [String]
 }

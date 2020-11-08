@@ -2,16 +2,15 @@ import Foundation
 import SwiftUI
 
 struct ArticleCommentsScreenView: View {
+    let article: Article
 
-    public let article: Article
-
-    @State public var isActivityIndicatorLoaing: Bool = true
+    @State var isActivityIndicatorLoaing: Bool = true
     @State private var articleComments: [ArticleComment] = [ArticleComment]()
     @State private var articleBestComments: [ArticleComment] = [ArticleComment]()
     @State private var articleCommentsNumber: Int = 0
 
-    private let style: Style = Style()
-    
+    private let style = Style()
+
     init(article: Article) {
         UINavigationBar.appearance().titleTextAttributes = [
             .font: UIFont.systemFont(
@@ -19,10 +18,10 @@ struct ArticleCommentsScreenView: View {
                 weight: UIFont.Weight.semibold
             )
         ]
-        
+
         self.article = article
     }
-    
+
     var body: some View {
         Group {
             if isActivityIndicatorLoaing {
@@ -90,20 +89,20 @@ struct ArticleCommentsScreenView: View {
                     return
                 }
 
-                let articleCommentsHtmlSource: ArticleCommentsHtmlSource = ArticleCommentsHtmlSource(
+                let articleCommentsHtmlSource = ArticleCommentsHtmlSource(
                     html: html,
                     rootTag: "commentsList",
                     identifier: .id
                 )
 
-                let articleBestCommentsHtmlSource: ArticleCommentsHtmlSource = ArticleCommentsHtmlSource(
+                let articleBestCommentsHtmlSource = ArticleCommentsHtmlSource(
                     html: html,
                     rootTag: "b-comments __best",
                     identifier: .class_
                 )
 
-                let articleComments: ArticleCommentsService = ArticleCommentsService(source: articleCommentsHtmlSource)
-                let articleBestComments: ArticleCommentsService = ArticleCommentsService(source: articleBestCommentsHtmlSource)
+                let articleComments = ArticleCommentsService(source: articleCommentsHtmlSource)
+                let articleBestComments = ArticleCommentsService(source: articleBestCommentsHtmlSource)
 
                 self.articleComments = articleComments.get()
                 self.articleBestComments = articleBestComments.get()
@@ -112,24 +111,24 @@ struct ArticleCommentsScreenView: View {
             }
         }
     }
-    
+
     struct Style {
-        public let articleBestCommentsTitleFontSize: CGFloat = 16
-        public let articleBestCommentsTitleFontWeight: Font.Weight = .semibold
-        public let articleBestCommentsTitleFontDesign: Font.Design = .default
-        public let articleCommentsNumberFontSize: CGFloat = 18
-        public let articleCommentsNumberFontWeight: Font.Weight = .semibold
-        public let articleCommentsNumberFontDesign: Font.Design = .default
-        public let commentsPaddingTop: CGFloat = 12
-        public let commentsPaddingLeading: CGFloat = 20
-        public let commentsPaddingBottom: CGFloat = 0
-        public let commentsPaddingTrailing: CGFloat = 0
-        public let commentsNameUkrainian: String = "Коментарі"
-        public let commentsNameRussian: String = "Комментарии"
-        public let bestCommentsNameUkrainian: String = "Найкращі коментарі"
-        public let bestCommentsNameRussian: String = "Лучшие комментарии"
-        public let navigationBarHeaderSize: CGFloat = 20
-        public let navigationBarHeaderNameUkrainian: String = "Коментарі"
-        public let navigationBarHeaderNameRussian: String = "Комментарии"
+        let articleBestCommentsTitleFontSize: CGFloat = 16
+        let articleBestCommentsTitleFontWeight: Font.Weight = .semibold
+        let articleBestCommentsTitleFontDesign: Font.Design = .default
+        let articleCommentsNumberFontSize: CGFloat = 18
+        let articleCommentsNumberFontWeight: Font.Weight = .semibold
+        let articleCommentsNumberFontDesign: Font.Design = .default
+        let commentsPaddingTop: CGFloat = 12
+        let commentsPaddingLeading: CGFloat = 20
+        let commentsPaddingBottom: CGFloat = 0
+        let commentsPaddingTrailing: CGFloat = 0
+        let commentsNameUkrainian: String = "Коментарі"
+        let commentsNameRussian: String = "Комментарии"
+        let bestCommentsNameUkrainian: String = "Найкращі коментарі"
+        let bestCommentsNameRussian: String = "Лучшие комментарии"
+        let navigationBarHeaderSize: CGFloat = 20
+        let navigationBarHeaderNameUkrainian: String = "Коментарі"
+        let navigationBarHeaderNameRussian: String = "Комментарии"
     }
 }

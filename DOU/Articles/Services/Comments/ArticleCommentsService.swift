@@ -3,22 +3,21 @@ import Foundation
 import SwiftSoup
 
 class ArticleCommentsService {
-
-    public let source: ArticleCommentsHtmlSource
+    let source: ArticleCommentsHtmlSource
 
     init(source: ArticleCommentsHtmlSource) {
         self.source = source
     }
-    
-    public func get() -> [ArticleComment] {
+
+    func get() -> [ArticleComment] {
         var articleComments: [ArticleComment] = [ArticleComment]()
-        
+
         guard let articleCommentsHtml: Elements = source.parse() else {
             return articleComments
         }
 
         for articleCommentHtml in articleCommentsHtml {
-            var articleComment: ArticleComment = ArticleComment()
+            var articleComment = ArticleComment()
 
             if !isCommentHtml(articleCommentHtml: articleCommentHtml) {
                 continue
@@ -38,12 +37,11 @@ class ArticleCommentsService {
             if articleCommentAttributedLabel == nil {
                 articleComment.uiView = nil
                 articleComment.uiViewHeigth = nil
-
             } else {
                 articleComment.uiView = articleCommentAttributedLabel!.get()
                 articleComment.uiViewHeigth = articleCommentAttributedLabel!.getHeight(level: articleComment.level)
             }
-            
+
             articleComments.append(articleComment)
         }
 
@@ -53,9 +51,13 @@ class ArticleCommentsService {
     private func clearhtmlString(htmlString: String) -> String {
         var htmlString = htmlString
 
-        htmlString = htmlString.replacingOccurrences(of: "<div class=\"comment_text b-typo\">\n ", with: "<div class=\"comment_text b-typo\">")
+        htmlString = htmlString.replacingOccurrences(
+            of: "<div class=\"comment_text b-typo\">\n ",
+            with: "<div class=\"comment_text b-typo\">"
+        )
+
         htmlString = htmlString.replacingOccurrences(of: "\n</div>", with: "</div>")
-        
+
         if htmlString.contains("nobr") {
             htmlString = htmlString.replacingOccurrences(of: "\n  <nobr>\n   ", with: "")
             htmlString = htmlString.replacingOccurrences(of: "\n  </nobr>", with: "")
@@ -82,30 +84,29 @@ class ArticleCommentsService {
 
         return htmlString
     }
-    
+
     private func isCommentHtml(articleCommentHtml: Element) -> Bool {
         do {
             let articleCommentLevelHtmlClass: String = try articleCommentHtml.attr("class")
-            
+
             if articleCommentLevelHtmlClass.contains("thread-comments") {
                 return false
             }
-            
+
             if articleCommentLevelHtmlClass.contains("comments-head") {
                 return false
             }
-            
+
             return true
-            
         } catch {
             return false
         }
     }
-    
+
     private func getLevel(articleCommentHtml: Element) -> CGFloat {
         do {
             let articleCommentLevelHtmlClass: String = try articleCommentHtml.attr("class")
-            
+
             if let range: Range<String.Index> = articleCommentLevelHtmlClass.range(of: "level-") {
                 let levelStartingIndex = String.Index.init(
                     encodedOffset: articleCommentLevelHtmlClass.distance(
@@ -113,38 +114,36 @@ class ArticleCommentsService {
                         to: range.lowerBound
                     ) + "level-".count
                 )
-                
+
                 let levelFinishingIndex = String.Index.init(
                     encodedOffset: articleCommentLevelHtmlClass.distance(
                         from: articleCommentLevelHtmlClass.startIndex,
                         to: range.lowerBound
                     ) + "level-".count + 1
                 )
-                
+
                 return CGFloat(Int(articleCommentLevelHtmlClass[levelStartingIndex..<levelFinishingIndex])!)
             }
-
         } catch {
             return 0
         }
 
         return 0
     }
-    
+
     private func getArticleCommentAttributedLabel(articleCommentHtml: Element) -> ArticleCommentAttributedLabel? {
         do {
             let articleCommentTextHtml: Element = try articleCommentHtml.getElementsByAttributeValue(
                 "class", "comment_text b-typo"
             ).first()!
-            
+
             let articleCommentTextHtmlString = clearhtmlString(htmlString: articleCommentTextHtml.description)
-            
-            let articleCommentAttributedLabel: ArticleCommentAttributedLabel = ArticleCommentAttributedLabel(
+
+            let articleCommentAttributedLabel = ArticleCommentAttributedLabel(
                 htmlString: articleCommentTextHtmlString
             )
-            
+
             return articleCommentAttributedLabel
-            
         } catch {
             return nil
         }
@@ -153,13 +152,12 @@ class ArticleCommentsService {
     private func getAuthorName(articleCommentHtml: Element) -> String? {
         do {
             let articleCommentAuthorHtml: Element = try articleCommentHtml.select("div.b-post-author").first()!
-            
+
             let articleCommentAuthorImageHtml: Element = try articleCommentAuthorHtml.getElementsByAttributeValue(
                 "class", "avatar"
             ).first()!
 
             return try articleCommentAuthorImageHtml.text()
-
         } catch {
             return nil
         }
@@ -172,20 +170,19 @@ class ArticleCommentsService {
             let articleCommentAuthorImageHtml: Element = try articleCommentAuthorHtml.getElementsByAttributeValue(
                 "class", "comment-link"
             ).first()!
-            
+
             let publicationDateAsString: String = try articleCommentAuthorImageHtml.text()
-            
+
             let dateFormatter = DateFormatter()
             dateFormatter.dateFormat = "dd.MM.yyyy HH:mm"
-            
+
             let publicationDate = dateFormatter.date(from: publicationDateAsString)
             return publicationDate
-
         } catch {
             return nil
         }
     }
-    
+
     private func getAuthorTitle(articleCommentHtml: Element) -> String? {
         do {
             let articleCommentAuthorHtml: Element = try articleCommentHtml.select("div.b-post-author").first()!
@@ -195,9 +192,9 @@ class ArticleCommentsService {
             ).first() else {
                 return nil
             }
-            
+
             let articleCommentAuthorTitle: String = try articleCommentAuthorTitleHtml.text()
-            
+
             if articleCommentAuthorTitle.isEmpty {
                 return nil
             }
@@ -207,33 +204,31 @@ class ArticleCommentsService {
                     from: articleCommentAuthorTitle.startIndex,
                     to: range.lowerBound
                 )
-                
+
                 let authorTitleEndingIndex: String.Index = String.Index(
                     utf16Offset: articleCommentAuthorTitleDistanse,
                     in: articleCommentAuthorTitle
                 )
 
                 return String(articleCommentAuthorTitle[..<authorTitleEndingIndex])
-
             } else {
                 return articleCommentAuthorTitle
             }
-
         } catch {
             return nil
         }
     }
-    
+
     private func getAuthorCompany(articleCommentHtml: Element) -> String? {
         do {
             let articleCommentAuthorHtml: Element = try articleCommentHtml.select("div.b-post-author").first()!
-            
+
             guard let articleCommentAuthorTitleHtml: Element = try articleCommentAuthorHtml.getElementsByAttributeValue(
                 "class", "prof"
             ).first() else {
                 return nil
             }
-            
+
             let articleCommentAuthorTitle: String = try articleCommentAuthorTitleHtml.text()
 
             if articleCommentAuthorTitle.isEmpty {
@@ -245,35 +240,33 @@ class ArticleCommentsService {
                     from: articleCommentAuthorTitle.startIndex,
                     to: range.lowerBound
                 ) + " в ".count
-                
+
                 let authorCompanyStartingIndex: String.Index = String.Index(
                     utf16Offset: articleCommentAuthorTitleDistanse,
                     in: articleCommentAuthorTitle
                 )
-                
-                return String(articleCommentAuthorTitle[authorCompanyStartingIndex...])
 
+                return String(articleCommentAuthorTitle[authorCompanyStartingIndex...])
             } else {
                 return nil
             }
-
         } catch {
             return nil
         }
     }
-    
+
     private func getAuthorCompanyUrl(articleCommentHtml: Element) -> String? {
         do {
             let articleCommentAuthorHtml: Element = try articleCommentHtml.select("div.b-post-author").first()!
-            
+
             guard let articleCommentAuthorTitleHtml: Element = try articleCommentAuthorHtml.getElementsByAttributeValue(
                 "class", "prof"
             ).first() else {
                 return nil
             }
-            
+
             let articleCommentAuthorTitle: String = try articleCommentAuthorTitleHtml.text()
-            
+
             if articleCommentAuthorTitle.isEmpty {
                 return nil
             }
@@ -283,7 +276,6 @@ class ArticleCommentsService {
             } catch {
                 return nil
             }
-
         } catch {
             return nil
         }

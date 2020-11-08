@@ -3,16 +3,13 @@ import SwiftUI
 import URLImage
 
 struct ContentView: View {
-
     @State var showLaunchScreen = true
     @State var showLaunchScreenTimerSeconds = 2
-    @State private var articles = [Article]()
-    
-    private let style: Style = Style()
+
+    private let style = Style()
     private let showLaunchScreenTimer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
-    private let articlesService: ArticlesService = ArticlesService(
-        source: ArticlesApiSource()
-    )
+    private let articlesService = ArticlesService(source: ArticlesApiSource())
+    @State private var articles = [Article]()
 
     init() {
         UITabBar.appearance().barTintColor = UIColor.black
@@ -39,7 +36,7 @@ struct ContentView: View {
                     if self.showLaunchScreenTimerSeconds > 0 {
                         self.showLaunchScreenTimerSeconds -= 1
                     }
-                    
+
                     if self.showLaunchScreenTimerSeconds == 0 {
                         self.showLaunchScreen = false
                     }
@@ -49,7 +46,7 @@ struct ContentView: View {
                     }
                 }
             }
-            
+
             if !showLaunchScreen {
                 TabView() {
                     ArticlesScreenView(articlesService: articlesService, initialArticles: articles).tabItem {
@@ -76,17 +73,17 @@ struct ContentView: View {
             .easeInOut
         )
     }
-    
+
     struct Style {
-        public let articlesTabImageSystemName: String = "doc.plaintext"
-        public let forumTabImageSystemName: String = "text.bubble"
-        public let salariesTabImageSystemName: String = "dollarsign.circle"
-        public let articlesTabItemNameUkrainian: String = "Стрічка"
-        public let articlesTabItemNameRussian: String = "Лента"
-        public let forumTabItemNameUkrainian: String = "Форум"
-        public let forumTabItemNameRussian: String = "Форум"
-        public let salariesTabItemNameUkrainian: String = "Зарплати"
-        public let salariesTabItemNameRussian: String = "Зарплаты"
+        let articlesTabImageSystemName: String = "doc.plaintext"
+        let forumTabImageSystemName: String = "text.bubble"
+        let salariesTabImageSystemName: String = "dollarsign.circle"
+        let articlesTabItemNameUkrainian: String = "Стрічка"
+        let articlesTabItemNameRussian: String = "Лента"
+        let forumTabItemNameUkrainian: String = "Форум"
+        let forumTabItemNameRussian: String = "Форум"
+        let salariesTabItemNameUkrainian: String = "Зарплати"
+        let salariesTabItemNameRussian: String = "Зарплаты"
     }
 }
 

@@ -1,8 +1,8 @@
 import Foundation
+
 import Atributika
 
 struct Article: Identifiable, Decodable {
-    
     var id: Int64
     var url: String
     var title: String
@@ -13,7 +13,7 @@ struct Article: Identifiable, Decodable {
     var authorName: String
     var publicationDate: Date
     var imageUrl: String
-    
+
     enum CodingKeys: String, CodingKey {
         case id = "id"
         case url = "url"

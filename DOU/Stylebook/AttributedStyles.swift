@@ -4,33 +4,26 @@ import SwiftUI
 import Atributika
 
 struct AttributedPostItemStyle {
-    
-    public let textSize: CGFloat = 16
-
-    public let emphasizedTextSize: CGFloat = 12
-    public let emphasizedTextObliqueness: Float = 0.24
-
-    public let headerOneSize: CGFloat = 22
-    public let headerTwoSize: CGFloat = 20
-    public let headerThreeSize: CGFloat = 18
-    public let headerFourSize: CGFloat = 16
-    public let headerFiveSize: CGFloat = 14
-    public let headerSixSize: CGFloat = 12
-    public let headerWeight: UIFont.Weight = UIFont.Weight.bold
-    
-    public let paragraphLineSPacing: Float = 2
-    
-    public let linkColor: Atributika.Color = Atributika.Color(red: 0.09, green: 0.46, blue: 0.67, alpha: 1.00)
-    public let linkUnderlineStyle: NSUnderlineStyle = NSUnderlineStyle.single
-    
-    public let informationFont: String = "Arial"
-    public let informationSize: Int64 = 13
-    public let informationColor: SwiftUI.Color = SwiftUI.Color(
+    let textSize: CGFloat = 16
+    let emphasizedTextSize: CGFloat = 12
+    let emphasizedTextObliqueness: Float = 0.24
+    let headerOneSize: CGFloat = 22
+    let headerTwoSize: CGFloat = 20
+    let headerThreeSize: CGFloat = 18
+    let headerFourSize: CGFloat = 16
+    let headerFiveSize: CGFloat = 14
+    let headerSixSize: CGFloat = 12
+    let headerWeight: UIFont.Weight = UIFont.Weight.bold
+    let paragraphLineSPacing: Float = 2
+    let linkColor: Atributika.Color = Atributika.Color(red: 0.09, green: 0.46, blue: 0.67, alpha: 1.00)
+    let linkUnderlineStyle = NSUnderlineStyle.single
+    let informationFont: String = "Arial"
+    let informationSize: Int64 = 13
+    let informationColor: SwiftUI.Color = SwiftUI.Color(
         red: 0,
         green: 0,
         blue: 0,
         opacity: 1.0
     )
-    
-    public let viewsImageSystemName: String = "eye.fill"
+    let viewsImageSystemName: String = "eye.fill"
 }

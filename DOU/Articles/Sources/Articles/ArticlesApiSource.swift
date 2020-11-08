@@ -3,18 +3,17 @@ import Foundation
 import Alamofire
 
 class ArticlesApiSource {
-    
     private let fetchArticlesLimit: Int64 = 10
     private let fetchArticlesOffsetStep: Int64 = 10
-    
+
     private var currentFetchingPage: Int64 = 0
     private var currentlyFetchingArticles: Bool = false
 
-    public func fetch(limit: Int64 = 10, offset: Int64 = 0, completion: @escaping ([Article]) -> Void) {
+    func fetch(limit: Int64 = 10, offset: Int64 = 0, completion: @escaping ([Article]) -> Void) {
         var articles = [Article]()
-        
+
         currentlyFetchingArticles = true
-        
+
         let decoder = JSONDecoder()
         let dateFormatter = DateFormatter()
 
@@ -23,7 +22,7 @@ class ArticlesApiSource {
 
         AF.request(
             "https://api.dou.ua/articles/?limit=\(limit)&offset=\(offset)", method: .get
-        ).validate().responseDecodable(of: Articles.self, decoder: decoder) { (response) in
+        ).validate().responseDecodable(of: Articles.self, decoder: decoder) { response in
             guard let fetchedPublications = response.value else {
                 self.currentlyFetchingArticles = false
                 return
@@ -31,7 +30,7 @@ class ArticlesApiSource {
 
             articles.append(contentsOf: fetchedPublications.results)
             self.currentFetchingPage += 1
-            
+
             completion(articles)
         }
     }

@@ -1,8 +1,7 @@
 import SwiftUI
 
 struct SalariesView: View {
-
-    private let style: Style = Style()
+    private let style = Style()
     private let workingExperienceDescriptions = [
         1: "рік",
         2: "роки",
@@ -15,7 +14,7 @@ struct SalariesView: View {
         9: "років"
     ]
 
-    @ObservedObject private var salaryService: SalaryService = SalaryService(
+    @ObservedObject private var salaryService = SalaryService(
         source: SalariesCsvSource(
             url: "https://raw.githubusercontent.com/imax/dou-salaries/master/data/2020_june_mini.csv"
         )
@@ -119,11 +118,13 @@ struct SalariesView: View {
                         if Int(workingExperience) >= 10 {
                             Text("Досвід: 10 та більше років")
                         }
-                        
+
                         if Int(workingExperience) >= 1 && Int(workingExperience) < 10 {
-                            Text("Досвід: \(Int(workingExperience)) \(workingExperienceDescriptions[Int(workingExperience)]!)")
+                            Text(
+                                "Досвід: \(Int(workingExperience)) \(workingExperienceDescriptions[Int(workingExperience)]!)"
+                            )
                         }
-                        
+
                         HStack {
                             Image(systemName: "minus")
                             Slider(value: $workingExperience, in: 0...10, step: 1).accentColor(Color.blue)
@@ -148,7 +149,7 @@ struct SalariesView: View {
                         submissionsNumber: salaryQuartileCalculation.submissionsNumber
                     )
                 }
-                
+
                 if salaryService.qualityAssuranceJobsPositions.contains(selectedJobPosition) {
                     let salaryQuartileCalculation = QualityAssuranceSalaryQuartile(
                         salaryService: salaryService,
@@ -165,7 +166,7 @@ struct SalariesView: View {
                         submissionsNumber: salaryQuartileCalculation.submissionsNumber
                     )
                 }
-                
+
                 if salaryService.managementJobsPositions.contains(selectedJobPosition) {
                     let salaryQuartileCalculation = ManagementSalaryQuartile(
                         salaryService: salaryService,
@@ -181,7 +182,7 @@ struct SalariesView: View {
                         submissionsNumber: salaryQuartileCalculation.submissionsNumber
                     )
                 }
-                
+
                 if salaryService.otherJobsPositions.contains(selectedJobPosition) {
                     let salaryQuartileCalculation = OtherSalaryQuartile(
                         salaryService: salaryService,
@@ -205,22 +206,20 @@ struct SalariesView: View {
             )
         }
     }
-    
+
     struct Style {
-        public let navigationBarHeaderSize: CGFloat = 20
-        public let navigationBarHeaderNameUkrainian: String = "Зарплати"
-        public let navigationBarHeaderNameRussian: String = "Зарплаты"
+        let navigationBarHeaderSize: CGFloat = 20
+        let navigationBarHeaderNameUkrainian: String = "Зарплати"
+        let navigationBarHeaderNameRussian: String = "Зарплаты"
     }
 }
 
-
 struct CalculatedQuartileView: View {
-    
-    public let firstQuartile: Int
-    public let median: Int
-    public let thirdQuartile: Int
-    public let submissionsNumber: Int
-    
+    let firstQuartile: Int
+    let median: Int
+    let thirdQuartile: Int
+    let submissionsNumber: Int
+
     var body: some View {
         Section(header:
             HStack {
@@ -261,11 +260,10 @@ struct CalculatedQuartileView: View {
 }
 
 struct SalariesCitiesView: View {
-    
-    @State public var cities: [String]
+    @State var cities: [String]
 
-    @Binding public var selectedCityIndex: Int
-    @Binding public var selectedCity: String
+    @Binding var selectedCityIndex: Int
+    @Binding var selectedCity: String
 
     var body: some View {
         List(cities.indices, id: \.self) { index in
@@ -290,14 +288,13 @@ struct SalariesCitiesView: View {
 }
 
 struct SalariesJobsPositionsView: View {
+    @State var jobsPositions: [[String]]
+    @State var jobsPositionsHeaders: [String]
 
-    @State public var jobsPositions: [[String]]
-    @State public var jobsPositionsHeaders: [String]
-    
-    @Binding public var selectedJobsPositionsIndex: Int
-    @Binding public var selectedJobPositionIndex: Int
-    @Binding public var selectedJobPosition: String
-    
+    @Binding var selectedJobsPositionsIndex: Int
+    @Binding var selectedJobPositionIndex: Int
+    @Binding var selectedJobPosition: String
+
     var body: some View {
         List {
             ForEach(jobsPositions.indices, id: \.self) { JobsPositionsIndex in
@@ -313,7 +310,10 @@ struct SalariesJobsPositionsView: View {
                             HStack {
                                 Text(jobsPositions[JobsPositionsIndex][JobPositionIndex]).foregroundColor(Color.black)
                                 Spacer()
-                                if JobsPositionsIndex == self.selectedJobsPositionsIndex && JobPositionIndex == self.selectedJobPositionIndex {
+                                if (
+                                    JobsPositionsIndex == self.selectedJobsPositionsIndex &&
+                                    JobPositionIndex == self.selectedJobPositionIndex
+                                ) {
                                     CheckMarkButtonIcon()
                                 }
                             }
@@ -330,11 +330,10 @@ struct SalariesJobsPositionsView: View {
 }
 
 struct SalariesSoftwareEngineeringProgrammingLanguagesView: View {
+    @State var programmingLanguages: [String]
 
-    @State public var programmingLanguages: [String]
-
-    @Binding public var selectedProgrammingLanguageIndex: Int
-    @Binding public var selectedProgrammingLanguage: String
+    @Binding var selectedProgrammingLanguageIndex: Int
+    @Binding var selectedProgrammingLanguage: String
 
     var body: some View {
         List(programmingLanguages.indices, id: \.self) { index in
@@ -359,11 +358,10 @@ struct SalariesSoftwareEngineeringProgrammingLanguagesView: View {
 }
 
 struct SalariesQualityAssuranceSpesializationsView: View {
+    @State var spesializations: [String]
 
-    @State public var spesializations: [String]
-
-    @Binding public var selectedSesializationIndex: Int
-    @Binding public var selectedSesialization: String
+    @Binding var selectedSesializationIndex: Int
+    @Binding var selectedSesialization: String
 
     var body: some View {
         List(spesializations.indices, id: \.self) { index in

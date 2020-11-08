@@ -2,15 +2,14 @@ import Foundation
 import SwiftUI
 
 struct ArticleCommentHeaderView: View {
+    let articleAuthorName: String
+    let authorName: String
+    let authorTitle: String?
+    let authorCompany: String?
+    let publicationDate: Date
 
-    public let articleAuthorName: String
-    public let authorName: String
-    public let authorTitle: String?
-    public let authorCompany: String?
-    public let publicationDate: Date
+    private let style = Style()
 
-    private let style: Style = Style()
-    
     var body: some View {
         HStack() {
             if authorName == articleAuthorName {
@@ -23,7 +22,6 @@ struct ArticleCommentHeaderView: View {
                         design: style.authorNameFontDesign
                     )
                 ).background(style.articleAuthorCommentBackgroundColor)
-                
             } else {
                 Text(
                     authorName
@@ -77,7 +75,7 @@ struct ArticleCommentHeaderView: View {
                         style.authorCompanyFontColor
                     )
                 }
-                
+
                 if authorCompany == nil {
                     Text(
                         authorTitle!
@@ -96,24 +94,24 @@ struct ArticleCommentHeaderView: View {
             .bottom, style.commentHeaderAuthorTitlePaddingBottom
         )
     }
-    
+
     struct Style {
-        public let authorNameFontSize: CGFloat = 16
-        public let authorNameFontWeight: Font.Weight = .bold
-        public let authorNameFontDesign: Font.Design = .default
-        public let authorTitleFontSize: CGFloat = 12
-        public let authorTitleFontWeight: Font.Weight = .regular
-        public let authorTitleFontDesign: Font.Design = .default
-        public let authorTitleFontColor: Color = .gray
-        public let authorCompanyFontSize: CGFloat = 12
-        public let authorCompanyFontWeight: Font.Weight = .regular
-        public let authorCompanyFontDesign: Font.Design = .default
-        public let authorCompanyFontColor: Color = .gray
-        public let articleAuthorCommentBackgroundColor: Color = Color(red: 1.00, green: 0.90, blue: 0.30, opacity: 1.00)
-        public let commentInformationPaddingTop: CGFloat = 10
-        public let commentInformationPaddingLeading: CGFloat = 0
-        public let commentInformationPaddingBottom: CGFloat = -4
-        public let commentInformationPaddingTrailing: CGFloat = 0
-        public let commentHeaderAuthorTitlePaddingBottom: CGFloat = -1.5
+        let authorNameFontSize: CGFloat = 16
+        let authorNameFontWeight: Font.Weight = .bold
+        let authorNameFontDesign: Font.Design = .default
+        let authorTitleFontSize: CGFloat = 12
+        let authorTitleFontWeight: Font.Weight = .regular
+        let authorTitleFontDesign: Font.Design = .default
+        let authorTitleFontColor: Color = .gray
+        let authorCompanyFontSize: CGFloat = 12
+        let authorCompanyFontWeight: Font.Weight = .regular
+        let authorCompanyFontDesign: Font.Design = .default
+        let authorCompanyFontColor: Color = .gray
+        let articleAuthorCommentBackgroundColor = Color(red: 1.00, green: 0.90, blue: 0.30, opacity: 1.00)
+        let commentInformationPaddingTop: CGFloat = 10
+        let commentInformationPaddingLeading: CGFloat = 0
+        let commentInformationPaddingBottom: CGFloat = -4
+        let commentInformationPaddingTrailing: CGFloat = 0
+        let commentHeaderAuthorTitlePaddingBottom: CGFloat = -1.5
     }
 }

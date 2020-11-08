@@ -2,10 +2,9 @@ import Foundation
 import SwiftUI
 
 struct AttributedPostAuthorName: View {
-    
-    public let authorName: String
-    
-    private let attributedPostItemStyle: AttributedPostItemStyle = AttributedPostItemStyle()
+    let authorName: String
+
+    private let attributedPostItemStyle = AttributedPostItemStyle()
 
     var body: some View {
         Text(
@@ -22,10 +21,9 @@ struct AttributedPostAuthorName: View {
 }
 
 struct AttributedPostPublicationDate: View {
-    
-    public let publicationDate: String
-    
-    private let attributedPostItemStyle: AttributedPostItemStyle = AttributedPostItemStyle()
+    let publicationDate: String
+
+    private let attributedPostItemStyle = AttributedPostItemStyle()
 
     var body: some View {
         Text(
@@ -42,11 +40,10 @@ struct AttributedPostPublicationDate: View {
 }
 
 struct AttributedPostViews: View {
-    
-    public let views: Int64
+    let views: Int64
 
-    private let attributedPostItemStyle: AttributedPostItemStyle = AttributedPostItemStyle()
-    
+    private let attributedPostItemStyle = AttributedPostItemStyle()
+
     var body: some View {
         HStack {
             (
@@ -69,11 +66,10 @@ struct AttributedPostViews: View {
 }
 
 struct AttributedPostCommentsCount: View {
-    
-    public let commentsCount: Int64
+    let commentsCount: Int64
 
-    private let attributedPostItemStyle: AttributedPostItemStyle = AttributedPostItemStyle()
-    
+    private let attributedPostItemStyle = AttributedPostItemStyle()
+
     var body: some View {
         HStack {
             (

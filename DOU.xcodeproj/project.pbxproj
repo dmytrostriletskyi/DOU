@@ -339,6 +339,7 @@
 				320A3D822522554A00AE4D00 /* Frameworks */,
 				320A3D832522554A00AE4D00 /* Resources */,
 				2E9488E4F74755CBDADA3176 /* [CP] Embed Pods Frameworks */,
+				32C8161F2558211D00E6B1FC /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -410,6 +411,23 @@
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-DOU/Pods-DOU-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
+		};
+		32C8161F2558211D00E6B1FC /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if [ \"${CONFIGURATION}\" = \"Debug\" ]; then\n    if which swiftlint >/dev/null; then\n        swiftlint --config \"$SRCROOT/.swiftlint.yml\"\n    else\n        echo \"Intall SwiftLint as a build phase linter.\"\n    fi\nfi\n";
 		};
 		78079DBEA7639231A9C7910D /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;

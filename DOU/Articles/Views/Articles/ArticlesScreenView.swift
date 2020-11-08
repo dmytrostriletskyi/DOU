@@ -4,14 +4,13 @@ import SwiftUI
 import URLImage
 
 struct ArticlesScreenView: View {
+    let articlesService: ArticlesService
+    let initialArticles: [Article]
 
-    public let articlesService: ArticlesService
-    public let initialArticles: [Article]
-    
     @State private var articles: [Article] = [Article]()
     @State private var currentlyFetchingArticles: Bool = true
 
-    private let style: Style = Style()
+    private let style = Style()
 
     init(articlesService: ArticlesService, initialArticles: [Article]) {
         UINavigationBar.appearance().titleTextAttributes = [
@@ -36,15 +35,15 @@ struct ArticlesScreenView: View {
                             if self.currentlyFetchingArticles {
                                 return
                             }
-                            
+
                             guard let lastArticle = articles.last else {
                                 return
                             }
-                            
+
                             if article.id != lastArticle.id {
                                 return
                             }
-                            
+
                             self.articlesService.getNext { result in
                                 self.articles.append(contentsOf: result)
                             }
@@ -68,10 +67,10 @@ struct ArticlesScreenView: View {
             self.currentlyFetchingArticles = false
         }
     }
-    
+
     struct Style {
-        public let navigationBarHeaderSize: CGFloat = 20
-        public let navigationBarHeaderNameUkrainian: String = "Стрічка"
-        public let navigationBarHeaderNameRussian: String = "Лента"
+        let navigationBarHeaderSize: CGFloat = 20
+        let navigationBarHeaderNameUkrainian: String = "Стрічка"
+        let navigationBarHeaderNameRussian: String = "Лента"
     }
 }

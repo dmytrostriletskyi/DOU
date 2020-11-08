@@ -2,10 +2,8 @@ import Foundation
 
 import Alamofire
 
-
 class Html {
-
-    public var url: String
+    var url: String
     private var html: String?
 
     init(url: String) {
@@ -31,7 +29,7 @@ class Html {
         }
     }
 
-    public func get(
+    func get(
         completion: @escaping (String?) -> Void
     ) {
         fetch(completion: completion)
