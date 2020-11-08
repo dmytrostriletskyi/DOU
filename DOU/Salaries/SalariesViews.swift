@@ -2,7 +2,7 @@ import SwiftUI
 
 struct SalariesView: View {
 
-    private let navigationBarStyle: NavigationBarStyle = NavigationBarStyle()
+    private let style: Style = Style()
     private let workingExperienceDescriptions = [
         1: "рік",
         2: "роки",
@@ -35,7 +35,7 @@ struct SalariesView: View {
     init() {
         UINavigationBar.appearance().titleTextAttributes = [
             .font: UIFont.systemFont(
-                ofSize: CGFloat(navigationBarStyle.headerSize),
+                ofSize: style.navigationBarHeaderSize,
                 weight: UIFont.Weight.semibold
             )
         ]
@@ -198,11 +198,18 @@ struct SalariesView: View {
                     )
                 }
             }.navigationBarTitle(
-                "Зарплати", displayMode: .inline
+                style.navigationBarHeaderNameUkrainian,
+                displayMode: .inline
             ).listStyle(
                 GroupedListStyle()
             )
         }
+    }
+    
+    struct Style {
+        public let navigationBarHeaderSize: CGFloat = 20
+        public let navigationBarHeaderNameUkrainian: String = "Зарплати"
+        public let navigationBarHeaderNameRussian: String = "Зарплаты"
     }
 }
 

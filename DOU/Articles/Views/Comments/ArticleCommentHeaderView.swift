@@ -8,8 +8,8 @@ struct ArticleCommentHeaderView: View {
     public let authorTitle: String?
     public let authorCompany: String?
     public let publicationDate: Date
-    
-    private let articleCommentsStyle: ArticleCommentsStyle = ArticleCommentsStyle()
+
+    private let style: Style = Style()
     
     var body: some View {
         HStack() {
@@ -18,20 +18,20 @@ struct ArticleCommentHeaderView: View {
                     authorName
                 ).font(
                     Font.system(
-                        size: articleCommentsStyle.authorNameFontSize,
-                        weight: articleCommentsStyle.authorNameFontWeight,
-                        design: articleCommentsStyle.authorNameFontDesign
+                        size: style.authorNameFontSize,
+                        weight: style.authorNameFontWeight,
+                        design: style.authorNameFontDesign
                     )
-                ).background(articleCommentsStyle.articleAuthorCommentBackgroundColor)
+                ).background(style.articleAuthorCommentBackgroundColor)
                 
             } else {
                 Text(
                     authorName
                 ).font(
                     Font.system(
-                        size: articleCommentsStyle.authorNameFontSize,
-                        weight: articleCommentsStyle.authorNameFontWeight,
-                        design: articleCommentsStyle.authorNameFontDesign
+                        size: style.authorNameFontSize,
+                        weight: style.authorNameFontWeight,
+                        design: style.authorNameFontDesign
                     )
                 )
             }
@@ -45,10 +45,10 @@ struct ArticleCommentHeaderView: View {
             )
         }.padding(
             EdgeInsets(
-                top: 10,
-                leading: 0,
-                bottom: -4,
-                trailing: 0
+                top: style.commentInformationPaddingTop,
+                leading: style.commentInformationPaddingLeading,
+                bottom: style.commentInformationPaddingBottom,
+                trailing: style.commentInformationPaddingTrailing
             )
         )
         HStack {
@@ -58,23 +58,23 @@ struct ArticleCommentHeaderView: View {
                         authorTitle!
                     ).font(
                         Font.system(
-                            size: articleCommentsStyle.authorTitleFontSize,
-                            weight: articleCommentsStyle.authorTitleFontWeight,
-                            design: articleCommentsStyle.authorTitleFontDesign
+                            size: style.authorTitleFontSize,
+                            weight: style.authorTitleFontWeight,
+                            design: style.authorTitleFontDesign
                         )
                     ).foregroundColor(
-                        articleCommentsStyle.authorTitleFontColor
+                        style.authorTitleFontColor
                     ) +
                     Text(
                         " в \(authorCompany!)"
                     ).font(
                         Font.system(
-                            size: articleCommentsStyle.authorCompanyFontSize,
-                            weight: articleCommentsStyle.authorCompanyFontWeight,
-                            design: articleCommentsStyle.authorCompanyFontDesign
+                            size: style.authorCompanyFontSize,
+                            weight: style.authorCompanyFontWeight,
+                            design: style.authorCompanyFontDesign
                         )
                     ).foregroundColor(
-                        articleCommentsStyle.authorCompanyFontColor
+                        style.authorCompanyFontColor
                     )
                 }
                 
@@ -83,15 +83,37 @@ struct ArticleCommentHeaderView: View {
                         authorTitle!
                     ).font(
                         Font.system(
-                            size: articleCommentsStyle.authorTitleFontSize,
-                            weight: articleCommentsStyle.authorTitleFontWeight,
-                            design: articleCommentsStyle.authorTitleFontDesign
+                            size: style.authorTitleFontSize,
+                            weight: style.authorTitleFontWeight,
+                            design: style.authorTitleFontDesign
                         )
                     ).foregroundColor(
-                        articleCommentsStyle.authorTitleFontColor
+                        style.authorTitleFontColor
                     )
                 }
             }
-        }.padding(.bottom, -1.5)
+        }.padding(
+            .bottom, style.commentHeaderAuthorTitlePaddingBottom
+        )
+    }
+    
+    struct Style {
+        public let authorNameFontSize: CGFloat = 16
+        public let authorNameFontWeight: Font.Weight = .bold
+        public let authorNameFontDesign: Font.Design = .default
+        public let authorTitleFontSize: CGFloat = 12
+        public let authorTitleFontWeight: Font.Weight = .regular
+        public let authorTitleFontDesign: Font.Design = .default
+        public let authorTitleFontColor: Color = .gray
+        public let authorCompanyFontSize: CGFloat = 12
+        public let authorCompanyFontWeight: Font.Weight = .regular
+        public let authorCompanyFontDesign: Font.Design = .default
+        public let authorCompanyFontColor: Color = .gray
+        public let articleAuthorCommentBackgroundColor: Color = Color(red: 1.00, green: 0.90, blue: 0.30, opacity: 1.00)
+        public let commentInformationPaddingTop: CGFloat = 10
+        public let commentInformationPaddingLeading: CGFloat = 0
+        public let commentInformationPaddingBottom: CGFloat = -4
+        public let commentInformationPaddingTrailing: CGFloat = 0
+        public let commentHeaderAuthorTitlePaddingBottom: CGFloat = -1.5
     }
 }

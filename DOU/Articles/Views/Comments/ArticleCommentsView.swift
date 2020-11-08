@@ -5,7 +5,8 @@ struct ArticleCommentsView: View {
     
     public let articleAuthorName: String
     public var articleComments: [ArticleComment] = [ArticleComment]()
-    private let articleCommentsStyle: ArticleCommentsStyle = ArticleCommentsStyle()
+
+    private let style: Style = Style()
     
     var body: some View {
         ForEach(articleComments, id: \.id) { articleComment in
@@ -26,13 +27,21 @@ struct ArticleCommentsView: View {
                     Divider()
                 }.padding(
                     EdgeInsets(
-                        top: 0,
-                        leading: 20 + (15 * articleComment.level),
-                        bottom: 0,
-                        trailing: 20
+                        top: style.commentPaddingTop,
+                        leading: style.commentPaddingLeading + (style.nestedCommentPaddingLeading * articleComment.level),
+                        bottom: style.commentPaddingBottom,
+                        trailing: style.commentPaddinTrailing
                     )
                 )
             }
         }
+    }
+    
+    struct Style {
+        public let commentPaddingTop: CGFloat = 0
+        public let commentPaddingLeading: CGFloat = 20
+        public let commentPaddingBottom: CGFloat = 0
+        public let commentPaddinTrailing: CGFloat = 20
+        public let nestedCommentPaddingLeading: CGFloat = 15
     }
 }

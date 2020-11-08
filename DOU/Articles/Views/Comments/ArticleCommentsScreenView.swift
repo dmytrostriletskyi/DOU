@@ -10,7 +10,18 @@ struct ArticleCommentsScreenView: View {
     @State private var articleBestComments: [ArticleComment] = [ArticleComment]()
     @State private var articleCommentsNumber: Int = 0
 
-    private let articleCommentsStyle: ArticleCommentsStyle = ArticleCommentsStyle()
+    private let style: Style = Style()
+    
+    init(article: Article) {
+        UINavigationBar.appearance().titleTextAttributes = [
+            .font: UIFont.systemFont(
+                ofSize: style.navigationBarHeaderSize,
+                weight: UIFont.Weight.semibold
+            )
+        ]
+        
+        self.article = article
+    }
     
     var body: some View {
         Group {
@@ -20,18 +31,18 @@ struct ArticleCommentsScreenView: View {
                 ScrollView {
                     if !articleBestComments.isEmpty {
                         Text(
-                            "Найкращі коментарі"
+                            style.bestCommentsNameUkrainian
                         ).font(
                             Font.system(
-                                size: articleCommentsStyle.articleBestCommentsTitleFontSize,
-                                weight: articleCommentsStyle.articleBestCommentsTitleFontWeight,
-                                design: articleCommentsStyle.articleBestCommentsTitleFontDesign
+                                size: style.articleBestCommentsTitleFontSize,
+                                weight: style.articleBestCommentsTitleFontWeight,
+                                design: style.articleBestCommentsTitleFontDesign
                             )
                         ).frame(
                             maxWidth: .infinity,
                             alignment: .leading
                         ).padding(
-                            .leading, 20
+                            .leading, style.commentsPaddingLeading
                         )
                         Divider()
                         ArticleCommentsView(
@@ -42,12 +53,12 @@ struct ArticleCommentsScreenView: View {
 
                     if !articleComments.isEmpty {
                         Text(
-                            "\(articleCommentsNumber) коментарі"
+                            "\(articleCommentsNumber) \(style.commentsNameUkrainian.lowercased())"
                         ).font(
                             Font.system(
-                                size: articleCommentsStyle.articleCommentsNumberFontSize,
-                                weight: articleCommentsStyle.articleCommentsNumberFontWeight,
-                                design: articleCommentsStyle.articleCommentsNumberFontDesign
+                                size: style.articleCommentsNumberFontSize,
+                                weight: style.articleCommentsNumberFontWeight,
+                                design: style.articleCommentsNumberFontDesign
                             )
                         ).frame(
                             maxWidth: .infinity,
@@ -55,9 +66,9 @@ struct ArticleCommentsScreenView: View {
                         ).padding(
                             EdgeInsets(
                                 top: articleBestComments.isEmpty ? 0 : 24,
-                                leading: 20,
-                                bottom: 0,
-                                trailing: 0
+                                leading: style.commentsPaddingLeading,
+                                bottom: style.commentsPaddingBottom,
+                                trailing: style.commentsPaddingTrailing
                             )
                         )
                         Divider()
@@ -67,9 +78,10 @@ struct ArticleCommentsScreenView: View {
                         )
                     }
                 }.navigationBarTitle(
-                    "Комментарі"
+                    style.navigationBarHeaderNameUkrainian,
+                    displayMode: .inline
                 ).padding(
-                    .top, 12
+                    .top, style.commentsPaddingTop
                 )
             }
         }.onAppear {
@@ -99,5 +111,25 @@ struct ArticleCommentsScreenView: View {
                 self.isActivityIndicatorLoaing = false
             }
         }
+    }
+    
+    struct Style {
+        public let articleBestCommentsTitleFontSize: CGFloat = 16
+        public let articleBestCommentsTitleFontWeight: Font.Weight = .semibold
+        public let articleBestCommentsTitleFontDesign: Font.Design = .default
+        public let articleCommentsNumberFontSize: CGFloat = 18
+        public let articleCommentsNumberFontWeight: Font.Weight = .semibold
+        public let articleCommentsNumberFontDesign: Font.Design = .default
+        public let commentsPaddingTop: CGFloat = 12
+        public let commentsPaddingLeading: CGFloat = 20
+        public let commentsPaddingBottom: CGFloat = 0
+        public let commentsPaddingTrailing: CGFloat = 0
+        public let commentsNameUkrainian: String = "Коментарі"
+        public let commentsNameRussian: String = "Комментарии"
+        public let bestCommentsNameUkrainian: String = "Найкращі коментарі"
+        public let bestCommentsNameRussian: String = "Лучшие комментарии"
+        public let navigationBarHeaderSize: CGFloat = 20
+        public let navigationBarHeaderNameUkrainian: String = "Коментарі"
+        public let navigationBarHeaderNameRussian: String = "Комментарии"
     }
 }

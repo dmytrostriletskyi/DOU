@@ -1,25 +1,28 @@
 import Foundation
 import SwiftUI
 
+import URLImage
+
 struct ArticlesScreenView: View {
 
-    @State private var articles = [Article]()
-    @State private var currentlyFetchingArticles: Bool = true
+    public let articlesService: ArticlesService
+    public let initialArticles: [Article]
     
-    private let articlesService: ArticlesService = ArticlesService(
-        source: ArticlesApiSource()
-    )
+    @State private var articles: [Article] = [Article]()
+    @State private var currentlyFetchingArticles: Bool = true
 
-    private let navigationBarStyle: NavigationBarStyle = NavigationBarStyle()
-    private let tabBarStyle: TabBarStyle = TabBarStyle()
+    private let style: Style = Style()
 
-    init() {
+    init(articlesService: ArticlesService, initialArticles: [Article]) {
         UINavigationBar.appearance().titleTextAttributes = [
             .font: UIFont.systemFont(
-                ofSize: CGFloat(navigationBarStyle.headerSize),
+                ofSize: style.navigationBarHeaderSize,
                 weight: UIFont.Weight.semibold
             )
         ]
+
+        self.articlesService = articlesService
+        self.initialArticles = initialArticles
     }
 
     var body: some View {
@@ -56,16 +59,19 @@ struct ArticlesScreenView: View {
                         )
                     }
                 }.navigationBarTitle(
-                    tabBarStyle.articlesTabNameUkrainian,
+                    style.navigationBarHeaderNameUkrainian,
                     displayMode: .inline
                 )
             }
         }.onAppear {
-            self.articlesService.get { result in
-                self.articles = result
-            }
-            
+            self.articles.append(contentsOf: initialArticles)
             self.currentlyFetchingArticles = false
         }
+    }
+    
+    struct Style {
+        public let navigationBarHeaderSize: CGFloat = 20
+        public let navigationBarHeaderNameUkrainian: String = "Стрічка"
+        public let navigationBarHeaderNameRussian: String = "Лента"
     }
 }

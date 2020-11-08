@@ -1,28 +1,6 @@
 import Foundation
 import SwiftUI
 
-struct NavigationBarStyle {
-    
-    public let headerFont: String = "Arial"
-    public let headerSize: Int64 = 20
-}
-
-struct TabBarStyle {
-
-    public let articlesTabImageSystemName: String = "doc.plaintext"
-    public let forumTabImageSystemName: String = "text.bubble"
-    public let salariesTabImageSystemName: String = "dollarsign.circle"
-    
-    public let articlesTabNameUkrainian: String = "Стрічка"
-    public let articlesTabHeaderNameRussian: String = "Лента"
-    
-    public let forumTabNameUkrainian: String = "Форум"
-    public let forumTabHeaderNameRussian: String = "Форум"
-    
-    public let salariesTabNameUkrainian: String = "Зарплата"
-    public let salariesabHeaderNameRussian: String = "Зарплата"
-}
-
 struct RegularPostItemStyle {
     
     public let titleFont: String = "Arial"

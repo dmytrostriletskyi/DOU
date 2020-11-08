@@ -1,26 +1,4 @@
-//
-//  DateUtils.swift
-//  DOU
-//
-//  Created by Dima on 01/10/2020.
-//
-
 import Foundation
-
-
-//enum LocalizationDateRepresentation {
-//    case today
-//    case yesterday
-//
-//    public func get() -> String {
-//        switch self {
-//        case .today:
-//            return "uk_UA"
-//        case .yesterday:
-//            return "ru_RU"
-//        }
-//    }
-//}
 
 class DateRepresentation {
     
