@@ -12,11 +12,7 @@ struct ArticlesItemView: View {
                 URL(
                     string: article.imageUrl
                 )!,
-                processors: [
-                    Resize(
-                        size: CGSize(width: UIScreen.main.bounds.size.width - 41.5, height: 179),
-                        scale: UIScreen.main.scale)
-                ],
+                processors: [],
                 placeholder: {
                     ProgressView($0) { _ in
                         ZStack { }
@@ -25,8 +21,6 @@ struct ArticlesItemView: View {
                 content: {
                     $0.image
                     .resizable()
-                    .aspectRatio(contentMode: .fill)
-                    .clipped()
                 }
             ).frame(
                 width: UIScreen.main.bounds.size.width - 41.5,
