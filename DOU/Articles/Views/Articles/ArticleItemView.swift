@@ -23,8 +23,8 @@ struct ArticlesItemView: View {
                     .resizable()
                 }
             ).frame(
-                width: UIScreen.main.bounds.size.width - 41.5,
-                height: 179
+                width: UIScreen.main.bounds.size.width - UIScreen.main.bounds.size.width * 0.11,
+                height: 186
             )
             Spacer()
             RegularPostTitle(title: article.title)
