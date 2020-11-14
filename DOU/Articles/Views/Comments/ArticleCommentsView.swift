@@ -18,7 +18,7 @@ struct ArticleCommentsView: View {
                         authorCompany: articleComment.authorCompany,
                         publicationDate: articleComment.publicationDate!
                     )
-                    PostTextView(
+                    AttributedContentView(
                         uiView: articleComment.uiView!
                     ).frame(
                         height: articleComment.uiViewHeigth!

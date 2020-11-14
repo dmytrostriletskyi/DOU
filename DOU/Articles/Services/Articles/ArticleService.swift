@@ -3,14 +3,14 @@ import Foundation
 import Atributika
 import SwiftSoup
 
-enum HtmlStringType {
+enum ArticleContentType {
     case text
     case image
 }
 
-struct HtmlString: Identifiable {
+struct ArticleContent: Identifiable {
     var id = UUID()
-    var type: HtmlStringType
+    var type: ArticleContentType
     var uiView: AttributedLabel
     var uiViewHeigth: CGFloat
 }
@@ -77,11 +77,11 @@ class ArticleService {
         return nil
     }
 
-    func get() -> [HtmlString] {
-        var htmlStrings: [HtmlString] = [HtmlString]()
+    func get() -> [ArticleContent] {
+        var articleContents: [ArticleContent] = [ArticleContent]()
 
         guard let article: Element = source.parse() else {
-            return htmlStrings
+            return articleContents
         }
 
         for childNode in article.getChildNodes() {
@@ -110,11 +110,13 @@ class ArticleService {
             if htmlString.contains("img") {
                 let imageAttributedLabel = ImageAttributedLabel(htmlString: htmlString)
 
-                htmlStrings.append(HtmlString(
-                    type: .image,
-                    uiView: imageAttributedLabel.get(),
-                    uiViewHeigth: imageAttributedLabel.getHeight()
-                ))
+                articleContents.append(
+                    ArticleContent(
+                        type: .image,
+                        uiView: imageAttributedLabel.get(),
+                        uiViewHeigth: imageAttributedLabel.getHeight()
+                    )
+                )
 
                 continue
             }
@@ -122,16 +124,18 @@ class ArticleService {
             if textHtmlTags.contains(where: htmlString.contains) {
                 let textAttributedLabel = TextAttributedLabel(htmlString: htmlString)
 
-                htmlStrings.append(HtmlString(
-                    type: .text,
-                    uiView: textAttributedLabel.get(),
-                    uiViewHeigth: textAttributedLabel.getHeight()
-                ))
+                articleContents.append(
+                    ArticleContent(
+                        type: .text,
+                        uiView: textAttributedLabel.get(),
+                        uiViewHeigth: textAttributedLabel.getHeight()
+                    )
+                )
 
                 continue
             }
         }
 
-        return htmlStrings
+        return articleContents
     }
 }

@@ -8,7 +8,7 @@ struct ArticleView: View {
 
     @State var isActivityIndicatorLoaing: Bool = true
 
-    @State private var htmlStrings: [HtmlString] = [HtmlString]()
+    @State private var articleContents: [ArticleContent] = [ArticleContent]()
 
     var body: some View {
         Group {
@@ -33,14 +33,8 @@ struct ArticleView: View {
                                     AttributedPostCommentsCount(commentsCount: article.commentsCount)
                                 }.padding(.bottom, style.informationPaddingBottom)
                             }.padding(.leading, style.informationPaddingLeading)
-                            ForEach(htmlStrings, id: \.id) { htmlString in
-                                if htmlString.type == HtmlStringType.text {
-                                    PostTextView(uiView: htmlString.uiView).frame(height: htmlString.uiViewHeigth)
-                                }
-
-                                if htmlString.type == HtmlStringType.image {
-                                    PostImageView(uiView: htmlString.uiView).frame(height: htmlString.uiViewHeigth)
-                                }
+                            ForEach(articleContents, id: \.id) { articleContent in
+                                AttributedContentView(uiView: articleContent.uiView).frame(height: articleContent.uiViewHeigth)
                             }.padding(.horizontal, style.textPaddingLeading)
                             Divider()
                             VStack {
@@ -92,7 +86,7 @@ struct ArticleView: View {
 
                 let articleService = ArticleService(source: articleHtmlSource)
 
-                self.htmlStrings = articleService.get()
+                self.articleContents = articleService.get()
                 self.isActivityIndicatorLoaing = false
             }
         }
