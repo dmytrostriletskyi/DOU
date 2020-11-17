@@ -17,9 +17,9 @@ struct ContentView: View {
                     Image(systemName: tabBarStyle.articlesTabImageSystemName)
                     Text("Стрічка")
                 }.tag(1)
-            ArticlesScreenView()
+            TopicsView()
                 .tabItem {
-                    Image(systemName: tabBarStyle.forumTabImageSystemName)
+                    Image(systemName: tabBarStyle.topicsTabImageSystemName)
                     Text("Форум")
                 }.tag(2)
             SalariesView()

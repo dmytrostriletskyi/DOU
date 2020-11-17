@@ -10,14 +10,14 @@ struct NavigationBarStyle {
 struct TabBarStyle {
 
     public let articlesTabImageSystemName: String = "doc.plaintext"
-    public let forumTabImageSystemName: String = "text.bubble"
+    public let topicsTabImageSystemName: String = "text.bubble"
     public let salariesTabImageSystemName: String = "dollarsign.circle"
     
     public let articlesTabNameUkrainian: String = "Стрічка"
     public let articlesTabHeaderNameRussian: String = "Лента"
     
-    public let forumTabNameUkrainian: String = "Форум"
-    public let forumTabHeaderNameRussian: String = "Форум"
+    public let topicsTabNameUkrainian: String = "Форум"
+    public let topicsTabHeaderNameRussian: String = "Форум"
     
     public let salariesTabNameUkrainian: String = "Зарплата"
     public let salariesabHeaderNameRussian: String = "Зарплата"
