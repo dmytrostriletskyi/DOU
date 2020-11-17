@@ -1,9 +1,9 @@
 import Foundation
+
 import Atributika
 
 struct ArticleComment: Identifiable {
-
-    var id: UUID = UUID()
+    var id = UUID()
     var level: CGFloat = 0
     var authorName: String?
     var authorTitle: String?

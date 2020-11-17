@@ -2,11 +2,11 @@ import Foundation
 import SwiftUI
 
 struct ArticleCommentsView: View {
-    
-    public let articleAuthorName: String
-    public var articleComments: [ArticleComment] = [ArticleComment]()
-    private let articleCommentsStyle: ArticleCommentsStyle = ArticleCommentsStyle()
-    
+    let articleAuthorName: String
+    var articleComments: [ArticleComment] = [ArticleComment]()
+
+    private let style = Style()
+
     var body: some View {
         ForEach(articleComments, id: \.id) { articleComment in
             if articleComment.uiView != nil {
@@ -26,13 +26,23 @@ struct ArticleCommentsView: View {
                     Divider()
                 }.padding(
                     EdgeInsets(
-                        top: 0,
-                        leading: 20 + (15 * articleComment.level),
-                        bottom: 0,
-                        trailing: 20
+                        top: style.commentPaddingTop,
+                        leading: style.commentPaddingLeading + (
+                            style.nestedCommentPaddingLeading * articleComment.level
+                        ),
+                        bottom: style.commentPaddingBottom,
+                        trailing: style.commentPaddinTrailing
                     )
                 )
             }
         }
+    }
+
+    struct Style {
+        let commentPaddingTop: CGFloat = 0
+        let commentPaddingLeading: CGFloat = 20
+        let commentPaddingBottom: CGFloat = 0
+        let commentPaddinTrailing: CGFloat = 20
+        let nestedCommentPaddingLeading: CGFloat = 15
     }
 }

@@ -1,25 +1,27 @@
 import Foundation
 import SwiftUI
 
+import URLImage
+
 struct ArticlesScreenView: View {
+    let articlesService: ArticlesService
+    let initialArticles: [Article]
 
-    @State private var articles = [Article]()
+    @State private var articles: [Article] = [Article]()
     @State private var currentlyFetchingArticles: Bool = true
-    
-    private let articlesService: ArticlesService = ArticlesService(
-        source: ArticlesApiSource()
-    )
 
-    private let navigationBarStyle: NavigationBarStyle = NavigationBarStyle()
-    private let tabBarStyle: TabBarStyle = TabBarStyle()
+    private let style = Style()
 
-    init() {
+    init(articlesService: ArticlesService, initialArticles: [Article]) {
         UINavigationBar.appearance().titleTextAttributes = [
             .font: UIFont.systemFont(
-                ofSize: CGFloat(navigationBarStyle.headerSize),
+                ofSize: style.navigationBarHeaderSize,
                 weight: UIFont.Weight.semibold
             )
         ]
+
+        self.articlesService = articlesService
+        self.initialArticles = initialArticles
     }
 
     var body: some View {
@@ -33,15 +35,15 @@ struct ArticlesScreenView: View {
                             if self.currentlyFetchingArticles {
                                 return
                             }
-                            
+
                             guard let lastArticle = articles.last else {
                                 return
                             }
-                            
+
                             if article.id != lastArticle.id {
                                 return
                             }
-                            
+
                             self.articlesService.getNext { result in
                                 self.articles.append(contentsOf: result)
                             }
@@ -56,16 +58,19 @@ struct ArticlesScreenView: View {
                         )
                     }
                 }.navigationBarTitle(
-                    tabBarStyle.articlesTabNameUkrainian,
+                    style.navigationBarHeaderNameUkrainian,
                     displayMode: .inline
                 )
             }
         }.onAppear {
-            self.articlesService.get { result in
-                self.articles = result
-            }
-            
+            self.articles.append(contentsOf: initialArticles)
             self.currentlyFetchingArticles = false
         }
+    }
+
+    struct Style {
+        let navigationBarHeaderSize: CGFloat = 20
+        let navigationBarHeaderNameUkrainian: String = "Стрічка"
+        let navigationBarHeaderNameRussian: String = "Лента"
     }
 }

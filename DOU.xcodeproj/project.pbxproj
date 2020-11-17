@@ -19,7 +19,6 @@
 		320E976925530FF600884CB0 /* ArticlesObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 320E976825530FF600884CB0 /* ArticlesObject.swift */; };
 		320E976D2553127000884CB0 /* SalariesSources.swift in Sources */ = {isa = PBXBuildFile; fileRef = 320E976C2553127000884CB0 /* SalariesSources.swift */; };
 		321B360B253E13FB006A1A17 /* ArticleCommentsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 321B360A253E13FB006A1A17 /* ArticleCommentsService.swift */; };
-		321B360E253E1468006A1A17 /* ArticlesStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 321B360D253E1468006A1A17 /* ArticlesStyle.swift */; };
 		323C5139253A007F001EFD64 /* ArticleService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 323C5138253A007F001EFD64 /* ArticleService.swift */; };
 		32526B9D25265D2B0099E5A4 /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32526B9C25265D2B0099E5A4 /* Date.swift */; };
 		32526BA225265F6C0099E5A4 /* Localization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32526BA125265F6C0099E5A4 /* Localization.swift */; };
@@ -45,7 +44,7 @@
 		32C5A6B125361586008C48BD /* ActivityIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32C5A6B025361586008C48BD /* ActivityIndicator.swift */; };
 		BC5191C525642C4C009EA903 /* TopicsItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC5191C425642C4C009EA903 /* TopicsItemView.swift */; };
 		BC8C02F22554569400630FE3 /* TopicsObjects.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC8C02F12554569400630FE3 /* TopicsObjects.swift */; };
-		BC8C02FF2560192300630FE3 /* TopicService.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC8C02FE2560192300630FE3 /* TopicService.swift */; };
+		BC8C02FF2560192300630FE3 /* TopicsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC8C02FE2560192300630FE3 /* TopicsService.swift */; };
 		BC8C030625601BB800630FE3 /* TopicHtmlSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC8C030525601BB800630FE3 /* TopicHtmlSource.swift */; };
 /* End PBXBuildFile section */
 
@@ -64,7 +63,6 @@
 		320E976825530FF600884CB0 /* ArticlesObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticlesObject.swift; sourceTree = "<group>"; };
 		320E976C2553127000884CB0 /* SalariesSources.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SalariesSources.swift; sourceTree = "<group>"; };
 		321B360A253E13FB006A1A17 /* ArticleCommentsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleCommentsService.swift; sourceTree = "<group>"; };
-		321B360D253E1468006A1A17 /* ArticlesStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticlesStyle.swift; sourceTree = "<group>"; };
 		323C5138253A007F001EFD64 /* ArticleService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleService.swift; sourceTree = "<group>"; };
 		32526B9C25265D2B0099E5A4 /* Date.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Date.swift; sourceTree = "<group>"; };
 		32526BA125265F6C0099E5A4 /* Localization.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Localization.swift; sourceTree = "<group>"; };
@@ -92,7 +90,7 @@
 		BA021E065B714D5009D2EC4A /* Pods_DOU.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DOU.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BC5191C425642C4C009EA903 /* TopicsItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopicsItemView.swift; sourceTree = "<group>"; };
 		BC8C02F12554569400630FE3 /* TopicsObjects.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopicsObjects.swift; sourceTree = "<group>"; };
-		BC8C02FE2560192300630FE3 /* TopicService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopicService.swift; sourceTree = "<group>"; };
+		BC8C02FE2560192300630FE3 /* TopicsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopicsService.swift; sourceTree = "<group>"; };
 		BC8C030525601BB800630FE3 /* TopicHtmlSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopicHtmlSource.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -225,7 +223,6 @@
 				329CDE22254DD44B002565D7 /* Services */,
 				329CDE1C254DD3BA002565D7 /* Sources */,
 				329CDE02254DCE45002565D7 /* Views */,
-				321B360D253E1468006A1A17 /* ArticlesStyle.swift */,
 			);
 			path = Articles;
 			sourceTree = "<group>";
@@ -369,7 +366,7 @@
 		BC8C02FD256018E800630FE3 /* Topics */ = {
 			isa = PBXGroup;
 			children = (
-				BC8C02FE2560192300630FE3 /* TopicService.swift */,
+				BC8C02FE2560192300630FE3 /* TopicsService.swift */,
 			);
 			path = Topics;
 			sourceTree = "<group>";
@@ -402,6 +399,7 @@
 				320A3D822522554A00AE4D00 /* Frameworks */,
 				320A3D832522554A00AE4D00 /* Resources */,
 				2E9488E4F74755CBDADA3176 /* [CP] Embed Pods Frameworks */,
+				32C8161F2558211D00E6B1FC /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -474,6 +472,23 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-DOU/Pods-DOU-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
+		32C8161F2558211D00E6B1FC /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if [ \"${CONFIGURATION}\" = \"Debug\" ]; then\n    if which swiftlint >/dev/null; then\n        swiftlint --config \"$SRCROOT/.swiftlint.yml\"\n    else\n        echo \"Intall SwiftLint as a build phase linter.\"\n    fi\nfi\n";
+		};
 		78079DBEA7639231A9C7910D /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -517,7 +532,6 @@
 				320E976625530FE100884CB0 /* ArticleObject.swift in Sources */,
 				32A95AAF2534C5F10012D78C /* AttributedPostComponent.swift in Sources */,
 				320E976225530FB200884CB0 /* ArticleCommentObject.swift in Sources */,
-				321B360E253E1468006A1A17 /* ArticlesStyle.swift in Sources */,
 				326AA94D252CC4D900072A76 /* UIViewRepresentables.swift in Sources */,
 				BC8C02F22554569400630FE3 /* TopicsObjects.swift in Sources */,
 				326523F0252871820026C9EE /* ArticleView.swift in Sources */,
@@ -537,7 +551,7 @@
 				329CDE14254DD21C002565D7 /* ArticlesScreenView.swift in Sources */,
 				329CDE07254DD054002565D7 /* ArticleCommentsScreenView.swift in Sources */,
 				323C5139253A007F001EFD64 /* ArticleService.swift in Sources */,
-				BC8C02FF2560192300630FE3 /* TopicService.swift in Sources */,
+				BC8C02FF2560192300630FE3 /* TopicsService.swift in Sources */,
 				32662E7325374E650051069E /* SalariesViews.swift in Sources */,
 				326523D525271D9E0026C9EE /* RegularPostComponent.swift in Sources */,
 			);
@@ -597,7 +611,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -652,7 +666,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;

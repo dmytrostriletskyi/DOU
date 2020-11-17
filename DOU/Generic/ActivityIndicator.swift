@@ -2,10 +2,9 @@ import Foundation
 import SwiftUI
 
 struct ActivityIndicator: UIViewRepresentable {
-
     @Binding var isLoading: Bool
-    
-    private let spinner: UIActivityIndicatorView = UIActivityIndicatorView()
+
+    private let spinner = UIActivityIndicatorView()
 
     func makeUIView(context: UIViewRepresentableContext<ActivityIndicator>) -> UIActivityIndicatorView {
         spinner.style = .large

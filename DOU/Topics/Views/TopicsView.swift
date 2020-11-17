@@ -3,21 +3,24 @@ import SwiftSoup
 
 struct TopicsView: View {
     
+    let topicsService: TopicsService
+    let initialTopics: [Topic]
+    
     @State private var topics = [Topic]()
     @State private var currentlyFetchingArticles: Bool = true
     
-    private let topicService: TopicService = TopicService()
+    private let style = Style()
 
-    private let navigationBarStyle: NavigationBarStyle = NavigationBarStyle()
-    private let tabBarStyle: TabBarStyle = TabBarStyle()
-
-    init() {
+    init(topicsService: TopicsService, initialTopics: [Topic]) {
         UINavigationBar.appearance().titleTextAttributes = [
             .font: UIFont.systemFont(
-                ofSize: CGFloat(navigationBarStyle.headerSize),
+                ofSize: style.navigationBarHeaderSize,
                 weight: UIFont.Weight.semibold
             )
         ]
+        
+        self.topicsService = topicsService
+        self.initialTopics = initialTopics
     }
         
     var body: some View {
@@ -40,22 +43,25 @@ struct TopicsView: View {
                                 return
                             }
                             
-                            self.topicService.getNext { result in
+                            self.topicsService.getNext { result in
                                 topics.append(contentsOf: result)
                             }
                         }
                     }
                 }.navigationBarTitle(
-                    tabBarStyle.topicsTabNameUkrainian,
+                    style.navigationBarHeaderNameUkrainian,
                     displayMode: .inline
                 )
             }
         }.onAppear {
-            self.topicService.get { result in
-                topics.append(contentsOf: result)
-            }
-            
+            self.topics.append(contentsOf: initialTopics)
             self.currentlyFetchingArticles = false
         }
+    }
+    
+    struct Style {
+        let navigationBarHeaderSize: CGFloat = 20
+        let navigationBarHeaderNameUkrainian: String = "Форум"
+        let navigationBarHeaderNameRussian: String = "Форум"
     }
 }

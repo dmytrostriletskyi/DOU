@@ -1,12 +1,11 @@
 import Foundation
 import SwiftUI
-    
+
 struct RegularPostTitle: View {
-    
-    public let title: String
-    
-    private let regularPostItemStyle: RegularPostItemStyle = RegularPostItemStyle()
-    
+    let title: String
+
+    private let regularPostItemStyle = RegularPostItemStyle()
+
     var body: some View {
         Text(
             title
@@ -26,10 +25,9 @@ struct RegularPostTitle: View {
 }
 
 struct RegularPostAuthorName: View {
-    
-    public let authorName: String
-    
-    private let regularPostItemStyle: RegularPostItemStyle = RegularPostItemStyle()
+    let authorName: String
+
+    private let regularPostItemStyle = RegularPostItemStyle()
 
     var body: some View {
         Text(
@@ -46,10 +44,9 @@ struct RegularPostAuthorName: View {
 }
 
 struct RegularPostPublicationDate: View {
-    
-    public let publicationDate: String
-    
-    private let regularPostItemStyle: RegularPostItemStyle = RegularPostItemStyle()
+    let publicationDate: String
+
+    private let regularPostItemStyle = RegularPostItemStyle()
 
     var body: some View {
         Text(
@@ -66,11 +63,10 @@ struct RegularPostPublicationDate: View {
 }
 
 struct RegularPostViews: View {
-    
-    public let views: Int64
+    let views: Int64
 
-    private let regularPostItemStyle: RegularPostItemStyle = RegularPostItemStyle()
-    
+    private let regularPostItemStyle = RegularPostItemStyle()
+
     var body: some View {
         HStack {
             (
@@ -93,11 +89,10 @@ struct RegularPostViews: View {
 }
 
 struct RegularPostCommentsCount: View {
-    
-    public let commentsCount: Int64
+    let commentsCount: Int64
 
-    private let regularPostItemStyle: RegularPostItemStyle = RegularPostItemStyle()
-    
+    private let regularPostItemStyle = RegularPostItemStyle()
+
     var body: some View {
         HStack {
             (

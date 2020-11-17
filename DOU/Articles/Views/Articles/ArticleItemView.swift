@@ -4,7 +4,6 @@ import SwiftUI
 import URLImage
 
 struct ArticlesItemView: View {
-    
     let article: Article
 
     var body: some View {
@@ -13,20 +12,19 @@ struct ArticlesItemView: View {
                 URL(
                     string: article.imageUrl
                 )!,
-                processors: [
-                    Resize(
-                        size: CGSize(width: UIScreen.main.bounds.size.width - 41.5, height: 179),
-                        scale: UIScreen.main.scale)
-                ],
-                content:  {
+                processors: [],
+                placeholder: {
+                    ProgressView($0) { _ in
+                        ZStack { }
+                    }
+                },
+                content: {
                     $0.image
                     .resizable()
-                    .aspectRatio(contentMode: .fill)
-                    .clipped()
                 }
             ).frame(
-                width: UIScreen.main.bounds.size.width - 41.5,
-                height: 179
+                width: UIScreen.main.bounds.size.width - UIScreen.main.bounds.size.width * 0.11,
+                height: 186
             )
             Spacer()
             RegularPostTitle(title: article.title)

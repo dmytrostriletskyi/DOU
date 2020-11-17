@@ -2,7 +2,7 @@ import Foundation
 
 import SwiftSoup
 
-class TopicService {
+class TopicsService {
     
     private var currentFetchingPage: Int = 1
 

@@ -4,15 +4,14 @@ import SwiftUI
 import Atributika
 
 class TextAttributedLabel {
+    let htmlString: String
 
-    public let htmlString: String
-    
     private var attributedLabel: AttributedLabel
-    private let attributedPostStyle: AttributedPostItemStyle = AttributedPostItemStyle()
-    
+    private let attributedPostStyle = AttributedPostItemStyle()
+
     init(htmlString: String) {
         self.htmlString = htmlString
-        
+
         let attributedLabel = AttributedLabel()
 
         attributedLabel.numberOfLines = 0
@@ -32,9 +31,9 @@ class TextAttributedLabel {
         ).underlineStyle(
             attributedPostStyle.linkUnderlineStyle
         )
-        
+
         let strike = Style("strike").strikethroughStyle(.single)
-        
+
         let indicating = Style("i").obliqueness(
             attributedPostStyle.emphasizedTextObliqueness
         )
@@ -45,7 +44,6 @@ class TextAttributedLabel {
                 weight: attributedPostStyle.headerWeight
             )
         )
-        
 
         let headerTwoSize = Style("h2").font(
             UIFont.systemFont(
@@ -53,31 +51,28 @@ class TextAttributedLabel {
                 weight: attributedPostStyle.headerWeight
             )
         )
-        
-        
+
         let headerThreeSize = Style("h3").font(
             UIFont.systemFont(
                 ofSize: attributedPostStyle.headerThreeSize,
                 weight: attributedPostStyle.headerWeight
             )
         )
-        
-        
+
         let headerFourSize = Style("h4").font(
             UIFont.systemFont(
                 ofSize: attributedPostStyle.headerFourSize,
                 weight: attributedPostStyle.headerWeight
             )
         )
-        
-        
+
         let headerFiveSize = Style("h5").font(
             UIFont.systemFont(
                 ofSize: attributedPostStyle.headerFiveSize,
                 weight: attributedPostStyle.headerWeight
             )
         )
-        
+
         let headerSixSize = Style("h5").font(
             UIFont.systemFont(
                 ofSize: attributedPostStyle.headerSixSize,
@@ -96,9 +91,9 @@ class TextAttributedLabel {
             headerThreeSize,
             headerFourSize,
             headerFiveSize,
-            headerSixSize,
+            headerSixSize
         ]
-        
+
         var transformers: [TagTransformer] = [TagTransformer]()
 
         if htmlString.contains("<ul>") {
@@ -108,7 +103,7 @@ class TextAttributedLabel {
                 TagTransformer(tagName: "li", tagType: .end, replaceValue: "\n")
             ]
         }
-        
+
         if htmlString.contains("<ol>") {
             var pointsCounter = 0
 
@@ -124,11 +119,11 @@ class TextAttributedLabel {
                 }
             ]
         }
-        
+
         let attributedText = htmlString.style(tags: tags, transformers: transformers).styleAll(all).styleLinks(link)
 
         attributedLabel.attributedText = attributedText
-        
+
         attributedLabel.onClick = { label, detection in
             switch detection.type {
             case .tag(let tag):
@@ -143,14 +138,13 @@ class TextAttributedLabel {
         }
 
         self.attributedLabel = attributedLabel
-        
     }
-    
-    public func get() -> AttributedLabel {
+
+    func get() -> AttributedLabel {
         return self.attributedLabel
     }
-    
-    public func getHeight() -> CGFloat {
+
+    func getHeight() -> CGFloat {
         let screenWidth = CGFloat(UIScreen.main.bounds.size.width)
 
         let attributedLabelSize = self.attributedLabel.sizeThatFits(
@@ -158,24 +152,22 @@ class TextAttributedLabel {
         )
 
         return attributedLabelSize.height
-
     }
 }
 
 class ImageAttributedLabel {
-    
-    public let htmlString: String
-    
-    private let attributedPostStyle: AttributedPostItemStyle = AttributedPostItemStyle()
+    let htmlString: String
+
+    private let attributedPostStyle = AttributedPostItemStyle()
     private var attributedLabel: AttributedLabel
-    
+
     init(htmlString: String) {
         self.htmlString = htmlString
-        
+
         let attributedLabel = AttributedLabel()
 
         attributedLabel.numberOfLines = 0
-        
+
         let all = Style.font(
             .systemFont(
                 ofSize: attributedPostStyle.textSize
@@ -187,7 +179,7 @@ class ImageAttributedLabel {
         ).obliqueness(
             attributedPostStyle.emphasizedTextObliqueness
         )
-        
+
         let attributedText = htmlString.style(tags: [emphasizedText])
         let mutableAttributedString = NSMutableAttributedString(attributedString: attributedText.attributedString)
 
@@ -196,9 +188,9 @@ class ImageAttributedLabel {
             case .tag(let tag):
                 if let imageLink = tag.attributes["src"] {
                     let url = URL(string: imageLink)!
-                    
-                    var urlData: Data = Data()
-                    
+
+                    var urlData = Data()
+
                     do {
                         urlData = try Data(contentsOf: url)
                     } catch {
@@ -207,7 +199,7 @@ class ImageAttributedLabel {
                         print("The following HTML string is out of regularity: \(htmlString).")
                         return
                     }
-                    
+
                     let image: UIImage? = UIImage(data: urlData)
 
                     if image == nil {
@@ -216,21 +208,25 @@ class ImageAttributedLabel {
                         print("The following HTML string is out of regularity: \(htmlString).")
                         return
                     }
-                    
+
                     let screenWidthToImageWidthRatio = UIScreen.main.bounds.size.width / image!.size.width
                     let imageHeight = image!.size.height * screenWidthToImageWidthRatio - 15
-                    
+
                     let textAttachment = NSTextAttachment()
 
                     textAttachment.image = image
-                    textAttachment.bounds = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.size.width * 0.9, height: imageHeight)
+                    textAttachment.bounds = CGRect(
+                        x: 0,
+                        y: 0,
+                        width: UIScreen.main.bounds.size.width * 0.9,
+                        height: imageHeight
+                    )
 
                     let imageAttrubtedString = NSAttributedString(attachment: textAttachment)
                     let mutableAttributedStringRange = NSRange(detection.range, in: mutableAttributedString.string)
 
                     mutableAttributedString.insert(imageAttrubtedString, at: mutableAttributedStringRange.location)
                 }
-
             default:
                 break
             }
@@ -239,18 +235,18 @@ class ImageAttributedLabel {
         attributedLabel.attributedText = mutableAttributedString.styleAll(all)
         self.attributedLabel = attributedLabel
     }
-    
-    public func get() -> AttributedLabel {
+
+    func get() -> AttributedLabel {
         return self.attributedLabel
     }
-    
-    public func getHeight() -> CGFloat {
+
+    func getHeight() -> CGFloat {
         let screenWidth = CGFloat(UIScreen.main.bounds.size.width)
-        
+
         let attributedLabelSize = self.attributedLabel.sizeThatFits(
             CGSize(width: screenWidth, height: CGFloat.greatestFiniteMagnitude)
         )
-        
+
         return attributedLabelSize.height
     }
 }
@@ -271,15 +267,14 @@ struct CheckMarkButtonIcon: View {
 }
 
 class ArticleCommentAttributedLabel {
+    let htmlString: String
 
-    public let htmlString: String
-    
     private var attributedLabel: AttributedLabel
-    private let attributedPostStyle: AttributedPostItemStyle = AttributedPostItemStyle()
-    
+    private let attributedPostStyle = AttributedPostItemStyle()
+
     init(htmlString: String) {
         self.htmlString = htmlString
-        
+
         let attributedLabel = AttributedLabel()
 
         attributedLabel.numberOfLines = 0
@@ -291,7 +286,7 @@ class ArticleCommentAttributedLabel {
         )
 
         let paragraph = Style("p").baselineOffset(attributedPostStyle.paragraphLineSPacing)
-        
+
         let link = Style("a").foregroundColor(
             attributedPostStyle.linkColor, .normal
         ).foregroundColor(
@@ -299,18 +294,18 @@ class ArticleCommentAttributedLabel {
         ).underlineStyle(
             attributedPostStyle.linkUnderlineStyle
         )
-        
+
         let blockquote = Style("blockquote").obliqueness(
             attributedPostStyle.emphasizedTextObliqueness
         ).foregroundColor(Color.gray)
-        
+
         let tags = [
             all,
             paragraph,
             link,
-            blockquote,
+            blockquote
         ]
-        
+
         var transformers: [TagTransformer] = [TagTransformer]()
 
         if htmlString.contains("<ul>") {
@@ -320,7 +315,7 @@ class ArticleCommentAttributedLabel {
                 TagTransformer(tagName: "li", tagType: .end, replaceValue: "\n")
             ]
         }
-        
+
         if htmlString.contains("<ol>") {
             var pointsCounter = 0
 
@@ -336,11 +331,11 @@ class ArticleCommentAttributedLabel {
                 }
             ]
         }
-        
+
         let attributedText = htmlString.style(tags: tags, transformers: transformers).styleAll(all).styleLinks(link)
 
         attributedLabel.attributedText = attributedText
-        
+
         attributedLabel.onClick = { label, detection in
             switch detection.type {
             case .tag(let tag):
@@ -354,7 +349,7 @@ class ArticleCommentAttributedLabel {
                     let urlString = url.absoluteString.replacingOccurrences(of: "www.", with: "https://")
                     url = URL(string: urlString)!
                 }
-                
+
                 if (
                     !url.absoluteString.contains("www.") &&
                     !url.absoluteString.contains("http://") &&
@@ -363,7 +358,7 @@ class ArticleCommentAttributedLabel {
                     let urlString = "https://\(url.absoluteString)"
                     url = URL(string: urlString)!
                 }
-                
+
                 UIApplication.shared.open(url, options: [:], completionHandler: nil)
             default:
                 break
@@ -371,14 +366,13 @@ class ArticleCommentAttributedLabel {
         }
 
         self.attributedLabel = attributedLabel
-        
     }
-    
-    public func get() -> AttributedLabel {
+
+    func get() -> AttributedLabel {
         return self.attributedLabel
     }
-    
-    public func getHeight(level: CGFloat) -> CGFloat {
+
+    func getHeight(level: CGFloat) -> CGFloat {
         let screenWidth = CGFloat(UIScreen.main.bounds.size.width)
 
         let attributedLabelSize = self.attributedLabel.sizeThatFits(
@@ -386,6 +380,5 @@ class ArticleCommentAttributedLabel {
         )
 
         return attributedLabelSize.height
-
     }
 }

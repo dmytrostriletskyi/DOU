@@ -3,7 +3,6 @@ import Foundation
 import SwiftCSV
 
 enum SalariesCsvFileKeys: String {
-    
     case city = "Город"
     case jobPosition = "Должность"
     case workingExperience = "exp"
@@ -13,9 +12,7 @@ enum SalariesCsvFileKeys: String {
 }
 
 class SalariesCsvSource {
-
-    public let url: String
-    
+    let url: String
     private let citiesToExclude: [String] = ["Другой"]
     private let managementJobPositions: [String] = [
         "Project manager",
@@ -23,24 +20,23 @@ class SalariesCsvSource {
         "Senior Project manager / Program Manager",
         "Director of Engineering / Program Director"
     ]
-    
+
     init(url: String) {
         self.url = url
     }
-    
+
     private func get(url: String) -> CSV? {
         do {
             let url = URL(string: url)!
             let csv: CSV = try CSV(url: url)
-            
-            return csv
 
+            return csv
         } catch {
             return nil
         }
     }
-    
-    public func parse() -> (
+
+    func parse() -> (
         parsedSoftwareEngineeringSalaries: [SoftwareEngineeringSalary],
         parsedQualityAssuranceSalaries: [QualityAssuranceSalary],
         parsedManagementSalaries: [ManagementSalary],
@@ -57,23 +53,23 @@ class SalariesCsvSource {
             var parsedQualityAssuranceSalaries: [QualityAssuranceSalary] = [QualityAssuranceSalary]()
             var parsedManagementSalaries: [ManagementSalary] = [ManagementSalary]()
             var parsedOtherSalaries: [OtherSalary] = [OtherSalary]()
-            
+
             try csv.enumerateAsDict { salaryRaw in
                 let city: String = salaryRaw[SalariesCsvFileKeys.city.rawValue]!
                 let jobPosition: String = salaryRaw[SalariesCsvFileKeys.jobPosition.rawValue]!
-                let workingExperience: Float64 = Float64(salaryRaw[SalariesCsvFileKeys.workingExperience.rawValue]!)!
-                let salary: Int64 =  Int64(salaryRaw[SalariesCsvFileKeys.salary.rawValue]!)!
+                let workingExperience = Float64(salaryRaw[SalariesCsvFileKeys.workingExperience.rawValue]!)!
+                let salary = Int64(salaryRaw[SalariesCsvFileKeys.salary.rawValue]!)!
                 let programmingLanguage: String = salaryRaw[SalariesCsvFileKeys.programmingLanguage.rawValue]!
                 let specialization: String = salaryRaw[SalariesCsvFileKeys.specialization.rawValue]!
 
                 if self.citiesToExclude.contains(city) {
                     return
                 }
-                
+
                 if !cities.contains(city) && !self.citiesToExclude.contains(city) {
                     cities.append(city)
                 }
-                
+
                 if !programmingLanguage.isEmpty {
                     parsedSoftwareEngineeringSalaries.append(SoftwareEngineeringSalary(
                         city: city,
@@ -83,7 +79,7 @@ class SalariesCsvSource {
                         programmingLanguage: programmingLanguage
                     ))
                 }
-                
+
                 if !specialization.isEmpty {
                     parsedQualityAssuranceSalaries.append(QualityAssuranceSalary(
                         city: city,
@@ -93,8 +89,12 @@ class SalariesCsvSource {
                         specialization: specialization
                     ))
                 }
-                
-                if programmingLanguage.isEmpty && specialization.isEmpty && self.managementJobPositions.contains(jobPosition) {
+
+                if (
+                    programmingLanguage.isEmpty &&
+                    specialization.isEmpty &&
+                    self.managementJobPositions.contains(jobPosition)
+                ) {
                     parsedManagementSalaries.append(ManagementSalary(
                         city: city,
                         jobPosition: jobPosition,
@@ -102,8 +102,12 @@ class SalariesCsvSource {
                         salary: salary
                     ))
                 }
-                
-                if programmingLanguage.isEmpty && specialization.isEmpty && !self.managementJobPositions.contains(jobPosition) {
+
+                if (
+                    programmingLanguage.isEmpty &&
+                    specialization.isEmpty &&
+                    !self.managementJobPositions.contains(jobPosition)
+                ) {
                     parsedOtherSalaries.append(OtherSalary(
                         city: city,
                         jobPosition: jobPosition,
@@ -120,7 +124,6 @@ class SalariesCsvSource {
                 parsedOtherSalaries,
                 cities
             )
-
         } catch {
             return nil
         }

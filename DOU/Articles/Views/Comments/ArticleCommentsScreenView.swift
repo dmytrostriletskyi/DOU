@@ -2,16 +2,26 @@ import Foundation
 import SwiftUI
 
 struct ArticleCommentsScreenView: View {
+    let article: Article
 
-    public let article: Article
-
-    @State public var isActivityIndicatorLoaing: Bool = true
+    @State var isActivityIndicatorLoaing: Bool = true
     @State private var articleComments: [ArticleComment] = [ArticleComment]()
     @State private var articleBestComments: [ArticleComment] = [ArticleComment]()
     @State private var articleCommentsNumber: Int = 0
 
-    private let articleCommentsStyle: ArticleCommentsStyle = ArticleCommentsStyle()
-    
+    private let style = Style()
+
+    init(article: Article) {
+        UINavigationBar.appearance().titleTextAttributes = [
+            .font: UIFont.systemFont(
+                ofSize: style.navigationBarHeaderSize,
+                weight: UIFont.Weight.semibold
+            )
+        ]
+
+        self.article = article
+    }
+
     var body: some View {
         Group {
             if isActivityIndicatorLoaing {
@@ -20,18 +30,18 @@ struct ArticleCommentsScreenView: View {
                 ScrollView {
                     if !articleBestComments.isEmpty {
                         Text(
-                            "Найкращі коментарі"
+                            style.bestCommentsNameUkrainian
                         ).font(
                             Font.system(
-                                size: articleCommentsStyle.articleBestCommentsTitleFontSize,
-                                weight: articleCommentsStyle.articleBestCommentsTitleFontWeight,
-                                design: articleCommentsStyle.articleBestCommentsTitleFontDesign
+                                size: style.articleBestCommentsTitleFontSize,
+                                weight: style.articleBestCommentsTitleFontWeight,
+                                design: style.articleBestCommentsTitleFontDesign
                             )
                         ).frame(
                             maxWidth: .infinity,
                             alignment: .leading
                         ).padding(
-                            .leading, 20
+                            .leading, style.commentsPaddingLeading
                         )
                         Divider()
                         ArticleCommentsView(
@@ -42,12 +52,12 @@ struct ArticleCommentsScreenView: View {
 
                     if !articleComments.isEmpty {
                         Text(
-                            "\(articleCommentsNumber) коментарі"
+                            "\(articleCommentsNumber) \(style.commentsNameUkrainian.lowercased())"
                         ).font(
                             Font.system(
-                                size: articleCommentsStyle.articleCommentsNumberFontSize,
-                                weight: articleCommentsStyle.articleCommentsNumberFontWeight,
-                                design: articleCommentsStyle.articleCommentsNumberFontDesign
+                                size: style.articleCommentsNumberFontSize,
+                                weight: style.articleCommentsNumberFontWeight,
+                                design: style.articleCommentsNumberFontDesign
                             )
                         ).frame(
                             maxWidth: .infinity,
@@ -55,9 +65,9 @@ struct ArticleCommentsScreenView: View {
                         ).padding(
                             EdgeInsets(
                                 top: articleBestComments.isEmpty ? 0 : 24,
-                                leading: 20,
-                                bottom: 0,
-                                trailing: 0
+                                leading: style.commentsPaddingLeading,
+                                bottom: style.commentsPaddingBottom,
+                                trailing: style.commentsPaddingTrailing
                             )
                         )
                         Divider()
@@ -67,9 +77,10 @@ struct ArticleCommentsScreenView: View {
                         )
                     }
                 }.navigationBarTitle(
-                    "Комментарі"
+                    style.navigationBarHeaderNameUkrainian,
+                    displayMode: .inline
                 ).padding(
-                    .top, 12
+                    .top, style.commentsPaddingTop
                 )
             }
         }.onAppear {
@@ -78,20 +89,20 @@ struct ArticleCommentsScreenView: View {
                     return
                 }
 
-                let articleCommentsHtmlSource: ArticleCommentsHtmlSource = ArticleCommentsHtmlSource(
+                let articleCommentsHtmlSource = ArticleCommentsHtmlSource(
                     html: html,
                     rootTag: "commentsList",
                     identifier: .id
                 )
 
-                let articleBestCommentsHtmlSource: ArticleCommentsHtmlSource = ArticleCommentsHtmlSource(
+                let articleBestCommentsHtmlSource = ArticleCommentsHtmlSource(
                     html: html,
                     rootTag: "b-comments __best",
                     identifier: .class_
                 )
 
-                let articleComments: ArticleCommentsService = ArticleCommentsService(source: articleCommentsHtmlSource)
-                let articleBestComments: ArticleCommentsService = ArticleCommentsService(source: articleBestCommentsHtmlSource)
+                let articleComments = ArticleCommentsService(source: articleCommentsHtmlSource)
+                let articleBestComments = ArticleCommentsService(source: articleBestCommentsHtmlSource)
 
                 self.articleComments = articleComments.get()
                 self.articleBestComments = articleBestComments.get()
@@ -99,5 +110,25 @@ struct ArticleCommentsScreenView: View {
                 self.isActivityIndicatorLoaing = false
             }
         }
+    }
+
+    struct Style {
+        let articleBestCommentsTitleFontSize: CGFloat = 16
+        let articleBestCommentsTitleFontWeight: Font.Weight = .semibold
+        let articleBestCommentsTitleFontDesign: Font.Design = .default
+        let articleCommentsNumberFontSize: CGFloat = 18
+        let articleCommentsNumberFontWeight: Font.Weight = .semibold
+        let articleCommentsNumberFontDesign: Font.Design = .default
+        let commentsPaddingTop: CGFloat = 12
+        let commentsPaddingLeading: CGFloat = 20
+        let commentsPaddingBottom: CGFloat = 0
+        let commentsPaddingTrailing: CGFloat = 0
+        let commentsNameUkrainian: String = "Коментарі"
+        let commentsNameRussian: String = "Комментарии"
+        let bestCommentsNameUkrainian: String = "Найкращі коментарі"
+        let bestCommentsNameRussian: String = "Лучшие комментарии"
+        let navigationBarHeaderSize: CGFloat = 20
+        let navigationBarHeaderNameUkrainian: String = "Коментарі"
+        let navigationBarHeaderNameRussian: String = "Комментарии"
     }
 }
