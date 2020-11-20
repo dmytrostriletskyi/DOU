@@ -9,7 +9,9 @@ struct ContentView: View {
     private let style = Style()
     private let showLaunchScreenTimer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
     private let articlesService = ArticlesService(source: ArticlesApiSource())
+    private let topicsService = TopicsService()
     @State private var articles = [Article]()
+    @State private var topics = [Topic]()
 
     init() {
         UITabBar.appearance().barTintColor = UIColor.black
@@ -44,6 +46,10 @@ struct ContentView: View {
                     self.articlesService.get { result in
                         self.articles = result
                     }
+                    
+                    self.topicsService.get { result in
+                        self.topics = result
+                    }
                 }
             }
 
@@ -53,9 +59,9 @@ struct ContentView: View {
                         Image(systemName: style.articlesTabImageSystemName)
                         Text(style.articlesTabItemNameUkrainian)
                     }.tag(1)
-                    ArticlesScreenView(articlesService: articlesService, initialArticles: articles).tabItem {
-                        Image(systemName: style.forumTabImageSystemName)
-                        Text(style.forumTabItemNameUkrainian)
+                    TopicsView(topicsService: topicsService, initialTopics: topics).tabItem {
+                        Image(systemName: style.topicsTabImageSystemName)
+                        Text(style.topicsTabItemNameUkrainian)
                     }.tag(2)
                     SalariesView().tabItem {
                         Image(systemName: style.salariesTabImageSystemName)
@@ -76,12 +82,12 @@ struct ContentView: View {
 
     struct Style {
         let articlesTabImageSystemName: String = "doc.plaintext"
-        let forumTabImageSystemName: String = "text.bubble"
+        let topicsTabImageSystemName: String = "text.bubble"
         let salariesTabImageSystemName: String = "dollarsign.circle"
         let articlesTabItemNameUkrainian: String = "Стрічка"
         let articlesTabItemNameRussian: String = "Лента"
-        let forumTabItemNameUkrainian: String = "Форум"
-        let forumTabItemNameRussian: String = "Форум"
+        let topicsTabItemNameUkrainian: String = "Форум"
+        let topicsTabItemNameRussian: String = "Форум"
         let salariesTabItemNameUkrainian: String = "Зарплати"
         let salariesTabItemNameRussian: String = "Зарплаты"
     }

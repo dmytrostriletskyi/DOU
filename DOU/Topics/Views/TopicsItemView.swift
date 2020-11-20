@@ -1,50 +1,29 @@
 import Foundation
 import SwiftUI
 
-import URLImage
-
-struct ArticlesItemView: View {
-    let article: Article
+struct TopicsItemView: View {
     
+    let topic: Topic
     private let style = Style()
-
+    
     var body: some View {
         VStack(alignment: .leading) {
-            URLImage(
-                URL(
-                    string: article.imageUrl
-                )!,
-                processors: [],
-                placeholder: {
-                    ProgressView($0) { _ in
-                        ZStack { }
-                    }
-                },
-                content: {
-                    $0.image
-                    .resizable()
-                }
-            ).frame(
-                width: UIScreen.main.bounds.size.width - UIScreen.main.bounds.size.width * 0.11,
-                height: 186
-            )
-            Spacer()
             PostTitle(
-                title: article.title,
+                title: topic.title!,
                 font: style.titleFont,
                 color: style.titleColor,
                 size: style.titleSize
             )
             HStack() {
                 PostAuthorName(
-                    authorName: article.authorName,
+                    authorName: topic.authorName!,
                     font: style.informationFont,
                     color: style.informationColor,
                     size: style.informationSize
                 )
                 PostPublicationDate(
                     publicationDate: DateRepresentation(
-                        date: article.publicationDate
+                        date: topic.publicationDate!
                     ).get(
                         localization: .ukrainian
                     ),
@@ -53,15 +32,8 @@ struct ArticlesItemView: View {
                     size: style.informationSize
                 )
                 Spacer()
-                PostViewsCount(
-                    viewsCount: article.views,
-                    imageSystemNane: style.viewsCountImageSystemName,
-                    font: style.informationFont,
-                    color: style.informationColor,
-                    size: style.informationSize
-                )
                 PostCommentsCount(
-                    commentsCount: article.commentsCount,
+                    commentsCount: topic.commentsCount!,
                     imageSystemNane: style.commentsCountImageSystemName,
                     font: style.informationFont,
                     color: style.informationColor,
@@ -87,7 +59,6 @@ struct ArticlesItemView: View {
             blue: 0.67,
             opacity: 1.0
         )
-        let viewsCountImageSystemName = "eye.fill"
         let commentsCountImageSystemName = "bubble.right.fill"
     }
 }

@@ -23,7 +23,7 @@
 		32526B9D25265D2B0099E5A4 /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32526B9C25265D2B0099E5A4 /* Date.swift */; };
 		32526BA225265F6C0099E5A4 /* Localization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32526BA125265F6C0099E5A4 /* Localization.swift */; };
 		326523F0252871820026C9EE /* ArticleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 326523EF252871820026C9EE /* ArticleView.swift */; };
-		32662E6F253743220051069E /* ForumViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32662E6E253743220051069E /* ForumViews.swift */; };
+		32662E6F253743220051069E /* TopicsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32662E6E253743220051069E /* TopicsView.swift */; };
 		32662E7325374E650051069E /* SalariesViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32662E7225374E650051069E /* SalariesViews.swift */; };
 		32662E80253750960051069E /* SalariesServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32662E7F253750960051069E /* SalariesServices.swift */; };
 		32662E8325375DE40051069E /* SalariesObjects.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32662E8225375DE40051069E /* SalariesObjects.swift */; };
@@ -46,6 +46,10 @@
 		32AEBCE82568306300F07A62 /* ArticleImageAttributedUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32AEBCE72568306300F07A62 /* ArticleImageAttributedUIView.swift */; };
 		32AEBCEE256834A400F07A62 /* ArticleCommentAttributedUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32AEBCED256834A400F07A62 /* ArticleCommentAttributedUIView.swift */; };
 		32C5A6B125361586008C48BD /* ActivityIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32C5A6B025361586008C48BD /* ActivityIndicator.swift */; };
+		BC5191C525642C4C009EA903 /* TopicsItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC5191C425642C4C009EA903 /* TopicsItemView.swift */; };
+		BC8C02F22554569400630FE3 /* TopicsObjects.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC8C02F12554569400630FE3 /* TopicsObjects.swift */; };
+		BC8C02FF2560192300630FE3 /* TopicsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC8C02FE2560192300630FE3 /* TopicsService.swift */; };
+		BC8C030625601BB800630FE3 /* TopicHtmlSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC8C030525601BB800630FE3 /* TopicHtmlSource.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -67,7 +71,7 @@
 		32526B9C25265D2B0099E5A4 /* Date.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Date.swift; sourceTree = "<group>"; };
 		32526BA125265F6C0099E5A4 /* Localization.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Localization.swift; sourceTree = "<group>"; };
 		326523EF252871820026C9EE /* ArticleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleView.swift; sourceTree = "<group>"; };
-		32662E6E253743220051069E /* ForumViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForumViews.swift; sourceTree = "<group>"; };
+		32662E6E253743220051069E /* TopicsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopicsView.swift; sourceTree = "<group>"; };
 		32662E7225374E650051069E /* SalariesViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SalariesViews.swift; sourceTree = "<group>"; };
 		32662E7F253750960051069E /* SalariesServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SalariesServices.swift; sourceTree = "<group>"; };
 		32662E8225375DE40051069E /* SalariesObjects.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SalariesObjects.swift; sourceTree = "<group>"; };
@@ -92,6 +96,10 @@
 		32C5A6B025361586008C48BD /* ActivityIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityIndicator.swift; sourceTree = "<group>"; };
 		3B741F18EBF3AABD0911ACAF /* Pods-DOU.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DOU.release.xcconfig"; path = "Target Support Files/Pods-DOU/Pods-DOU.release.xcconfig"; sourceTree = "<group>"; };
 		BA021E065B714D5009D2EC4A /* Pods_DOU.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DOU.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		BC5191C425642C4C009EA903 /* TopicsItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopicsItemView.swift; sourceTree = "<group>"; };
+		BC8C02F12554569400630FE3 /* TopicsObjects.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopicsObjects.swift; sourceTree = "<group>"; };
+		BC8C02FE2560192300630FE3 /* TopicsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopicsService.swift; sourceTree = "<group>"; };
+		BC8C030525601BB800630FE3 /* TopicHtmlSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopicHtmlSource.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -128,7 +136,7 @@
 			isa = PBXGroup;
 			children = (
 				32662E7125374E480051069E /* Salaries */,
-				32662E6D253743070051069E /* Forum */,
+				32662E6D253743070051069E /* Topics */,
 				32526B9B25265D130099E5A4 /* Generic */,
 				326610FE2522631B00D2CB02 /* Articles */,
 				320A3D882522554A00AE4D00 /* DOUApp.swift */,
@@ -216,12 +224,15 @@
 			path = Articles;
 			sourceTree = "<group>";
 		};
-		32662E6D253743070051069E /* Forum */ = {
+		32662E6D253743070051069E /* Topics */ = {
 			isa = PBXGroup;
 			children = (
-				32662E6E253743220051069E /* ForumViews.swift */,
+				BC8C030225601B4D00630FE3 /* Sources */,
+				BC8C02FB2560186400630FE3 /* Services */,
+				BC8C02FA2560182F00630FE3 /* Objects */,
+				BC8C02F92560182100630FE3 /* Views */,
 			);
-			path = Forum;
+			path = Topics;
 			sourceTree = "<group>";
 		};
 		32662E7125374E480051069E /* Salaries */ = {
@@ -337,6 +348,55 @@
 				3B741F18EBF3AABD0911ACAF /* Pods-DOU.release.xcconfig */,
 			);
 			path = Pods;
+			sourceTree = "<group>";
+		};
+		BC8C02F92560182100630FE3 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				32662E6E253743220051069E /* TopicsView.swift */,
+				BC5191C425642C4C009EA903 /* TopicsItemView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		BC8C02FA2560182F00630FE3 /* Objects */ = {
+			isa = PBXGroup;
+			children = (
+				BC8C02F12554569400630FE3 /* TopicsObjects.swift */,
+			);
+			path = Objects;
+			sourceTree = "<group>";
+		};
+		BC8C02FB2560186400630FE3 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				BC8C02FD256018E800630FE3 /* Topics */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		BC8C02FD256018E800630FE3 /* Topics */ = {
+			isa = PBXGroup;
+			children = (
+				BC8C02FE2560192300630FE3 /* TopicsService.swift */,
+			);
+			path = Topics;
+			sourceTree = "<group>";
+		};
+		BC8C030225601B4D00630FE3 /* Sources */ = {
+			isa = PBXGroup;
+			children = (
+				BC8C030325601B8100630FE3 /* Topics */,
+			);
+			path = Sources;
+			sourceTree = "<group>";
+		};
+		BC8C030325601B8100630FE3 /* Topics */ = {
+			isa = PBXGroup;
+			children = (
+				BC8C030525601BB800630FE3 /* TopicHtmlSource.swift */,
+			);
+			path = Topics;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -489,22 +549,26 @@
 				32A639962562F5660019B4DC /* PostTitle.swift in Sources */,
 				32A95AAF2534C5F10012D78C /* PostAuthorName.swift in Sources */,
 				320E976225530FB200884CB0 /* ArticleCommentObject.swift in Sources */,
+				BC8C02F22554569400630FE3 /* TopicsObjects.swift in Sources */,
 				326523F0252871820026C9EE /* ArticleView.swift in Sources */,
 				32AEBCEE256834A400F07A62 /* ArticleCommentAttributedUIView.swift in Sources */,
 				32A639902562F53B0019B4DC /* PostViewsCount.swift in Sources */,
 				326AA949252CC02800072A76 /* HTML.swift in Sources */,
+				BC5191C525642C4C009EA903 /* TopicsItemView.swift in Sources */,
 				32526BA225265F6C0099E5A4 /* Localization.swift in Sources */,
 				329CDE29254DD501002565D7 /* ArticleHtmlSource.swift in Sources */,
 				329CDE18254DD266002565D7 /* ArticleItemView.swift in Sources */,
 				320E975A2553008400884CB0 /* ArticlesService.swift in Sources */,
 				32662E8325375DE40051069E /* SalariesObjects.swift in Sources */,
 				329CDE1F254DD3DF002565D7 /* ArticleCommentsHtmlSource.swift in Sources */,
-				32662E6F253743220051069E /* ForumViews.swift in Sources */,
+				BC8C030625601BB800630FE3 /* TopicHtmlSource.swift in Sources */,
+				32662E6F253743220051069E /* TopicsView.swift in Sources */,
 				329CDE10254DD1D2002565D7 /* ArticleCommentHeaderView.swift in Sources */,
 				32662E80253750960051069E /* SalariesServices.swift in Sources */,
 				329CDE14254DD21C002565D7 /* ArticlesScreenView.swift in Sources */,
 				329CDE07254DD054002565D7 /* ArticleCommentsScreenView.swift in Sources */,
 				323C5139253A007F001EFD64 /* ArticleService.swift in Sources */,
+				BC8C02FF2560192300630FE3 /* TopicsService.swift in Sources */,
 				32662E7325374E650051069E /* SalariesViews.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
