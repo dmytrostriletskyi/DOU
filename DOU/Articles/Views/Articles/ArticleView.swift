@@ -18,59 +18,36 @@ struct ArticleView: View {
                 ScrollView {
                     Group {
                         VStack {
-                            Text("").frame(height: style.informationPaddingTop)
+                            Text("").frame(
+                                height: style.informationPaddingTop
+                            )
                             GeometryReader { _ in
-                                HStack(spacing: style.informationSpacingHorizontal) {
-                                    AttributedPostAuthorName(authorName: article.authorName)
-                                    AttributedPostPublicationDate(
-                                        publicationDate: DateRepresentation(
-                                            date: article.publicationDate
-                                        ).get(
-                                            localization: .ukrainian
-                                        )
-                                    )
-                                    AttributedPostViews(views: article.views)
-                                    AttributedPostCommentsCount(commentsCount: article.commentsCount)
-                                }.padding(.bottom, style.informationPaddingBottom)
-                            }.padding(.leading, style.informationPaddingLeading)
+                                ArticleInformationView(
+                                    article: article
+                                ).padding(
+                                    .bottom, style.informationPaddingBottom
+                                )
+                            }.padding(
+                                .leading, style.informationPaddingLeading
+                            )
                             ForEach(articleContents, id: \.id) { articleContent in
-                                AttributedContentView(uiView: articleContent.uiView).frame(height: articleContent.uiViewHeigth)
-                            }.padding(.horizontal, style.textPaddingLeading)
+                                AttributedContentView(
+                                    uiView: articleContent.uiView
+                                ).frame(
+                                    height: articleContent.uiViewHeigth
+                                )
+                            }.padding(
+                                .horizontal, style.contentPaddingLeading
+                            )
                             Divider()
-                            VStack {
-                                if article.commentsCount > 0 {
-                                    NavigationLink(
-                                        destination: ArticleCommentsScreenView(article: article)
-                                    ) {
-                                        (
-                                            Text(
-                                                Image(
-                                                    systemName: style.commentsImageSystemName
-                                                )
-                                            ) + Text(
-                                                " \(article.commentsCount) \(style.commentsNameUkrainian.lowercased())"
-                                            )
-                                        ).foregroundColor(
-                                            style.commentsNameColor
-                                        )
-                                    }
-                                } else {
-                                    (
-                                        Text(
-                                            Image(
-                                                systemName: style.commentsImageSystemName
-                                            )
-                                        ) + Text(
-                                            " \(style.noCommentsNameUkrainian)"
-                                        )
-                                    ).foregroundColor(
-                                        style.commentsNameColor
-                                    )
-                                }
-                            }.frame(height: style.commentsHeight)
+                            ArticleCommentsInformationView(
+                                article: article
+                            )
                         }
                     }
-                }.padding(.bottom, style.textPaddingBottom)
+                }.padding(
+                    .bottom, style.contentPaddingBottom
+                )
             }
         }.onAppear {
             Html(url: article.url).get { html in
@@ -97,14 +74,112 @@ struct ArticleView: View {
         let informationPaddingLeading: CGFloat = 20
         let informationPaddingTop: CGFloat = 10
         let informationPaddingBottom: CGFloat = 10
-        let textPaddingBottom: CGFloat = 15
-        let textPaddingLeading: CGFloat = 20
-        let commentsHeight: CGFloat = 30
-        let commentsImageSystemName: String = "bubble.right.fill"
-        let commentsNameColor = Color.black
-        let commentsNameUkrainian: String = "Коментарі"
-        let commentsNameRussian: String = "Комментарии"
-        let noCommentsNameUkrainian: String = "Немає комментарів"
-        let noCommentsNameRussian: String = "Нет комментариев"
+        let contentPaddingBottom: CGFloat = 15
+        let contentPaddingLeading: CGFloat = 20
+    }
+}
+
+struct ArticleInformationView: View {
+    let article: Article
+
+    private let style = Style()
+
+    var body: some View {
+        HStack(spacing: style.spacingHorizontal) {
+            PostAuthorName(
+                authorName: article.authorName,
+                font: style.font,
+                color: style.color,
+                size: style.size
+            )
+            PostPublicationDate(
+                publicationDate: DateRepresentation(
+                    date: article.publicationDate
+                ).get(
+                    localization: .ukrainian
+                ),
+                font: style.font,
+                color: style.color,
+                size: style.size
+            )
+            PostViewsCount(
+                viewsCount: article.views,
+                imageSystemNane: style.viewsCountImageSystemName,
+                font: style.font,
+                color: style.color,
+                size: style.size
+            )
+            PostCommentsCount(
+                commentsCount: article.commentsCount,
+                imageSystemNane: style.commentsCountImageSystemName,
+                font: style.font,
+                color: style.color,
+                size: style.size
+            )
+        }
+    }
+
+    struct Style {
+        let font: String = "Arial"
+        let size: CGFloat = 13
+        let color = Color(
+            red: 0,
+            green: 0,
+            blue: 0,
+            opacity: 1.0
+        )
+        let spacingHorizontal: CGFloat = 15
+        let viewsCountImageSystemName: String =  "eye.fill"
+        let commentsCountImageSystemName: String =  "eye.fill"
+    }
+}
+
+struct ArticleCommentsInformationView: View {
+    let article: Article
+
+    private let style = Style()
+
+    var body: some View {
+        VStack {
+            if article.commentsCount > 0 {
+                NavigationLink(
+                    destination: ArticleCommentsScreenView(article: article)
+                ) {
+                    (
+                        Text(
+                            Image(
+                                systemName: style.imageSystemName
+                            )
+                        ) + Text(
+                            " \(article.commentsCount) \(style.wordCommentsUkrainian.lowercased())"
+                        )
+                    ).foregroundColor(
+                        style.color
+                    )
+                }
+            } else {
+                (
+                    Text(
+                        Image(
+                            systemName: style.imageSystemName
+                        )
+                    ) + Text(
+                        " \(style.wordNoCommentsNameUkrainian)"
+                    )
+                ).foregroundColor(
+                    style.color
+                )
+            }
+        }.frame(height: style.height)
+    }
+
+    struct Style {
+        let height: CGFloat = 30
+        let imageSystemName: String = "bubble.right.fill"
+        let color = Color.black
+        let wordCommentsUkrainian: String = "Коментарі"
+        let wordCommentsRussian: String = "Комментарии"
+        let wordNoCommentsNameUkrainian: String = "Немає комментарів"
+        let wordNoCommentsNameRussian: String = "Нет комментариев"
     }
 }

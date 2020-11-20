@@ -20,7 +20,9 @@ class ArticleService {
 
     private let htmlTagsToEscape: [String] = ["#text"]
     private let textHtmlTags: [String] = ["p", "h1", "h2", "h3", "h4", "h5", "h6"]
-    private let unsupportedClasses: [String] = ["class=\"b-post-tags\""]
+    private let unsupportedClasses: [String] = [
+        "class=\"b-post-tags\"" // Tags of an article on the DOU website such as article, health, education, etc.
+    ]
     private let russianLetters: [Character] = Array(
         "аАбБвВгГдДеЕёЁжЖзЗиИйЙкКлЛмМнНоОпПрРсСтТуУфФхХцЦчЧшШщЩъЪыЫьЬэЭюЮяЯ"
     )
@@ -29,46 +31,48 @@ class ArticleService {
         self.source = source
     }
 
-    private func clearhtmlString(htmlString: String) -> String {
-        var htmlString = htmlString
+    private func clearHtml(html: String) -> String {
+        var html = html
 
-        if htmlString.contains("nobr") {
-            htmlString = htmlString.replacingOccurrences(of: "<nobr>", with: "")
-            htmlString = htmlString.replacingOccurrences(of: "</nobr>", with: "")
-            htmlString = htmlString.replacingOccurrences(of: "\n", with: "")
-            htmlString = htmlString.replacingOccurrences(of: "   ", with: "")
+        if html.contains("nobr") {
+            html = html.replacingOccurrences(of: "<nobr>", with: "")
+            html = html.replacingOccurrences(of: "</nobr>", with: "")
+            html = html.replacingOccurrences(of: "\n", with: "")
+            html = html.replacingOccurrences(of: "   ", with: "")
         }
 
-        if htmlString.contains("li") {
-            htmlString = htmlString.replacingOccurrences(of: "\n", with: "")
+        if html.contains("li") {
+            html = html.replacingOccurrences(of: "\n", with: "")
         }
 
-        if htmlString.contains("img") {
-            htmlString = htmlString.replacingOccurrences(of: "</p>", with: "</img></p>")
+        if html.contains("img") {
+            html = html.replacingOccurrences(of: "</p>", with: "</img></p>")
         }
 
-        if htmlString.contains("<div class=\"announce-pic\">") {
-            htmlString = htmlString.replacingOccurrences(of: "<div class=\"announce-pic\">\n ", with: "<p>")
-            htmlString = htmlString.replacingOccurrences(of: "\n</div>", with: "</p>")
-            htmlString = htmlString.replacingOccurrences(of: "\n <em>", with: "</img><em>")
+        if html.contains("<div class=\"announce-pic\">") {
+            html = html.replacingOccurrences(of: "<div class=\"announce-pic\">\n ", with: "<p>")
+            html = html.replacingOccurrences(of: "\n</div>", with: "</p>")
+            html = html.replacingOccurrences(of: "\n <em>", with: "</img><em>")
         }
 
-        if htmlString.contains("strike") {
-            htmlString = htmlString.replacingOccurrences(of: "\n <strike>", with: " <strike>")
-            htmlString = htmlString.replacingOccurrences(of: " <strike>\n  ", with: "<strike>")
-            htmlString = htmlString.replacingOccurrences(of: "\n </strike>", with: "</strike>")
+        if html.contains("strike") {
+            html = html.replacingOccurrences(of: "\n <strike>", with: " <strike>")
+            html = html.replacingOccurrences(of: " <strike>\n  ", with: "<strike>")
+            html = html.replacingOccurrences(of: "\n </strike>", with: "</strike>")
         }
 
-        return htmlString
+        return html
     }
 
-    private func getExceptionalHtmlStrings(htmlString: String) -> [String]? {
-        let htmlString: String = htmlString
+    private func getExceptionalHtmlStrings(html: String) -> [String]? {
+        // There may be some exceptions when we want to parse deep and nested HTML strings.
+        // For instance, not a <p></p>, but <div><p><a><img></div></p></a></img>.
+        let html: String = html
 
-        if htmlString.contains("img") {
-            if !htmlString.contains("<p><img") {
+        if html.contains("img") {
+            if !html.contains("<p><img") {
                 // https://dou.ua/lenta/articles/behavioral-system-design-interview-fb/
-                if russianLetters.contains(where: htmlString.contains) {
+                if russianLetters.contains(where: html.contains) {
                     return nil
                 }
             }
@@ -84,31 +88,31 @@ class ArticleService {
             return articleContents
         }
 
-        for childNode in article.getChildNodes() {
-            let htmlStringTagName: String = childNode.nodeName()
+        for articleContentAsHtml in article.getChildNodes() {
+            let htmlTag: String = articleContentAsHtml.nodeName()
 
-            if htmlTagsToEscape.contains(htmlStringTagName) {
+            if htmlTagsToEscape.contains(htmlTag) {
                 continue
             }
 
-            var htmlString: String = childNode.description
+            var html: String = articleContentAsHtml.description
 
-            if unsupportedClasses.contains(where: htmlString.contains) {
+            if unsupportedClasses.contains(where: html.contains) {
                 continue
             }
 
-            let htmlStringsToPRocessSeparately: [String]? = getExceptionalHtmlStrings(htmlString: childNode.description)
+            let htmlToProcessDetailed: [String]? = getExceptionalHtmlStrings(html: articleContentAsHtml.description)
 
-            if htmlStringsToPRocessSeparately != nil {
+            if htmlToProcessDetailed != nil {
                 // append separatenly
                 // and go to the next iteration
                 continue
             }
 
-            htmlString = clearhtmlString(htmlString: childNode.description)
+            html = clearHtml(html: articleContentAsHtml.description)
 
-            if htmlString.contains("img") {
-                let imageAttributedLabel = ImageAttributedLabel(htmlString: htmlString)
+            if html.contains("img") {
+                let imageAttributedLabel = ArticleImageAttributedUIView(html: html)
 
                 articleContents.append(
                     ArticleContent(
@@ -121,8 +125,8 @@ class ArticleService {
                 continue
             }
 
-            if textHtmlTags.contains(where: htmlString.contains) {
-                let textAttributedLabel = TextAttributedLabel(htmlString: htmlString)
+            if textHtmlTags.contains(where: html.contains) {
+                let textAttributedLabel = ArticleContentAttributedUIView(html: html)
 
                 articleContents.append(
                     ArticleContent(

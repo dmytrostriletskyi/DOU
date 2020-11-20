@@ -34,12 +34,15 @@ struct ArticleCommentHeaderView: View {
                 )
             }
             Spacer()
-            AttributedPostPublicationDate(
+            PostPublicationDate(
                 publicationDate: DateRepresentation(
                     date: publicationDate
                 ).get(
                     localization: .ukrainian
-                )
+                ),
+                font: style.informationFont,
+                color: style.informationColor,
+                size: style.informationSize
             )
         }.padding(
             EdgeInsets(
@@ -96,6 +99,14 @@ struct ArticleCommentHeaderView: View {
     }
 
     struct Style {
+        let informationFont: String = "Arial"
+        let informationSize: CGFloat = 13
+        let informationColor = Color(
+            red: 0,
+            green: 0,
+            blue: 0,
+            opacity: 1.0
+        )
         let authorNameFontSize: CGFloat = 16
         let authorNameFontWeight: Font.Weight = .bold
         let authorNameFontDesign: Font.Design = .default

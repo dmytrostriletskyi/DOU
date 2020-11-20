@@ -30,7 +30,7 @@ class ArticleCommentsService {
             articleComment.authorCompany = getAuthorCompany(articleCommentHtml: articleCommentHtml)
             articleComment.authorCompanyUrl = getAuthorCompanyUrl(articleCommentHtml: articleCommentHtml)
 
-            let articleCommentAttributedLabel: ArticleCommentAttributedLabel? = getArticleCommentAttributedLabel(
+            let articleCommentAttributedLabel: ArticleCommentAttributedUIView? = getArticleCommentAttributedLabel(
                 articleCommentHtml: articleCommentHtml
             )
 
@@ -131,7 +131,7 @@ class ArticleCommentsService {
         return 0
     }
 
-    private func getArticleCommentAttributedLabel(articleCommentHtml: Element) -> ArticleCommentAttributedLabel? {
+    private func getArticleCommentAttributedLabel(articleCommentHtml: Element) -> ArticleCommentAttributedUIView? {
         do {
             let articleCommentTextHtml: Element = try articleCommentHtml.getElementsByAttributeValue(
                 "class", "comment_text b-typo"
@@ -139,7 +139,7 @@ class ArticleCommentsService {
 
             let articleCommentTextHtmlString = clearhtmlString(htmlString: articleCommentTextHtml.description)
 
-            let articleCommentAttributedLabel = ArticleCommentAttributedLabel(
+            let articleCommentAttributedLabel = ArticleCommentAttributedUIView(
                 htmlString: articleCommentTextHtmlString
             )
 
