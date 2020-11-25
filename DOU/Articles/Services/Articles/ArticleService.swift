@@ -44,6 +44,10 @@ class ArticleService {
         if html.contains("li") {
             html = html.replacingOccurrences(of: "\n", with: "")
         }
+        
+        if html.contains("br") {
+            html = html.replacingOccurrences(of: "<br>", with: "\n")
+        }
 
         if html.contains("img") {
             html = html.replacingOccurrences(of: "</p>", with: "</img></p>")
@@ -59,6 +63,20 @@ class ArticleService {
             html = html.replacingOccurrences(of: "\n <strike>", with: " <strike>")
             html = html.replacingOccurrences(of: " <strike>\n  ", with: "<strike>")
             html = html.replacingOccurrences(of: "\n </strike>", with: "</strike>")
+        }
+
+        if html.contains("blockquote") {
+            html = html.replacingOccurrences(of: "<blockquote>\n ", with: "<blockquote>")
+            html = html.replacingOccurrences(of: "\n</blockquote>", with: "</blockquote>")
+        }
+
+        if html.contains("p") {
+            html = html.replacingOccurrences(of: "\n</p>", with: "</p>")
+            html = html.replacingOccurrences(of: "<p>\n", with: "<p>")
+        }
+
+        if html.contains("<div class=\"hl-wrap") {
+            html = html.replacingOccurrences(of: ">\n", with: ">")
         }
 
         return html

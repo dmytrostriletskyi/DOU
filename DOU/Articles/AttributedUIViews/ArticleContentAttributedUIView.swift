@@ -80,8 +80,20 @@ class ArticleContentAttributedUIView {
             )
         )
 
+        let blockquote = Style("blockquote").obliqueness(
+            style.emphasizedTextObliqueness
+        ).backgroundColor(style.backgroundBlockquoteColor)
+        .foregroundColor(Color.black)
+
+        let code = Style("pre").obliqueness(
+            style.emphasizedTextObliqueness
+        ).backgroundColor(style.backgroundCodeColor)
+        .foregroundColor(style.codeColor)
+
         let tags = [
             all,
+            code,
+            blockquote,
             paragraph,
             link,
             strike,
@@ -124,7 +136,7 @@ class ArticleContentAttributedUIView {
 
         attributedLabel.attributedText = attributedText
 
-        attributedLabel.onClick = { label, detection in
+        attributedLabel.onClick = { _, detection in
             switch detection.type {
             case .tag(let tag):
                 if let href = tag.attributes["href"] {
@@ -166,6 +178,11 @@ class ArticleContentAttributedUIView {
         let headerWeight: UIFont.Weight = UIFont.Weight.bold
         let paragraphLineSPacing: Float = 2
         let linkColor: Atributika.Color = Atributika.Color(red: 0.09, green: 0.46, blue: 0.67, alpha: 1.00)
+        let codeColor: Atributika.Color = Atributika.Color(red: 0.53, green: 0.00, blue: 0.00, alpha: 1.00)
+        let backgroundCodeColor: Atributika.Color = Atributika.Color(red: 0.94, green: 0.94, blue: 0.94, alpha: 1.00)
+        let backgroundBlockquoteColor: Atributika.Color = Atributika.Color(
+            red: 0.95, green: 0.95, blue: 0.95, alpha: 1.00
+        )
         let linkUnderlineStyle = NSUnderlineStyle.single
     }
 }

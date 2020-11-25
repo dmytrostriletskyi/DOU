@@ -129,8 +129,8 @@ struct ArticleInformationView: View {
             opacity: 1.0
         )
         let spacingHorizontal: CGFloat = 15
-        let viewsCountImageSystemName: String =  "eye.fill"
-        let commentsCountImageSystemName: String =  "eye.fill"
+        let viewsCountImageSystemName: String = "eye.fill"
+        let commentsCountImageSystemName: String = "bubble.right.fill"
     }
 }
 
