@@ -5,7 +5,7 @@ import URLImage
 
 struct ArticlesItemView: View {
     let article: Article
-    
+
     private let style = Style()
 
     var body: some View {

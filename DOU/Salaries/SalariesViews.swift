@@ -121,7 +121,9 @@ struct SalariesView: View {
 
                         if Int(workingExperience) >= 1 && Int(workingExperience) < 10 {
                             Text(
-                                "Досвід: \(Int(workingExperience)) \(workingExperienceDescriptions[Int(workingExperience)]!)"
+                                "Досвід: "
+                                + "\(Int(workingExperience)) "
+                                + "\(workingExperienceDescriptions[Int(workingExperience)]!)"
                             )
                         }
 

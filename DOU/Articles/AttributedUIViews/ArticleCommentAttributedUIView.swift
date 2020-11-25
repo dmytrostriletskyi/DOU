@@ -73,7 +73,7 @@ class ArticleCommentAttributedUIView {
 
         attributedLabel.attributedText = attributedText
 
-        attributedLabel.onClick = { label, detection in
+        attributedLabel.onClick = { _, detection in
             switch detection.type {
             case .tag(let tag):
                 if let href = tag.attributes["href"] {
