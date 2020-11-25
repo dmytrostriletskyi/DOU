@@ -2,10 +2,9 @@ import SwiftSoup
 import SwiftUI
 
 struct TopicsView: View {
-    
     let topicsService: TopicsService
     let initialTopics: [Topic]
-    
+
     @State private var topics = [Topic]()
     @State private var currentlyFetchingArticles: Bool = true
 
@@ -54,7 +53,7 @@ struct TopicsView: View {
                             label: {}
                         ).frame(
                             width: 0
-                        )
+                        ).opacity(0)
                     }
                 }.navigationBarTitle(
                     style.navigationBarHeaderNameUkrainian,

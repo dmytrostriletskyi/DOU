@@ -5,7 +5,7 @@ struct TopicDetailView: View {
     @State var topic: Topic
 
     private let style = Style()
-    
+
     @State var isActivityIndicatorLoaing: Bool = true
     @State private var topicContents: [ArticleContent] = [ArticleContent]()
 
@@ -65,8 +65,10 @@ struct TopicDetailView: View {
                 self.topicContents = articleService.get()
                 self.isActivityIndicatorLoaing = false
 
-                let topicService = TopicService(html: topic.url!)
-                self.topic.views = topicService.get(html: html)
+                let topicViewsCountHtmlSource = TopicViewsCountHtmlSource(html: html)
+
+                let topicViewsCountService = TopicViewsCountService(source: topicViewsCountHtmlSource)
+                self.topic.viewsCount = topicViewsCountService.get()
             }
         }
     }
@@ -105,7 +107,7 @@ struct TopicInformationView: View {
                 size: style.size
             )
             PostViewsCount(
-                viewsCount: topic.views!,
+                viewsCount: topic.viewsCount!,
                 imageSystemNane: style.viewsCountImageSystemName,
                 font: style.font,
                 color: style.color,
@@ -144,21 +146,21 @@ struct TopicCommentsInformationView: View {
     var body: some View {
         VStack {
             if topic.commentsCount! > 0 {
-//                NavigationLink(
-//                    destination: ArticleCommentsScreenView(article: topic)
-//                ) {
-//                    (
-//                        Text(
-//                            Image(
-//                                systemName: style.imageSystemName
-//                            )
-//                        ) + Text(
-//                            " \(topic.commentsCount) \(style.wordCommentsUkrainian.lowercased())"
-//                        )
-//                    ).foregroundColor(
-//                        style.color
-//                    )
-//                }
+                NavigationLink(
+                    destination: TopicCommentsScreenView(topic: topic)
+                ) {
+                    (
+                        Text(
+                            Image(
+                                systemName: style.imageSystemName
+                            )
+                        ) + Text(
+                            " \(topic.commentsCount!) \(style.wordCommentsUkrainian.lowercased())"
+                        )
+                    ).foregroundColor(
+                        style.color
+                    )
+                }
             } else {
                 (
                     Text(
