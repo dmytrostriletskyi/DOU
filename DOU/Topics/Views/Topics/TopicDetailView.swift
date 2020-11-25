@@ -1,14 +1,13 @@
 import Foundation
 import SwiftUI
 
-struct ArticleView: View {
-    let article: Article
+struct TopicDetailView: View {
+    @State var topic: Topic
 
     private let style = Style()
 
     @State var isActivityIndicatorLoaing: Bool = true
-
-    @State private var articleContents: [ArticleContent] = [ArticleContent]()
+    @State private var topicContents: [ArticleContent] = [ArticleContent]()
 
     var body: some View {
         Group {
@@ -22,26 +21,26 @@ struct ArticleView: View {
                                 height: style.informationPaddingTop
                             )
                             GeometryReader { _ in
-                                ArticleInformationView(
-                                    article: article
+                                TopicInformationView(
+                                    topic: topic
                                 ).padding(
                                     .bottom, style.informationPaddingBottom
                                 )
                             }.padding(
                                 .leading, style.informationPaddingLeading
                             )
-                            ForEach(articleContents, id: \.id) { articleContent in
+                            ForEach(topicContents, id: \.id) { topicContent in
                                 AttributedContentView(
-                                    uiView: articleContent.uiView
+                                    uiView: topicContent.uiView
                                 ).frame(
-                                    height: articleContent.uiViewHeigth
+                                    height: topicContent.uiViewHeigth
                                 )
                             }.padding(
                                 .horizontal, style.contentPaddingLeading
                             )
                             Divider()
-                            ArticleCommentsInformationView(
-                                article: article
+                            TopicCommentsInformationView(
+                                topic: topic
                             )
                         }
                     }
@@ -50,7 +49,7 @@ struct ArticleView: View {
                 )
             }
         }.onAppear {
-            Html(url: article.url).get { html in
+            Html(url: topic.url!).get { html in
                 guard let html = html else {
                     return
                 }
@@ -63,8 +62,13 @@ struct ArticleView: View {
 
                 let articleService = ArticleService(source: articleHtmlSource)
 
-                self.articleContents = articleService.get()
+                self.topicContents = articleService.get()
                 self.isActivityIndicatorLoaing = false
+
+                let topicViewsCountHtmlSource = TopicViewsCountHtmlSource(html: html)
+
+                let topicViewsCountService = TopicViewsCountService(source: topicViewsCountHtmlSource)
+                self.topic.viewsCount = topicViewsCountService.get()
             }
         }
     }
@@ -79,22 +83,22 @@ struct ArticleView: View {
     }
 }
 
-struct ArticleInformationView: View {
-    let article: Article
+struct TopicInformationView: View {
+    let topic: Topic
 
     private let style = Style()
 
     var body: some View {
         HStack(spacing: style.spacingHorizontal) {
             PostAuthorName(
-                authorName: article.authorName,
+                authorName: topic.authorName!,
                 font: style.font,
                 color: style.color,
                 size: style.size
             )
             PostPublicationDate(
                 publicationDate: DateRepresentation(
-                    date: article.publicationDate
+                    date: topic.publicationDate!
                 ).get(
                     localization: .ukrainian
                 ),
@@ -103,14 +107,14 @@ struct ArticleInformationView: View {
                 size: style.size
             )
             PostViewsCount(
-                viewsCount: article.views,
+                viewsCount: topic.viewsCount!,
                 imageSystemNane: style.viewsCountImageSystemName,
                 font: style.font,
                 color: style.color,
                 size: style.size
             )
             PostCommentsCount(
-                commentsCount: article.commentsCount,
+                commentsCount: topic.commentsCount!,
                 imageSystemNane: style.commentsCountImageSystemName,
                 font: style.font,
                 color: style.color,
@@ -134,16 +138,16 @@ struct ArticleInformationView: View {
     }
 }
 
-struct ArticleCommentsInformationView: View {
-    let article: Article
+struct TopicCommentsInformationView: View {
+    let topic: Topic
 
     private let style = Style()
 
     var body: some View {
         VStack {
-            if article.commentsCount > 0 {
+            if topic.commentsCount! > 0 {
                 NavigationLink(
-                    destination: ArticleCommentsScreenView(article: article)
+                    destination: TopicCommentsScreenView(topic: topic)
                 ) {
                     (
                         Text(
@@ -151,7 +155,7 @@ struct ArticleCommentsInformationView: View {
                                 systemName: style.imageSystemName
                             )
                         ) + Text(
-                            " \(article.commentsCount) \(style.wordCommentsUkrainian.lowercased())"
+                            " \(topic.commentsCount!) \(style.wordCommentsUkrainian.lowercased())"
                         )
                     ).foregroundColor(
                         style.color

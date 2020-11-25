@@ -1,14 +1,13 @@
-import SwiftUI
 import SwiftSoup
+import SwiftUI
 
 struct TopicsView: View {
-    
     let topicsService: TopicsService
     let initialTopics: [Topic]
-    
+
     @State private var topics = [Topic]()
     @State private var currentlyFetchingArticles: Bool = true
-    
+
     private let style = Style()
 
     init(topicsService: TopicsService, initialTopics: [Topic]) {
@@ -18,11 +17,11 @@ struct TopicsView: View {
                 weight: UIFont.Weight.semibold
             )
         ]
-        
+
         self.topicsService = topicsService
         self.initialTopics = initialTopics
     }
-        
+
     var body: some View {
         VStack(alignment: .leading) {
             NavigationView() {
@@ -34,19 +33,27 @@ struct TopicsView: View {
                             if self.currentlyFetchingArticles {
                                 return
                             }
-                            
+
                             guard let lastTopic = topics.last else {
                                 return
                             }
-                            
+
                             if topic.id != lastTopic.id {
                                 return
                             }
-                            
+
                             self.topicsService.getNext { result in
                                 topics.append(contentsOf: result)
                             }
-                        }
+                        }.padding(
+                            .horizontal, 5
+                        )
+                        NavigationLink(
+                            destination: TopicDetailView(topic: topic),
+                            label: {}
+                        ).frame(
+                            width: 0
+                        ).opacity(0)
                     }
                 }.navigationBarTitle(
                     style.navigationBarHeaderNameUkrainian,
@@ -58,7 +65,7 @@ struct TopicsView: View {
             self.currentlyFetchingArticles = false
         }
     }
-    
+
     struct Style {
         let navigationBarHeaderSize: CGFloat = 20
         let navigationBarHeaderNameUkrainian: String = "Форум"

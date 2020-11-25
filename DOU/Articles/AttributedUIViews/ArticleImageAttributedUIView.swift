@@ -3,8 +3,6 @@ import SwiftUI
 
 import Atributika
 
-
-
 class ArticleImageAttributedUIView {
     let html: String
 
@@ -99,7 +97,7 @@ class ArticleImageAttributedUIView {
 
         return attributedLabelSize.height
     }
-    
+
     struct Style_ {
         let textSize: CGFloat = 16
         let emphasizedTextSize: CGFloat = 12

@@ -46,7 +46,7 @@ struct ContentView: View {
                     self.articlesService.get { result in
                         self.articles = result
                     }
-                    
+
                     self.topicsService.get { result in
                         self.topics = result
                     }

@@ -2,10 +2,10 @@ import Foundation
 import SwiftUI
 
 struct TopicsItemView: View {
-    
     let topic: Topic
+
     private let style = Style()
-    
+
     var body: some View {
         VStack(alignment: .leading) {
             PostTitle(

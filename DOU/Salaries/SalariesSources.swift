@@ -6,7 +6,7 @@ enum SalariesCsvFileKeys: String {
     case city = "Город"
     case jobPosition = "Должность"
     case workingExperience = "exp"
-    case salary =  "Зарплата.в.месяц"
+    case salary = "Зарплата.в.месяц"
     case programmingLanguage = "Язык.программирования"
     case specialization = "Специализация"
 }
