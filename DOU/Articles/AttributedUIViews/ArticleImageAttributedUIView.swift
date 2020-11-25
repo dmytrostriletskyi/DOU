@@ -91,15 +91,27 @@ class ArticleImageAttributedUIView {
     }
 
     func getHeight() -> CGFloat {
-        let screenWidth = CGFloat(UIScreen.main.bounds.size.width)
+        // In case of small image left from a text, the image takes some size from text and
+        // it become cut with triple dot (...). To avoid this, return the width to the text back.
+        // <p><img align="left"></img>Text.</p>
+        // https://dou.ua/lenta/articles/it-specialists-with-large-families
+        if html.contains("<p><img align=\"left\"") {
+            let screenWidth = CGFloat(UIScreen.main.bounds.size.width)
 
-        let attributedLabelSize = self.attributedLabel.sizeThatFits(
-            CGSize(width: screenWidth, height: CGFloat.greatestFiniteMagnitude)
-        )
+            let attributedLabelSize = self.attributedLabel.sizeThatFits(
+                CGSize(width: screenWidth - 40, height: CGFloat.greatestFiniteMagnitude)
+            )
+            return attributedLabelSize.height
+        } else {
+            let screenWidth = CGFloat(UIScreen.main.bounds.size.width)
 
-        return attributedLabelSize.height
+            let attributedLabelSize = self.attributedLabel.sizeThatFits(
+                CGSize(width: screenWidth, height: CGFloat.greatestFiniteMagnitude)
+            )
+            return attributedLabelSize.height
+        }
     }
-    
+
     struct Style_ {
         let textSize: CGFloat = 16
         let emphasizedTextSize: CGFloat = 12
