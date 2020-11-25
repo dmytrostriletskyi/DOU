@@ -1,17 +1,17 @@
 import Foundation
 import SwiftSoup
 
-class TopicService {
-    let source = TopicHtmlSource(html: html)
+class TopicViewsCountService {
+    let source: TopicViewsCountHtmlSource
 
-    func get(html: String) -> Int64? {
-        let topicHtml: Elements = parse(html: html)!
-
-        return self.getViews(topicHtml: topicHtml)
+    init(source: TopicViewsCountHtmlSource) {
+        self.source = source
     }
 
-    func getViews(topicHtml: Elements) -> Int64? {
+    func get() -> Int64? {
         do {
+            let topicHtml: Elements = source.parse()!
+
             let topicViewsHtml = try topicHtml.select("span.pageviews").first()!
 
             return try Int64(topicViewsHtml.text())

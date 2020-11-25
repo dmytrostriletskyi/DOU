@@ -47,7 +47,15 @@
 		32AEBCEE256834A400F07A62 /* ArticleCommentAttributedUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32AEBCED256834A400F07A62 /* ArticleCommentAttributedUIView.swift */; };
 		32C5A6B125361586008C48BD /* ActivityIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32C5A6B025361586008C48BD /* ActivityIndicator.swift */; };
 		BC5191C525642C4C009EA903 /* TopicsItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC5191C425642C4C009EA903 /* TopicsItemView.swift */; };
-		BC8C02F22554569400630FE3 /* TopicsObjects.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC8C02F12554569400630FE3 /* TopicsObjects.swift */; };
+		BC5191D4256AE170009EA903 /* TopicDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC5191D3256AE170009EA903 /* TopicDetailView.swift */; };
+		BC5191D8256AFF3A009EA903 /* TopicViewsCountService.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC5191D7256AFF3A009EA903 /* TopicViewsCountService.swift */; };
+		BC5191DD256C3A16009EA903 /* TopicCommentsScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC5191DC256C3A16009EA903 /* TopicCommentsScreenView.swift */; };
+		BC5191E3256C3BD8009EA903 /* TopicCommentsObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC5191E2256C3BD8009EA903 /* TopicCommentsObject.swift */; };
+		BC5191E7256C3D60009EA903 /* TopicCommentsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC5191E6256C3D60009EA903 /* TopicCommentsView.swift */; };
+		BC5191EA256C3E51009EA903 /* TopicCommentsHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC5191E9256C3E51009EA903 /* TopicCommentsHeaderView.swift */; };
+		BC5191EE256C4ADC009EA903 /* TopicCommentsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC5191ED256C4ADC009EA903 /* TopicCommentsService.swift */; };
+		BC5191F1256D8063009EA903 /* TopicViewsCountHtmlSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC5191F0256D8063009EA903 /* TopicViewsCountHtmlSource.swift */; };
+		BC8C02F22554569400630FE3 /* TopicsObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC8C02F12554569400630FE3 /* TopicsObject.swift */; };
 		BC8C02FF2560192300630FE3 /* TopicsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC8C02FE2560192300630FE3 /* TopicsService.swift */; };
 		BC8C030625601BB800630FE3 /* TopicHtmlSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC8C030525601BB800630FE3 /* TopicHtmlSource.swift */; };
 /* End PBXBuildFile section */
@@ -97,7 +105,15 @@
 		3B741F18EBF3AABD0911ACAF /* Pods-DOU.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DOU.release.xcconfig"; path = "Target Support Files/Pods-DOU/Pods-DOU.release.xcconfig"; sourceTree = "<group>"; };
 		BA021E065B714D5009D2EC4A /* Pods_DOU.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DOU.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BC5191C425642C4C009EA903 /* TopicsItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopicsItemView.swift; sourceTree = "<group>"; };
-		BC8C02F12554569400630FE3 /* TopicsObjects.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopicsObjects.swift; sourceTree = "<group>"; };
+		BC5191D3256AE170009EA903 /* TopicDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopicDetailView.swift; sourceTree = "<group>"; };
+		BC5191D7256AFF3A009EA903 /* TopicViewsCountService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopicViewsCountService.swift; sourceTree = "<group>"; };
+		BC5191DC256C3A16009EA903 /* TopicCommentsScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopicCommentsScreenView.swift; sourceTree = "<group>"; };
+		BC5191E2256C3BD8009EA903 /* TopicCommentsObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopicCommentsObject.swift; sourceTree = "<group>"; };
+		BC5191E6256C3D60009EA903 /* TopicCommentsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopicCommentsView.swift; sourceTree = "<group>"; };
+		BC5191E9256C3E51009EA903 /* TopicCommentsHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopicCommentsHeaderView.swift; sourceTree = "<group>"; };
+		BC5191ED256C4ADC009EA903 /* TopicCommentsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopicCommentsService.swift; sourceTree = "<group>"; };
+		BC5191F0256D8063009EA903 /* TopicViewsCountHtmlSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopicViewsCountHtmlSource.swift; sourceTree = "<group>"; };
+		BC8C02F12554569400630FE3 /* TopicsObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopicsObject.swift; sourceTree = "<group>"; };
 		BC8C02FE2560192300630FE3 /* TopicsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopicsService.swift; sourceTree = "<group>"; };
 		BC8C030525601BB800630FE3 /* TopicHtmlSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopicHtmlSource.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -350,11 +366,55 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
-		BC8C02F92560182100630FE3 /* Views */ = {
+		BC5191DA256C39C4009EA903 /* Topics */ = {
 			isa = PBXGroup;
 			children = (
 				32662E6E253743220051069E /* TopicsView.swift */,
 				BC5191C425642C4C009EA903 /* TopicsItemView.swift */,
+				BC5191D3256AE170009EA903 /* TopicDetailView.swift */,
+			);
+			path = Topics;
+			sourceTree = "<group>";
+		};
+		BC5191DB256C39CB009EA903 /* Comments */ = {
+			isa = PBXGroup;
+			children = (
+				BC5191DC256C3A16009EA903 /* TopicCommentsScreenView.swift */,
+				BC5191E6256C3D60009EA903 /* TopicCommentsView.swift */,
+				BC5191E9256C3E51009EA903 /* TopicCommentsHeaderView.swift */,
+			);
+			path = Comments;
+			sourceTree = "<group>";
+		};
+		BC5191DF256C3B2C009EA903 /* Topics */ = {
+			isa = PBXGroup;
+			children = (
+				BC8C02F12554569400630FE3 /* TopicsObject.swift */,
+			);
+			path = Topics;
+			sourceTree = "<group>";
+		};
+		BC5191E0256C3B32009EA903 /* Comments */ = {
+			isa = PBXGroup;
+			children = (
+				BC5191E2256C3BD8009EA903 /* TopicCommentsObject.swift */,
+			);
+			path = Comments;
+			sourceTree = "<group>";
+		};
+		BC5191EC256C4AB5009EA903 /* Comments */ = {
+			isa = PBXGroup;
+			children = (
+				BC5191ED256C4ADC009EA903 /* TopicCommentsService.swift */,
+			);
+			path = Comments;
+			sourceTree = "<group>";
+		};
+		BC8C02F92560182100630FE3 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				BC5191DB256C39CB009EA903 /* Comments */,
+				BC5191DA256C39C4009EA903 /* Topics */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -362,7 +422,8 @@
 		BC8C02FA2560182F00630FE3 /* Objects */ = {
 			isa = PBXGroup;
 			children = (
-				BC8C02F12554569400630FE3 /* TopicsObjects.swift */,
+				BC5191E0256C3B32009EA903 /* Comments */,
+				BC5191DF256C3B2C009EA903 /* Topics */,
 			);
 			path = Objects;
 			sourceTree = "<group>";
@@ -370,6 +431,7 @@
 		BC8C02FB2560186400630FE3 /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				BC5191EC256C4AB5009EA903 /* Comments */,
 				BC8C02FD256018E800630FE3 /* Topics */,
 			);
 			path = Services;
@@ -379,6 +441,7 @@
 			isa = PBXGroup;
 			children = (
 				BC8C02FE2560192300630FE3 /* TopicsService.swift */,
+				BC5191D7256AFF3A009EA903 /* TopicViewsCountService.swift */,
 			);
 			path = Topics;
 			sourceTree = "<group>";
@@ -395,6 +458,7 @@
 			isa = PBXGroup;
 			children = (
 				BC8C030525601BB800630FE3 /* TopicHtmlSource.swift */,
+				BC5191F0256D8063009EA903 /* TopicViewsCountHtmlSource.swift */,
 			);
 			path = Topics;
 			sourceTree = "<group>";
@@ -537,20 +601,24 @@
 				320E97562553004C00884CB0 /* ArticlesApiSource.swift in Sources */,
 				32AEBCE82568306300F07A62 /* ArticleImageAttributedUIView.swift in Sources */,
 				329CDE0C254DD133002565D7 /* ArticleCommentsView.swift in Sources */,
+				BC5191D4256AE170009EA903 /* TopicDetailView.swift in Sources */,
 				32526B9D25265D2B0099E5A4 /* Date.swift in Sources */,
 				320E976D2553127000884CB0 /* SalariesSources.swift in Sources */,
 				32AEBCDF25682C5800F07A62 /* AttributedContent.swift in Sources */,
+				BC5191EE256C4ADC009EA903 /* TopicCommentsService.swift in Sources */,
 				32A639932562F5500019B4DC /* PostCommentsCount.swift in Sources */,
 				32AEBCDC25682B8000F07A62 /* CheckMarkButtonIcon.swift in Sources */,
 				32C5A6B125361586008C48BD /* ActivityIndicator.swift in Sources */,
 				320A3D892522554A00AE4D00 /* DOUApp.swift in Sources */,
 				32A6398C2562F5250019B4DC /* PostPublicationDate.swift in Sources */,
 				320E976625530FE100884CB0 /* ArticleObject.swift in Sources */,
+				BC5191EA256C3E51009EA903 /* TopicCommentsHeaderView.swift in Sources */,
 				32A639962562F5660019B4DC /* PostTitle.swift in Sources */,
 				32A95AAF2534C5F10012D78C /* PostAuthorName.swift in Sources */,
 				320E976225530FB200884CB0 /* ArticleCommentObject.swift in Sources */,
-				BC8C02F22554569400630FE3 /* TopicsObjects.swift in Sources */,
+				BC8C02F22554569400630FE3 /* TopicsObject.swift in Sources */,
 				326523F0252871820026C9EE /* ArticleView.swift in Sources */,
+				BC5191DD256C3A16009EA903 /* TopicCommentsScreenView.swift in Sources */,
 				32AEBCEE256834A400F07A62 /* ArticleCommentAttributedUIView.swift in Sources */,
 				32A639902562F53B0019B4DC /* PostViewsCount.swift in Sources */,
 				326AA949252CC02800072A76 /* HTML.swift in Sources */,
@@ -564,12 +632,16 @@
 				BC8C030625601BB800630FE3 /* TopicHtmlSource.swift in Sources */,
 				32662E6F253743220051069E /* TopicsView.swift in Sources */,
 				329CDE10254DD1D2002565D7 /* ArticleCommentHeaderView.swift in Sources */,
+				BC5191F1256D8063009EA903 /* TopicViewsCountHtmlSource.swift in Sources */,
 				32662E80253750960051069E /* SalariesServices.swift in Sources */,
 				329CDE14254DD21C002565D7 /* ArticlesScreenView.swift in Sources */,
 				329CDE07254DD054002565D7 /* ArticleCommentsScreenView.swift in Sources */,
 				323C5139253A007F001EFD64 /* ArticleService.swift in Sources */,
+				BC5191E3256C3BD8009EA903 /* TopicCommentsObject.swift in Sources */,
+				BC5191D8256AFF3A009EA903 /* TopicViewsCountService.swift in Sources */,
 				BC8C02FF2560192300630FE3 /* TopicsService.swift in Sources */,
 				32662E7325374E650051069E /* SalariesViews.swift in Sources */,
+				BC5191E7256C3D60009EA903 /* TopicCommentsView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
