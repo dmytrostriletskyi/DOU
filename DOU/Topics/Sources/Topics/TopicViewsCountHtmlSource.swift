@@ -2,7 +2,7 @@ import Foundation
 
 import SwiftSoup
 
-class TopicHtmlSource {
+class TopicViewsCountHtmlSource {
     let html: String
 
     init(html: String) {
@@ -12,7 +12,7 @@ class TopicHtmlSource {
     func parse() -> Elements? {
         do {
             let document: Document = try SwiftSoup.parse(html)
-            return try document.getElementsByClass("b-forum-articles").first()!.children()
+            return try document.getElementsByClass("l-content-wrap")
         } catch Exception.Error(_, let message) {
             print("Error during getting article from HTML: \(message).")
             return nil

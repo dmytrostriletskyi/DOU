@@ -3,8 +3,6 @@ import SwiftUI
 
 import Atributika
 
-
-
 class ArticleImageAttributedUIView {
     let html: String
 
