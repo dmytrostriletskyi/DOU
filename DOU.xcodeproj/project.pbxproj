@@ -58,6 +58,7 @@
 		BC8C02F22554569400630FE3 /* TopicsObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC8C02F12554569400630FE3 /* TopicsObject.swift */; };
 		BC8C02FF2560192300630FE3 /* TopicsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC8C02FE2560192300630FE3 /* TopicsService.swift */; };
 		BC8C030625601BB800630FE3 /* TopicHtmlSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC8C030525601BB800630FE3 /* TopicHtmlSource.swift */; };
+		BC99C44425700B550026C65D /* DeviceType.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC99C44325700B550026C65D /* DeviceType.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -116,6 +117,7 @@
 		BC8C02F12554569400630FE3 /* TopicsObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopicsObject.swift; sourceTree = "<group>"; };
 		BC8C02FE2560192300630FE3 /* TopicsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopicsService.swift; sourceTree = "<group>"; };
 		BC8C030525601BB800630FE3 /* TopicHtmlSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopicHtmlSource.swift; sourceTree = "<group>"; };
+		BC99C44325700B550026C65D /* DeviceType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceType.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -224,6 +226,7 @@
 				32526BA125265F6C0099E5A4 /* Localization.swift */,
 				326AA948252CC02800072A76 /* HTML.swift */,
 				32C5A6B025361586008C48BD /* ActivityIndicator.swift */,
+				BC99C44325700B550026C65D /* DeviceType.swift */,
 			);
 			path = Generic;
 			sourceTree = "<group>";
@@ -616,6 +619,7 @@
 				32A639962562F5660019B4DC /* PostTitle.swift in Sources */,
 				32A95AAF2534C5F10012D78C /* PostAuthorName.swift in Sources */,
 				320E976225530FB200884CB0 /* ArticleCommentObject.swift in Sources */,
+				BC99C44425700B550026C65D /* DeviceType.swift in Sources */,
 				BC8C02F22554569400630FE3 /* TopicsObject.swift in Sources */,
 				326523F0252871820026C9EE /* ArticleView.swift in Sources */,
 				BC5191DD256C3A16009EA903 /* TopicCommentsScreenView.swift in Sources */,

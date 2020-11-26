@@ -5,30 +5,33 @@ import URLImage
 
 struct ArticlesItemView: View {
     let article: Article
+    let currentDevice: String = UIDevice.current.name
 
     private let style = Style()
 
     var body: some View {
         VStack(alignment: .leading) {
-            URLImage(
-                URL(
-                    string: article.imageUrl
-                )!,
-                processors: [],
-                placeholder: {
-                    ProgressView($0) { _ in
-                        ZStack { }
+            if !DeviceType.allIPadDevicesList.contains(currentDevice) {
+                URLImage(
+                    URL(
+                        string: article.imageUrl
+                    )!,
+                    processors: [],
+                    placeholder: {
+                        ProgressView($0) { _ in
+                            ZStack { }
+                        }
+                    },
+                    content: {
+                        $0.image
+                        .resizable()
                     }
-                },
-                content: {
-                    $0.image
-                    .resizable()
-                }
-            ).frame(
-                width: UIScreen.main.bounds.size.width - UIScreen.main.bounds.size.width * 0.11,
-                height: 186
-            )
-            Spacer()
+                ).frame(
+                    width: UIScreen.main.bounds.size.width - UIScreen.main.bounds.size.width * 0.11,
+                    height: 186
+                )
+                Spacer()
+            }
             PostTitle(
                 title: article.title,
                 font: style.titleFont,
