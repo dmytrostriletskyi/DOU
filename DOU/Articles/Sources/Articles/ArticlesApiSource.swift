@@ -3,13 +3,13 @@ import Foundation
 import Alamofire
 
 class ArticlesApiSource {
-    private let fetchArticlesLimit: Int64 = 10
-    private let fetchArticlesOffsetStep: Int64 = 10
+    private let fetchArticlesLimit: Int64 = 20
+    private let fetchArticlesOffsetStep: Int64 = 20
 
     private var currentFetchingPage: Int64 = 0
     private var currentlyFetchingArticles: Bool = false
 
-    func fetch(limit: Int64 = 10, offset: Int64 = 0, completion: @escaping ([Article]) -> Void) {
+    func fetch(limit: Int64 = 20, offset: Int64 = 0, completion: @escaping ([Article]) -> Void) {
         var articles = [Article]()
 
         currentlyFetchingArticles = true
