@@ -55,7 +55,7 @@ struct ArticlesScreenView: View {
                             label: {}
                         ).frame(
                             width: 0
-                        )
+                        ).opacity(0)
                     }
                 }.navigationBarTitle(
                     style.navigationBarHeaderNameUkrainian,
