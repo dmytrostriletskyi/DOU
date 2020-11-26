@@ -44,7 +44,7 @@ class ArticleService {
         if html.contains("li") {
             html = html.replacingOccurrences(of: "\n", with: "")
         }
-        
+
         if html.contains("br") {
             html = html.replacingOccurrences(of: "<br>", with: "\n")
         }
