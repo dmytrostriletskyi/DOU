@@ -59,7 +59,7 @@ struct TopicsView: View {
                     style.navigationBarHeaderNameUkrainian,
                     displayMode: .inline
                 )
-            }
+            }.navigationViewStyle(StackNavigationViewStyle())
         }.onAppear {
             self.topics.append(contentsOf: initialTopics)
             self.currentlyFetchingArticles = false

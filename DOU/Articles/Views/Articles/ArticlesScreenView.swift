@@ -61,7 +61,7 @@ struct ArticlesScreenView: View {
                     style.navigationBarHeaderNameUkrainian,
                     displayMode: .inline
                 )
-            }
+            }.navigationViewStyle(StackNavigationViewStyle())
         }.onAppear {
             self.articles.append(contentsOf: initialArticles)
             self.currentlyFetchingArticles = false

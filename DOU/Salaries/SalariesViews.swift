@@ -206,7 +206,7 @@ struct SalariesView: View {
             ).listStyle(
                 GroupedListStyle()
             )
-        }
+        }.navigationViewStyle(StackNavigationViewStyle())
     }
 
     struct Style {
