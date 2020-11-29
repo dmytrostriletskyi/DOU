@@ -28,7 +28,8 @@ class ArticlesApiSource {
                 return
             }
 
-            articles.append(contentsOf: fetchedPublications.results)
+            // If caqtegory is empty string, then it's an article, otherwise a topic
+            articles.append(contentsOf: fetchedPublications.results.filter { !$0.category.isEmpty })
             self.currentFetchingPage += 1
 
             completion(articles)
