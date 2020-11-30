@@ -1,4 +1,4 @@
-Read [dou.ua](https://dou.ua) from `iPhone` and `iPad`.
+Read [dou.ua](https://dou.ua) from `iPhone` and `iPad`. Install the application [from the Apple Store](https://apps.apple.com/ua/app/dou/id1542207555#?platform=iphone).
 
 <img src="https://habrastorage.org/webt/qt/ar/z5/qtarz5_ygae1xowm9ajm1mngfig.png" width="800" height="410" />
 
