@@ -28,6 +28,7 @@
 		32662E80253750960051069E /* SalariesServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32662E7F253750960051069E /* SalariesServices.swift */; };
 		32662E8325375DE40051069E /* SalariesObjects.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32662E8225375DE40051069E /* SalariesObjects.swift */; };
 		326AA949252CC02800072A76 /* HTML.swift in Sources */ = {isa = PBXBuildFile; fileRef = 326AA948252CC02800072A76 /* HTML.swift */; };
+		328D1E96257E7AAB0033FCF9 /* ArticleUnsupportedContentAttributedUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 328D1E95257E7AAB0033FCF9 /* ArticleUnsupportedContentAttributedUIView.swift */; };
 		329CDE07254DD054002565D7 /* ArticleCommentsScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 329CDE06254DD054002565D7 /* ArticleCommentsScreenView.swift */; };
 		329CDE0C254DD133002565D7 /* ArticleCommentsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 329CDE0B254DD133002565D7 /* ArticleCommentsView.swift */; };
 		329CDE10254DD1D2002565D7 /* ArticleCommentHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 329CDE0F254DD1D2002565D7 /* ArticleCommentHeaderView.swift */; };
@@ -85,6 +86,7 @@
 		32662E7F253750960051069E /* SalariesServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SalariesServices.swift; sourceTree = "<group>"; };
 		32662E8225375DE40051069E /* SalariesObjects.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SalariesObjects.swift; sourceTree = "<group>"; };
 		326AA948252CC02800072A76 /* HTML.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTML.swift; sourceTree = "<group>"; };
+		328D1E95257E7AAB0033FCF9 /* ArticleUnsupportedContentAttributedUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleUnsupportedContentAttributedUIView.swift; sourceTree = "<group>"; };
 		329CDE06254DD054002565D7 /* ArticleCommentsScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleCommentsScreenView.swift; sourceTree = "<group>"; };
 		329CDE0B254DD133002565D7 /* ArticleCommentsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleCommentsView.swift; sourceTree = "<group>"; };
 		329CDE0F254DD1D2002565D7 /* ArticleCommentHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleCommentHeaderView.swift; sourceTree = "<group>"; };
@@ -348,6 +350,7 @@
 				32AEBCE42568303900F07A62 /* ArticleContentAttributedUIView.swift */,
 				32AEBCE72568306300F07A62 /* ArticleImageAttributedUIView.swift */,
 				32AEBCED256834A400F07A62 /* ArticleCommentAttributedUIView.swift */,
+				328D1E95257E7AAB0033FCF9 /* ArticleUnsupportedContentAttributedUIView.swift */,
 			);
 			path = AttributedUIViews;
 			sourceTree = "<group>";
@@ -634,6 +637,7 @@
 				32662E8325375DE40051069E /* SalariesObjects.swift in Sources */,
 				329CDE1F254DD3DF002565D7 /* ArticleCommentsHtmlSource.swift in Sources */,
 				BC8C030625601BB800630FE3 /* TopicHtmlSource.swift in Sources */,
+				328D1E96257E7AAB0033FCF9 /* ArticleUnsupportedContentAttributedUIView.swift in Sources */,
 				32662E6F253743220051069E /* TopicsView.swift in Sources */,
 				329CDE10254DD1D2002565D7 /* ArticleCommentHeaderView.swift in Sources */,
 				BC5191F1256D8063009EA903 /* TopicViewsCountHtmlSource.swift in Sources */,
