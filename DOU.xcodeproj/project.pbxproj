@@ -47,6 +47,7 @@
 		32AEBCE82568306300F07A62 /* ArticleImageAttributedUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32AEBCE72568306300F07A62 /* ArticleImageAttributedUIView.swift */; };
 		32AEBCEE256834A400F07A62 /* ArticleCommentAttributedUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32AEBCED256834A400F07A62 /* ArticleCommentAttributedUIView.swift */; };
 		32C5A6B125361586008C48BD /* ActivityIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32C5A6B025361586008C48BD /* ActivityIndicator.swift */; };
+		32DC94422583D0B300B10E15 /* ArticleTelegramReferenceAttributedUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32DC94412583D0B300B10E15 /* ArticleTelegramReferenceAttributedUIView.swift */; };
 		BC5191C525642C4C009EA903 /* TopicsItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC5191C425642C4C009EA903 /* TopicsItemView.swift */; };
 		BC5191D4256AE170009EA903 /* TopicDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC5191D3256AE170009EA903 /* TopicDetailView.swift */; };
 		BC5191D8256AFF3A009EA903 /* TopicViewsCountService.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC5191D7256AFF3A009EA903 /* TopicViewsCountService.swift */; };
@@ -105,6 +106,7 @@
 		32AEBCE72568306300F07A62 /* ArticleImageAttributedUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleImageAttributedUIView.swift; sourceTree = "<group>"; };
 		32AEBCED256834A400F07A62 /* ArticleCommentAttributedUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleCommentAttributedUIView.swift; sourceTree = "<group>"; };
 		32C5A6B025361586008C48BD /* ActivityIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityIndicator.swift; sourceTree = "<group>"; };
+		32DC94412583D0B300B10E15 /* ArticleTelegramReferenceAttributedUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleTelegramReferenceAttributedUIView.swift; sourceTree = "<group>"; };
 		3B741F18EBF3AABD0911ACAF /* Pods-DOU.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DOU.release.xcconfig"; path = "Target Support Files/Pods-DOU/Pods-DOU.release.xcconfig"; sourceTree = "<group>"; };
 		BA021E065B714D5009D2EC4A /* Pods_DOU.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DOU.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BC5191C425642C4C009EA903 /* TopicsItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopicsItemView.swift; sourceTree = "<group>"; };
@@ -351,6 +353,7 @@
 				32AEBCE72568306300F07A62 /* ArticleImageAttributedUIView.swift */,
 				32AEBCED256834A400F07A62 /* ArticleCommentAttributedUIView.swift */,
 				328D1E95257E7AAB0033FCF9 /* ArticleUnsupportedContentAttributedUIView.swift */,
+				32DC94412583D0B300B10E15 /* ArticleTelegramReferenceAttributedUIView.swift */,
 			);
 			path = AttributedUIViews;
 			sourceTree = "<group>";
@@ -614,6 +617,7 @@
 				BC5191EE256C4ADC009EA903 /* TopicCommentsService.swift in Sources */,
 				32A639932562F5500019B4DC /* PostCommentsCount.swift in Sources */,
 				32AEBCDC25682B8000F07A62 /* CheckMarkButtonIcon.swift in Sources */,
+				32DC94422583D0B300B10E15 /* ArticleTelegramReferenceAttributedUIView.swift in Sources */,
 				32C5A6B125361586008C48BD /* ActivityIndicator.swift in Sources */,
 				320A3D892522554A00AE4D00 /* DOUApp.swift in Sources */,
 				32A6398C2562F5250019B4DC /* PostPublicationDate.swift in Sources */,
