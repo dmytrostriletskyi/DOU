@@ -129,6 +129,48 @@ class ArticleService {
 
             html = clearHtml(html: articleContentAsHtml.description)
 
+            if (
+                // https://dou.ua/lenta/sitenews/winter-survey-2020/
+                html.contains("div align=\"center\"") ||
+                // https://dou.ua/lenta/interviews/creator-of-qudi-mask/
+                html.contains("<p><iframe allow") ||
+                // https://dou.ua/lenta/interviews/creator-of-qudi-mask/
+                html.contains("<div class=\"fotorama-wrap\">")
+            ) {
+                let unsupportedContentAttributedLabel = ArticleUnsupportedContentAttributedUIView()
+
+                articleContents.append(
+                    ArticleContent(
+                        type: .text,
+                        uiView: unsupportedContentAttributedLabel.get(),
+                        uiViewHeigth: unsupportedContentAttributedLabel.getHeight()
+                    )
+                )
+
+                continue
+            }
+
+            if (
+                // https://dou.ua/lenta/columns/everyone-needs-mentor/
+                html.contains("Чтобы не&nbsp;пропустить новые статьи") ||
+                // https://dou.ua/lenta/columns/facilitation-definitions-and-myths/
+                html.contains("Щоби не&nbsp;пропустити нові статті") ||
+                // https://dou.ua/lenta/sitenews/winter-survey-2020/
+                html.contains("Щоб не&nbsp;пропустити результати опитування")
+            ) {
+                let unsupportedContentAttributedLabel = ArticleTelegramReferenceAttributedUIView(html: html)
+
+                articleContents.append(
+                    ArticleContent(
+                        type: .text,
+                        uiView: unsupportedContentAttributedLabel.get(),
+                        uiViewHeigth: unsupportedContentAttributedLabel.getHeight()
+                    )
+                )
+
+                continue
+            }
+
             if html.contains("img") {
                 let imageAttributedLabel = ArticleImageAttributedUIView(html: html)
 

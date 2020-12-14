@@ -28,6 +28,7 @@
 		32662E80253750960051069E /* SalariesServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32662E7F253750960051069E /* SalariesServices.swift */; };
 		32662E8325375DE40051069E /* SalariesObjects.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32662E8225375DE40051069E /* SalariesObjects.swift */; };
 		326AA949252CC02800072A76 /* HTML.swift in Sources */ = {isa = PBXBuildFile; fileRef = 326AA948252CC02800072A76 /* HTML.swift */; };
+		328D1E96257E7AAB0033FCF9 /* ArticleUnsupportedContentAttributedUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 328D1E95257E7AAB0033FCF9 /* ArticleUnsupportedContentAttributedUIView.swift */; };
 		329CDE07254DD054002565D7 /* ArticleCommentsScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 329CDE06254DD054002565D7 /* ArticleCommentsScreenView.swift */; };
 		329CDE0C254DD133002565D7 /* ArticleCommentsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 329CDE0B254DD133002565D7 /* ArticleCommentsView.swift */; };
 		329CDE10254DD1D2002565D7 /* ArticleCommentHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 329CDE0F254DD1D2002565D7 /* ArticleCommentHeaderView.swift */; };
@@ -46,6 +47,7 @@
 		32AEBCE82568306300F07A62 /* ArticleImageAttributedUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32AEBCE72568306300F07A62 /* ArticleImageAttributedUIView.swift */; };
 		32AEBCEE256834A400F07A62 /* ArticleCommentAttributedUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32AEBCED256834A400F07A62 /* ArticleCommentAttributedUIView.swift */; };
 		32C5A6B125361586008C48BD /* ActivityIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32C5A6B025361586008C48BD /* ActivityIndicator.swift */; };
+		32DC94422583D0B300B10E15 /* ArticleTelegramReferenceAttributedUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32DC94412583D0B300B10E15 /* ArticleTelegramReferenceAttributedUIView.swift */; };
 		BC5191C525642C4C009EA903 /* TopicsItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC5191C425642C4C009EA903 /* TopicsItemView.swift */; };
 		BC5191D4256AE170009EA903 /* TopicDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC5191D3256AE170009EA903 /* TopicDetailView.swift */; };
 		BC5191D8256AFF3A009EA903 /* TopicViewsCountService.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC5191D7256AFF3A009EA903 /* TopicViewsCountService.swift */; };
@@ -85,6 +87,7 @@
 		32662E7F253750960051069E /* SalariesServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SalariesServices.swift; sourceTree = "<group>"; };
 		32662E8225375DE40051069E /* SalariesObjects.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SalariesObjects.swift; sourceTree = "<group>"; };
 		326AA948252CC02800072A76 /* HTML.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTML.swift; sourceTree = "<group>"; };
+		328D1E95257E7AAB0033FCF9 /* ArticleUnsupportedContentAttributedUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleUnsupportedContentAttributedUIView.swift; sourceTree = "<group>"; };
 		329CDE06254DD054002565D7 /* ArticleCommentsScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleCommentsScreenView.swift; sourceTree = "<group>"; };
 		329CDE0B254DD133002565D7 /* ArticleCommentsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleCommentsView.swift; sourceTree = "<group>"; };
 		329CDE0F254DD1D2002565D7 /* ArticleCommentHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleCommentHeaderView.swift; sourceTree = "<group>"; };
@@ -103,6 +106,7 @@
 		32AEBCE72568306300F07A62 /* ArticleImageAttributedUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleImageAttributedUIView.swift; sourceTree = "<group>"; };
 		32AEBCED256834A400F07A62 /* ArticleCommentAttributedUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleCommentAttributedUIView.swift; sourceTree = "<group>"; };
 		32C5A6B025361586008C48BD /* ActivityIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityIndicator.swift; sourceTree = "<group>"; };
+		32DC94412583D0B300B10E15 /* ArticleTelegramReferenceAttributedUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleTelegramReferenceAttributedUIView.swift; sourceTree = "<group>"; };
 		3B741F18EBF3AABD0911ACAF /* Pods-DOU.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DOU.release.xcconfig"; path = "Target Support Files/Pods-DOU/Pods-DOU.release.xcconfig"; sourceTree = "<group>"; };
 		BA021E065B714D5009D2EC4A /* Pods_DOU.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DOU.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BC5191C425642C4C009EA903 /* TopicsItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopicsItemView.swift; sourceTree = "<group>"; };
@@ -348,6 +352,8 @@
 				32AEBCE42568303900F07A62 /* ArticleContentAttributedUIView.swift */,
 				32AEBCE72568306300F07A62 /* ArticleImageAttributedUIView.swift */,
 				32AEBCED256834A400F07A62 /* ArticleCommentAttributedUIView.swift */,
+				328D1E95257E7AAB0033FCF9 /* ArticleUnsupportedContentAttributedUIView.swift */,
+				32DC94412583D0B300B10E15 /* ArticleTelegramReferenceAttributedUIView.swift */,
 			);
 			path = AttributedUIViews;
 			sourceTree = "<group>";
@@ -611,6 +617,7 @@
 				BC5191EE256C4ADC009EA903 /* TopicCommentsService.swift in Sources */,
 				32A639932562F5500019B4DC /* PostCommentsCount.swift in Sources */,
 				32AEBCDC25682B8000F07A62 /* CheckMarkButtonIcon.swift in Sources */,
+				32DC94422583D0B300B10E15 /* ArticleTelegramReferenceAttributedUIView.swift in Sources */,
 				32C5A6B125361586008C48BD /* ActivityIndicator.swift in Sources */,
 				320A3D892522554A00AE4D00 /* DOUApp.swift in Sources */,
 				32A6398C2562F5250019B4DC /* PostPublicationDate.swift in Sources */,
@@ -634,6 +641,7 @@
 				32662E8325375DE40051069E /* SalariesObjects.swift in Sources */,
 				329CDE1F254DD3DF002565D7 /* ArticleCommentsHtmlSource.swift in Sources */,
 				BC8C030625601BB800630FE3 /* TopicHtmlSource.swift in Sources */,
+				328D1E96257E7AAB0033FCF9 /* ArticleUnsupportedContentAttributedUIView.swift in Sources */,
 				32662E6F253743220051069E /* TopicsView.swift in Sources */,
 				329CDE10254DD1D2002565D7 /* ArticleCommentHeaderView.swift in Sources */,
 				BC5191F1256D8063009EA903 /* TopicViewsCountHtmlSource.swift in Sources */,
@@ -775,7 +783,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"DOU/Preview Content\"";
 				DEVELOPMENT_TEAM = 5USZ73V6BF;
 				ENABLE_PREVIEWS = YES;
@@ -785,11 +793,11 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 0.0.1;
+				MARKETING_VERSION = 0.0.2;
 				PRODUCT_BUNDLE_IDENTIFIER = dmytrostriletskyi.DOU;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = 1;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
@@ -800,7 +808,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"DOU/Preview Content\"";
 				DEVELOPMENT_TEAM = 5USZ73V6BF;
 				ENABLE_PREVIEWS = YES;
@@ -810,11 +818,11 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 0.0.1;
+				MARKETING_VERSION = 0.0.2;
 				PRODUCT_BUNDLE_IDENTIFIER = dmytrostriletskyi.DOU;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = 1;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};

@@ -28,7 +28,7 @@ struct ArticlesItemView: View {
                     }
                 ).frame(
                     width: UIScreen.main.bounds.size.width - UIScreen.main.bounds.size.width * 0.11,
-                    height: 186
+                    height: (UIScreen.main.bounds.size.width - UIScreen.main.bounds.size.width * 0.11) * 0.54
                 )
                 Spacer()
             }
