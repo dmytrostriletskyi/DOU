@@ -44,7 +44,10 @@ struct ArticleView: View {
                                 article: article
                             )
                         }
-                    }
+                    }.navigationBarTitle(
+                        style.navigationBarHeaderNameUkrainian,
+                        displayMode: .inline
+                    )
                 }.padding(
                     .bottom, style.contentPaddingBottom
                 )
@@ -76,6 +79,8 @@ struct ArticleView: View {
         let informationPaddingBottom: CGFloat = 10
         let contentPaddingBottom: CGFloat = 15
         let contentPaddingLeading: CGFloat = 20
+        let navigationBarHeaderNameUkrainian: String = "Стаття"
+        let navigationBarHeaderNameRussian: String = "Статья"
     }
 }
 

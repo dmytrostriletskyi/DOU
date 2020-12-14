@@ -43,7 +43,10 @@ struct TopicDetailView: View {
                                 topic: topic
                             )
                         }
-                    }
+                    }.navigationBarTitle(
+                        style.navigationBarHeaderNameUkrainian,
+                        displayMode: .inline
+                    )
                 }.padding(
                     .bottom, style.contentPaddingBottom
                 )
@@ -80,6 +83,8 @@ struct TopicDetailView: View {
         let informationPaddingBottom: CGFloat = 10
         let contentPaddingBottom: CGFloat = 15
         let contentPaddingLeading: CGFloat = 20
+        let navigationBarHeaderNameUkrainian: String = "Топік"
+        let navigationBarHeaderNameRussian: String = "Топик"
     }
 }
 

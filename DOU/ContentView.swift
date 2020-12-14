@@ -69,8 +69,6 @@ struct ContentView: View {
                     }.tag(3)
                 }.accentColor(
                     .white
-                ).accentColor(
-                    .blue
                 )
             }
         }.transition(
