@@ -129,6 +129,36 @@ class ArticleService {
 
             html = clearHtml(html: articleContentAsHtml.description)
 
+            if html.contains("<p><iframe allow") {
+                let youTubeVideoURL: URL? = URL_().getOneFromText(text: html)
+
+                if youTubeVideoURL != nil {
+                    let embedYoutubeVideoAttributedLabel = ArticleEmbedYoutubeVideoAttributedUIView(url: youTubeVideoURL!)
+
+                    articleContents.append(
+                        ArticleContent(
+                            type: .text,
+                            uiView: embedYoutubeVideoAttributedLabel.get(),
+                            uiViewHeigth: embedYoutubeVideoAttributedLabel.getHeight()
+                        )
+                    )
+
+                    continue
+                } else {
+                    let unsupportedContentAttributedLabel = ArticleUnsupportedContentAttributedUIView()
+
+                    articleContents.append(
+                        ArticleContent(
+                            type: .text,
+                            uiView: unsupportedContentAttributedLabel.get(),
+                            uiViewHeigth: unsupportedContentAttributedLabel.getHeight()
+                        )
+                    )
+
+                    continue
+                }
+            }
+
             if (
                 // https://dou.ua/lenta/sitenews/winter-survey-2020/
                 html.contains("div align=\"center\"") ||
