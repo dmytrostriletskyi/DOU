@@ -19,6 +19,9 @@
 		320E976925530FF600884CB0 /* ArticlesObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 320E976825530FF600884CB0 /* ArticlesObject.swift */; };
 		320E976D2553127000884CB0 /* SalariesSources.swift in Sources */ = {isa = PBXBuildFile; fileRef = 320E976C2553127000884CB0 /* SalariesSources.swift */; };
 		321B360B253E13FB006A1A17 /* ArticleCommentsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 321B360A253E13FB006A1A17 /* ArticleCommentsService.swift */; };
+		321E136A258F82EB0008C78B /* ArticleCommentsNumberService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 321E1369258F82EB0008C78B /* ArticleCommentsNumberService.swift */; };
+		321E136D258F86CC0008C78B /* ArticleCommentsNumberHTMLSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 321E136C258F86CC0008C78B /* ArticleCommentsNumberHTMLSource.swift */; };
+		321E1370258F87800008C78B /* ArticleCommentsNumberObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 321E136F258F87800008C78B /* ArticleCommentsNumberObject.swift */; };
 		323C5139253A007F001EFD64 /* ArticleService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 323C5138253A007F001EFD64 /* ArticleService.swift */; };
 		32526B9D25265D2B0099E5A4 /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32526B9C25265D2B0099E5A4 /* Date.swift */; };
 		32526BA225265F6C0099E5A4 /* Localization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32526BA125265F6C0099E5A4 /* Localization.swift */; };
@@ -80,6 +83,9 @@
 		320E976825530FF600884CB0 /* ArticlesObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticlesObject.swift; sourceTree = "<group>"; };
 		320E976C2553127000884CB0 /* SalariesSources.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SalariesSources.swift; sourceTree = "<group>"; };
 		321B360A253E13FB006A1A17 /* ArticleCommentsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleCommentsService.swift; sourceTree = "<group>"; };
+		321E1369258F82EB0008C78B /* ArticleCommentsNumberService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleCommentsNumberService.swift; sourceTree = "<group>"; };
+		321E136C258F86CC0008C78B /* ArticleCommentsNumberHTMLSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleCommentsNumberHTMLSource.swift; sourceTree = "<group>"; };
+		321E136F258F87800008C78B /* ArticleCommentsNumberObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleCommentsNumberObject.swift; sourceTree = "<group>"; };
 		323C5138253A007F001EFD64 /* ArticleService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleService.swift; sourceTree = "<group>"; };
 		32526B9C25265D2B0099E5A4 /* Date.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Date.swift; sourceTree = "<group>"; };
 		32526BA125265F6C0099E5A4 /* Localization.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Localization.swift; sourceTree = "<group>"; };
@@ -222,6 +228,7 @@
 			isa = PBXGroup;
 			children = (
 				320E976125530FB200884CB0 /* ArticleCommentObject.swift */,
+				321E136F258F87800008C78B /* ArticleCommentsNumberObject.swift */,
 			);
 			path = Comments;
 			sourceTree = "<group>";
@@ -325,6 +332,7 @@
 			isa = PBXGroup;
 			children = (
 				329CDE1E254DD3DF002565D7 /* ArticleCommentsHtmlSource.swift */,
+				321E136C258F86CC0008C78B /* ArticleCommentsNumberHTMLSource.swift */,
 			);
 			path = Comments;
 			sourceTree = "<group>";
@@ -333,6 +341,7 @@
 			isa = PBXGroup;
 			children = (
 				321B360A253E13FB006A1A17 /* ArticleCommentsService.swift */,
+				321E1369258F82EB0008C78B /* ArticleCommentsNumberService.swift */,
 			);
 			path = Comments;
 			sourceTree = "<group>";
@@ -611,9 +620,11 @@
 			files = (
 				32AEBCE52568303900F07A62 /* ArticleContentAttributedUIView.swift in Sources */,
 				320A3D8B2522554A00AE4D00 /* ContentView.swift in Sources */,
+				321E1370258F87800008C78B /* ArticleCommentsNumberObject.swift in Sources */,
 				321B360B253E13FB006A1A17 /* ArticleCommentsService.swift in Sources */,
 				320E976925530FF600884CB0 /* ArticlesObject.swift in Sources */,
 				320E97562553004C00884CB0 /* ArticlesApiSource.swift in Sources */,
+				321E136D258F86CC0008C78B /* ArticleCommentsNumberHTMLSource.swift in Sources */,
 				32AEBCE82568306300F07A62 /* ArticleImageAttributedUIView.swift in Sources */,
 				329CDE0C254DD133002565D7 /* ArticleCommentsView.swift in Sources */,
 				BC5191D4256AE170009EA903 /* TopicDetailView.swift in Sources */,
@@ -642,6 +653,7 @@
 				326AA949252CC02800072A76 /* HTML.swift in Sources */,
 				BC5191C525642C4C009EA903 /* TopicsItemView.swift in Sources */,
 				329D7C312587EFAE00FD9DD7 /* URL.swift in Sources */,
+				321E136A258F82EB0008C78B /* ArticleCommentsNumberService.swift in Sources */,
 				32526BA225265F6C0099E5A4 /* Localization.swift in Sources */,
 				329CDE29254DD501002565D7 /* ArticleHtmlSource.swift in Sources */,
 				329CDE18254DD266002565D7 /* ArticleItemView.swift in Sources */,

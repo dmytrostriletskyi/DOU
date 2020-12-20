@@ -9,7 +9,7 @@ class TopicsService {
         page: Int = 1,
         completion: @escaping ([Topic]) -> Void
     ) {
-        Html(url: "https://dou.ua/forums/latest/page/\(page)").get() { html in
+        Html(url: "https://dou.ua/forums/latest/page/\(page)?switch_lang=uk").get() { html in
             var topics: [Topic] = [Topic]()
 
             guard let html = html else {
@@ -69,12 +69,11 @@ class TopicsService {
             let publicationDateAsString: String = try topicPublicationDateHtml.text()
 
             let formatter = DateFormatter()
-            formatter.locale = Locale(identifier: "ru")
+            formatter.locale = Locale(identifier: "uk")
             formatter.dateFormat = "dd MM yyyy"
             formatter.timeZone = TimeZone(secondsFromGMT: 2)
 
-            let publicationDate: Date = formatter.date(from: publicationDateAsString)!
-
+            let publicationDate: Date? = formatter.date(from: publicationDateAsString)!
             return publicationDate
         } catch {
             return nil

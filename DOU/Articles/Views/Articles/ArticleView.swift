@@ -9,6 +9,7 @@ struct ArticleView: View {
     @State var isActivityIndicatorLoaing: Bool = true
 
     @State private var articleContents: [ArticleContent] = [ArticleContent]()
+    @State private var articleCommentsNumber: ArticleCommentsNumber?
 
     var body: some View {
         Group {
@@ -41,7 +42,8 @@ struct ArticleView: View {
                             )
                             Divider()
                             ArticleCommentsInformationView(
-                                article: article
+                                article: article,
+                                articleCommentsNumber: articleCommentsNumber
                             )
                         }
                     }.navigationBarTitle(
@@ -53,7 +55,7 @@ struct ArticleView: View {
                 )
             }
         }.onAppear {
-            Html(url: article.url).get { html in
+            Html(url: article.url + "/?switch_lang=uk").get { html in
                 guard let html = html else {
                     return
                 }
@@ -64,9 +66,17 @@ struct ArticleView: View {
                     identifier: .class_
                 )
 
+                let articleCommentsNumberHTMLSource = ArticleCommentsNumberHTMLSource(
+                    html: html,
+                    rootTag: "lblCommentsCount",
+                    identifier: .id
+                )
+
                 let articleService = ArticleService(source: articleHtmlSource)
+                let articleCommentsNumberService = ArticleCommentsNumberService(source: articleCommentsNumberHTMLSource)
 
                 self.articleContents = articleService.get()
+                self.articleCommentsNumber = articleCommentsNumberService.get()
                 self.isActivityIndicatorLoaing = false
             }
         }
@@ -141,6 +151,7 @@ struct ArticleInformationView: View {
 
 struct ArticleCommentsInformationView: View {
     let article: Article
+    let articleCommentsNumber: ArticleCommentsNumber?
 
     private let style = Style()
 
@@ -150,17 +161,31 @@ struct ArticleCommentsInformationView: View {
                 NavigationLink(
                     destination: ArticleCommentsScreenView(article: article)
                 ) {
-                    (
-                        Text(
-                            Image(
-                                systemName: style.imageSystemName
+                    if articleCommentsNumber != nil {
+                        (
+                            Text(
+                                Image(
+                                    systemName: style.imageSystemName
+                                )
+                            ) + Text(
+                                " \(articleCommentsNumber!.number) \(articleCommentsNumber!.casedWord)"
                             )
-                        ) + Text(
-                            " \(article.commentsCount) \(style.wordCommentsUkrainian.lowercased())"
+                        ).foregroundColor(
+                            style.color
                         )
-                    ).foregroundColor(
-                        style.color
-                    )
+                    } else {
+                        (
+                            Text(
+                                Image(
+                                    systemName: style.imageSystemName
+                                )
+                            ) + Text(
+                                " \(article.commentsCount) \(style.wordCommentsUkrainian.lowercased())"
+                            )
+                        ).foregroundColor(
+                            style.color
+                        )
+                    }
                 }
             } else {
                 (
