@@ -8,6 +8,7 @@ struct TopicDetailView: View {
 
     @State var isActivityIndicatorLoaing: Bool = true
     @State private var topicContents: [ArticleContent] = [ArticleContent]()
+    @State private var topicCommentsNumber: ArticleCommentsNumber?
 
     var body: some View {
         Group {
@@ -40,7 +41,8 @@ struct TopicDetailView: View {
                             )
                             Divider()
                             TopicCommentsInformationView(
-                                topic: topic
+                                topic: topic,
+                                topicCommentsNumber: topicCommentsNumber
                             )
                         }
                     }.navigationBarTitle(
@@ -52,7 +54,7 @@ struct TopicDetailView: View {
                 )
             }
         }.onAppear {
-            Html(url: topic.url!).get { html in
+            Html(url: topic.url! + "/?switch_lang=uk").get { html in
                 guard let html = html else {
                     return
                 }
@@ -62,16 +64,23 @@ struct TopicDetailView: View {
                     rootTag: "article",
                     identifier: .class_
                 )
-
-                let articleService = ArticleService(source: articleHtmlSource)
-
-                self.topicContents = articleService.get()
-                self.isActivityIndicatorLoaing = false
-
+                
+                let articleCommentsNumberHTMLSource = ArticleCommentsNumberHTMLSource(
+                    html: html,
+                    rootTag: "lblCommentsCount",
+                    identifier: .id
+                )
+                
                 let topicViewsCountHtmlSource = TopicViewsCountHtmlSource(html: html)
 
+                let articleService = ArticleService(source: articleHtmlSource)
+                let articleCommentsNumberService = ArticleCommentsNumberService(source: articleCommentsNumberHTMLSource)
                 let topicViewsCountService = TopicViewsCountService(source: topicViewsCountHtmlSource)
+
+                self.topicContents = articleService.get()
+                self.topicCommentsNumber = articleCommentsNumberService.get()
                 self.topic.viewsCount = topicViewsCountService.get()
+                self.isActivityIndicatorLoaing = false
             }
         }
     }
@@ -145,6 +154,7 @@ struct TopicInformationView: View {
 
 struct TopicCommentsInformationView: View {
     let topic: Topic
+    let topicCommentsNumber: ArticleCommentsNumber?
 
     private let style = Style()
 
@@ -154,17 +164,31 @@ struct TopicCommentsInformationView: View {
                 NavigationLink(
                     destination: TopicCommentsScreenView(topic: topic)
                 ) {
-                    (
-                        Text(
-                            Image(
-                                systemName: style.imageSystemName
+                    if topicCommentsNumber != nil {
+                        (
+                            Text(
+                                Image(
+                                    systemName: style.imageSystemName
+                                )
+                            ) + Text(
+                                " \(topicCommentsNumber!.number) \(topicCommentsNumber!.casedWord)"
                             )
-                        ) + Text(
-                            " \(topic.commentsCount!) \(style.wordCommentsUkrainian.lowercased())"
+                        ).foregroundColor(
+                            style.color
                         )
-                    ).foregroundColor(
-                        style.color
-                    )
+                    } else {
+                        (
+                            Text(
+                                Image(
+                                    systemName: style.imageSystemName
+                                )
+                            ) + Text(
+                                " \(topic.commentsCount!) \(style.wordCommentsUkrainian.lowercased())"
+                            )
+                        ).foregroundColor(
+                            style.color
+                        )
+                    }
                 }
             } else {
                 (
